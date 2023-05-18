@@ -1,0 +1,148 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Axys\AxysFlasher as Flasher;
+use Illuminate\Support\Facades\Validator;
+
+use App\Notifications\NuevaConsulta;
+
+use App\Models\InscriptoNewsletter as Inscripto;
+use App\Models\Slide;
+use App\Models\Servicio;
+use App\Models\Novedad;
+use App\Models\Contenido;
+use App\Models\Icono;
+use App\Models\Consulta;
+use App\Models\Contacto;
+use App\Models\Popup;
+use App\Models\Encuesta;
+
+class General extends Controller
+{
+    public function home()
+    {
+        $slides = Slide::front()->get();
+        $servicios = Servicio::front()->get();
+        $novedades = Novedad::front()->limit(3)->get();
+        $contenidos = Contenido::front()->get();
+        $popup = Popup::where('visible', true)->orderBy('id', 'desc')->first();
+
+        return view('home', compact('slides', 'servicios', 'novedades', 'contenidos', 'popup'));
+    }
+
+    public function novedad(Novedad $novedad, $titulo)
+    {
+        if(!$novedad->visible) abort(404);
+
+        $ficha = $novedad;
+
+        return view('ficha', compact('ficha'));
+    }
+
+    public function servicio(Servicio $servicio, $titulo)
+    {
+        if(!$servicio->visible) abort(404);
+
+        $ficha = $servicio;
+
+        return view('ficha', compact('ficha'));
+    }
+
+        
+
+    public function newsletter(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+        if ($validator->fails()) {
+            return response(['ok'=>false, 'errores'=>$validator->errors()->all()], 200);
+        }
+
+        if(!Inscripto::where('email',$request->get('email'))->first()) {
+            $inscripto = new Inscripto($request->all());
+            $inscripto->save();
+        }
+
+        return response(['ok'=>true], 200);
+    }
+
+    public function consultar(Request $request)
+    {
+        $this->validate($request, [
+            'nombre' => 'required',
+            'email' => 'required|email',
+            'mensaje' => 'required',
+        ]);
+
+        if(!validar_recaptcha($request)) {
+            return redirect(\URL::previous()."#consulta")->withErrors(['captcha' => 'No tildaste la opción "No soy un robot"'])
+                ->withInput($request->all());
+        }
+
+        $consulta = new Consulta;
+        $consulta->fill($request->all());
+        $consulta->save();
+
+        $contacto = new Contacto;
+        if($contacto->email) {
+            $contacto->notify(new NuevaConsulta($consulta));
+        }
+
+        //Flasher::set("Tu consulta fue registrada exitosamente. Muchas gracias por comunicarte con nosotros.", 'Excelente!', 'success')->flashear();
+        //return back();
+
+        return redirect('/consulta-enviada');
+    }
+
+    public function consultaEnviada()
+    {
+        return view('consulta-enviada');
+    }
+
+    public function verEncuesta()
+    {
+        $encuesta = Encuesta::where('visible', true)->orderBy('id', 'desc')
+            ->with(['preguntas', 'preguntas.opciones'])
+            ->first();
+        if(!$encuesta) abort(404);
+
+        if(session()->get('encuesta-votada')) {
+            return redirect('encuesta-completa');
+        }
+
+        return view('encuesta', compact('encuesta'));
+    }
+
+    public function votarEncuesta(Request $request)
+    {
+        $encuesta = Encuesta::where('visible', true)->orderBy('id', 'desc')
+            ->with(['preguntas', 'preguntas.opciones'])
+            ->first();
+        if(!$encuesta) abort(404);
+
+        //procesar voto
+        if(!session()->get('encuesta-votada')) {
+
+            foreach($encuesta->preguntas as $pregunta) {
+                $id_opcion = $request->input('pregunta_' . $pregunta->id);
+                $pregunta->opciones()->where('id', $id_opcion)->update([
+                    'votos' => \DB::raw('votos + 1')
+                ]);
+            }
+
+            session()->put(['encuesta-votada' => true]);
+        }
+
+        return redirect('/encuesta-completa');
+    }
+
+    public function encuestaCompleta()
+    {
+        return view('encuesta-completa');
+    }
+}

@@ -1,0 +1,63 @@
+.novedades {
+
+	margin:50px auto;
+	margin-left:auto; margin-right:auto;
+
+	ul {
+
+		display:flex; flex-flow:row nowrap; justify-content:center;
+
+		li {
+			flex-basis:0; flex-grow:1;
+			max-width:400px;
+			position:relative; margin:0 2.5px;
+		}
+
+		article {
+
+			position:absolute; top:0; left:0; right:0; bottom:0;
+
+			.imagen {
+				position:absolute; z-index:10; top:0; left:0; right:0; bottom:0;
+				@include fondo-cover;
+			}
+
+			.over {
+				position:absolute; z-index:20; top:0; left:0; right:0; bottom:0;
+				opacity:.6; transition:opacity .2s ease;
+			}
+
+			h3 {
+				position:absolute; z-index:30; bottom:10%; left:6%; right:6%;
+				color:white; font-size:22px; line-height:1.4em; font-weight:600;
+				text-shadow:2px 2px 3px rgba(0, 0, 0, .4); transition:transform .2s ease;
+			}
+
+			a {
+				position:absolute; top:0; left:0; right:0; bottom:0;
+				display:block; z-index:40;
+			}
+		}
+
+		li:hover {
+			.over { opacity:0; }
+			h3 { transform:scale(1.05); }
+		}
+	}
+
+	@media(max-width:840px) {
+		margin:30px auto;
+		ul {
+			display:block;
+			li {
+				max-width:400px; margin:0 auto;
+				margin-bottom:15px;
+			}
+			article {
+				.over { transition:none; }
+				h3 { font-size:18px; }
+			}
+			li:hover .over { opacity:.6; }
+		}
+	}
+}

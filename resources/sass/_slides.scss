@@ -1,0 +1,40 @@
+
+.slides {
+
+	margin-top:-25px;
+
+	.slide {
+
+		height:35vw; position:relative;
+
+		.imagen {
+			display:block; position:absolute; top:0; left:0; right:0; bottom:0; z-index:10;
+			@include fondo-cover;
+		}
+		.imagen_vertical { display:none; }
+		.titulo {
+			position:absolute; z-index:20; //font-family:'Roboto Condensed', sans-serif;
+			width:100%; max-width:800px; margin:0 auto;
+			left:0; right:0; top:50%; transform:translateY(-50%);
+			font-size:40px; line-height:1.4em; font-weight:700; color:white;
+			text-shadow:3px 3px 6px rgba(0, 0, 0, .4); text-align:center;
+		}
+
+		a { display:block; position:absolute; top:0; left:0; right:0; bottom:0; z-index:30; }
+	}
+
+	.slick-prev { font-size:0; position:absolute; top:50%; transform: translateY(-50%); z-index:100; width:20px; height:80px; background-repeat:no-repeat; background-size:contain; background-image:url(../img/anterior.svg); left:5%; background-color:transparent; background-position:center; cursor:pointer; }
+	.slick-next { font-size:0; position:absolute; top:50%; transform: translateY(-50%); z-index:100; width:20px; height:80px; background-repeat:no-repeat; background-size:contain; background-image:url(../img/siguiente.svg); right:5%; background-color:transparent; background-position:center; cursor:pointer; }
+
+
+	@media(max-width:840px) {
+		.slide {
+			height:40vh;
+			.imagen_vertical { display:block; position:absolute; top:0; left:0; right:0; bottom:0; z-index:15; @include fondo-cover; }
+			.titulo { font-size:20px; }
+		}
+		.slick-prev { display:none; opacity:0; }
+		.slick-next { display:none; opacity:0; }
+	}
+}
+

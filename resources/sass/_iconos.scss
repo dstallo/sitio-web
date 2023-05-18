@@ -1,0 +1,26 @@
+.iconos {
+
+	margin:40px auto;
+	
+	ul {
+		padding:0 60px;
+		.slick-track { display:flex; }
+		.slick-track .slick-slide { display:flex; height:auto; align-items:center; justify-content:center; }
+		.slick-prev { font-size:0; position:absolute; top:50%; transform: translateY(-50%); z-index:800; width:20px; height:80px; background-repeat:no-repeat; background-size:contain; background-image:url(../img/anterior-color.svg); left:25px; background-color:transparent; background-position:center; cursor:pointer; }
+		.slick-next { font-size:0; position:absolute; top:50%; transform: translateY(-50%); z-index:800; width:20px; height:80px; background-repeat:no-repeat; background-size:contain; background-image:url(../img/siguiente-color.svg); right:25px; background-color:transparent; background-position:center; cursor:pointer; }
+		li {
+			position:relative; display:flex; align-items:center; text-align:center; margin:0 20px;
+			img { max-height:110px; max-width:130px; }
+			a { display:block; position:absolute; left:0; top:0; right:0; bottom:0; }
+		}
+	}
+
+	@media(max-width:850px) {
+		margin:30px auto;
+		ul {
+			padding:0 10px;
+			.slick-prev { display:none; opacity:0; }
+			.slick-next { display:none; opacity:0; }
+		}
+	}
+}

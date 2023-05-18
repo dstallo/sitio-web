@@ -1,0 +1,18 @@
+.ubicacion {
+
+	margin:50px auto;
+
+	.mapa {
+		//height:60vh;
+		img {
+			width:100%;
+		}
+		@media(max-width:650px) {
+			img {
+				object-fit:cover;
+				height:40vh;
+			}
+		}
+
+	}
+}

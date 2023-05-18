@@ -1,0 +1,50 @@
+.encuesta {
+
+	@import "checks-copados";
+
+	max-width:900px;
+
+
+	.intro {
+		font-size:28px; text-align:center; margin-bottom:40px;
+	}
+
+		
+	.titulo {
+
+		margin-bottom:40px; border-bottom:1px solid #aaa; padding-bottom:10px;
+
+		span {
+			display:inline-block; padding:6px 12px; background-color:$celeste; color:white;
+			font-size:15px; font-weight:600; text-transform:uppercase;		
+		}
+	}
+
+	.preguntas {
+
+		li {
+
+			margin-bottom:30px;
+
+			.pregunta { font-size:25px; font-weight:600; color:$celeste; margin-bottom:20px; }
+			.opciones {
+				display:flex; flex-flow:row wrap; justify-content:flex-start;
+				li {
+					margin-right:20px; margin-bottom:15px; display:flex; flex-flow:row nowrap;
+					align-items:center;
+					input { margin-right:5px; }
+					label { font-size:18px; }
+				}
+			}
+		}
+	}
+
+	.boton {
+		text-align:center; margin:30px 0;
+
+		button {
+			display:inline-block; background-color:$celeste; color:white; padding:6px 12px;
+			font-size:18px;
+		}
+	}
+}

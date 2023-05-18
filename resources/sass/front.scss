@@ -1,0 +1,41 @@
+@import "reset";
+
+// Sweetalert
+@import "node_modules/sweetalert/dist/sweetalert";
+
+// Lity
+@import "node_modules/lity/dist/lity";
+
+//@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300i,400i,600i&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,400i,600i&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap);
+
+.grecaptcha-badge { z-index:900; }
+
+@mixin fondo-cover() { background-size:cover; background-position:center; background-repeat:no-repeat; }
+@mixin fondo-contain() { background-size:contain; background-position:center; background-repeat:no-repeat; }
+@mixin reiniciar-input() { -webkit-appearance:none; -moz-appearance:none; -ms-appearance:none; -o-appearance:none; appearance:none; box-sizing:border-box; border-radius:0; outline:none; }
+
+$celeste: #488B9B;
+
+@import "layout";
+
+@import "slides";
+
+@import "servicios";
+
+@import "novedades";
+
+@import "galeria";
+
+@import "ubicacion";
+
+@import "consulta";
+
+@import "formularios";
+
+@import "iconos";
+
+@import "ficha";
+
+@import "encuesta";

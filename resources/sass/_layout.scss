@@ -1,0 +1,305 @@
+$font-size-basico: 15px;
+
+html { font-size: $font-size-basico; scroll-behavior:smooth; }
+body { font-family: 'Poppins', sans-serif; font-weight:400; color:#6D6F71; }
+strong,b { font-weight:700; }
+
+.contenedor { width:90%; max-width:1800px; margin:0 auto; }
+
+$font-size-basico: 15px;
+
+html { font-size: $font-size-basico; }
+body { font-family: 'Poppins', sans-serif; font-weight:400; color:#6D6F71; }
+strong,b { font-weight:700; }
+
+.contenedor { width:90%; max-width:1700px; margin:0 auto; }
+
+//95px es el alto del header (en general, jeje)
+.landing { margin-top:calc(95px + 30px); }
+.ancla { position:relative; top:-105px; } //-95 - 10
+
+h2 {
+	margin:30px auto; text-align:center; color:black;
+	font-weight:700; font-size:36px; line-height:1.4em;
+
+	&:after {
+		display:block; content:''; width:80px; margin:10px auto;
+		border-top:3px solid $celeste;
+	}
+}
+
+.intro { font-size:22px; color:#58595B; margin:30px auto; text-align:center; width:90%; }
+
+@media(max-width:850px) {
+	h2 { font-size:25px; }
+	.intro { font-size:18px; }
+}
+
+.whatsapp {
+	width:56px; height:56px; @include fondo-contain; background-image:url(../img/whatsapp.png);
+	display:block; position:fixed; bottom:30px; right:30px; z-index:999;
+	transition:all .2s ease;
+	&:hover { transform:scale(1.2); }
+
+	@media(max-width:850px) {
+		bottom:10px; right:10px; width:40px; height:40px;
+	}
+}
+
+header {
+
+	position:relative; z-index:100;
+	position:fixed; width:100%; top:0; z-index:800;
+	background-color:white;
+	
+	.contenedor {
+		width: 100%; padding:0 3%;
+		display:flex; flex-flow:row wrap; align-items:stretch;
+		justify-content: space-between;
+	}
+
+	.logo {
+		padding:20px 10px; display:flex; flex-flow:row wrap; align-items:center;
+		&:before {
+			display:block; content:''; height:60px; width:260px;
+			background-image:url(../img/logo.svg); @include fondo-contain;
+		}
+		h1, h2 {
+			font-size:0;
+			&:after { display:none; }
+		}
+	}
+
+	nav {
+		align-self:center;
+		font-family:'Roboto Condensed', sans-serif;
+		text-transform:uppercase;
+		ul {
+			display:flex; flex-flow:row wrap; align-items:center;
+			justify-content:center;
+			& > li {
+				position:relative; margin:0 10px;
+				color:black; font-weight:700; font-size:15px;
+				a {
+					display:block; padding:5px;
+					&:hover { text-decoration:underline; }
+					&.activo { text-decoration:underline; }
+				}
+			}
+		}
+	}
+
+	
+	a.airbnb {
+		display: block;
+		width: 65px; height: 70px;
+		@include fondo-contain;
+		background-image: url(../img/airbnb.svg);
+		align-self: center;
+	}
+	
+
+	.redes {
+		display:flex; flex-flow:row wrap; align-items:center;
+		background-color:#9ECCD9; padding:10px;
+		a {
+			display:block; width:34px; height:34px;
+			box-sizing:border-box;
+			margin:0 3px; border:2px solid white;
+			@include fondo-contain; background-size:55%;
+			&.email { background-image:url(../img/email.svg); }
+			&.compartir { background-image:url(../img/compartir.svg); }
+			transition:transform .2s ease;
+			&:hover { transform:scale(1.1); }
+		}
+	}
+}
+
+
+
+footer {
+
+	margin-top:50px;
+
+	.destacado {
+		padding:45px 10px; background-color:$celeste;
+		text-align:center; color:white;
+		border-bottom:1px solid white;
+		p {
+			font-size:35px; font-weight:700;
+		}
+	}
+
+	.info {
+
+		padding:50px 0;
+		background-color:#A5A3A4;
+		@include fondo-cover;
+		color:white;
+		//text-shadow:2px 2px 3px rgba(0, 0, 0, .4);
+
+		.contenedor { display:flex; flex-flow:row nowrap; align-items:stretch; justify-content:center; }
+
+		.col {
+			margin:0 30px; max-width:300px;
+			padding-right:30px; border-right:1px solid rgba(255, 255, 255, .4);
+			display:flex; align-items:center;
+			&:last-child { padding-right:0; border-right:0; margin-right:0; }
+		}
+
+		.logo {
+			display:block; width:250px; height:60px;
+			@include fondo-contain;
+			background-image:url(../img/logo-blanco.svg);
+			font-size:0;
+		}
+		.logo-aleara {
+			display:block; width:60px; height:100px;
+			@include fondo-contain;
+			background-image:url(../img/logo-aleara.svg);
+			font-size:0;
+		}
+
+		h3 { font-weight:600; }
+
+		p {
+			font-size:15px; font-weight:400; margin:0; line-height:1.4em;
+			a:hover { text-decoration:underline; }
+		}
+
+		.newsletter {
+			input[type="email"] {
+				display:block; width:100%; max-width:200px; background-color:white; color:#010101;
+				padding:5px 10px; font-size:13px; margin-top:10px;
+				box-shadow:2px 2px 3px rgba(0, 0, 0, .4);
+			}
+		}
+
+		.redes {
+			display:flex; flex-flow:row wrap; align-items:center; justify-content:flex-start;
+			margin-bottom:16px;
+			a {
+				@include fondo-contain; margin-right:15px;
+				height:22px; width:22px;
+				transition:transform .2s ease;
+				&:last-child { margin-right:0; }
+				&.facebook { background-image:url(../img/facebook.svg); }
+				&.twitter { background-image:url(../img/twitter.svg); }
+				&.instagram { background-image:url(../img/instagram.svg); }
+				&.compartir { background-image:url(../img/compartir.svg); }
+				&:hover { transform:scale(1.2); }
+			}
+		}
+	}
+}
+
+@media(max-width:1030px) {
+	header .redes { display:none; }
+	header a.airbnb { display:none; }
+}
+@media(max-width:920px) {
+
+
+	// section.landing { padding-top:0; }
+	// header { position:static; }
+
+	header .redes { display:flex; }
+
+	header {
+		.contenedor {
+			display:block; width:100%;
+		}
+
+		.logo {
+			justify-content:center;
+			&:after { display:none; }
+			h1, h2 {
+				margin:0;
+				&::after { display:none; }
+			}
+		}
+
+		.redes {
+			display:none;
+			justify-content:center;
+			a { margin:0 10px; }
+		}
+
+		nav {
+			position:relative;
+			.desplegar-menu-principal {
+				display:block; width:25px; height:18px; position:relative;
+				position:absolute; right:15px; top:-45px;
+				span { position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); border-top:1px solid #999; }
+				&:before { display:block; content:''; position:absolute; left:0; right:0; top:0; border-top:1px solid #999; }
+				&:after { display:block; content:''; position:absolute; left:0; right:0; bottom:0; border-top:1px solid #999; }
+			}
+			ul {
+				display:none;
+				& > li {
+					margin:0; padding:10px 10px; border-bottom:1px solid #ddd;
+					text-align:center;
+					&:last-child { border-bottom:0; }
+				}
+			}
+
+		}
+	}
+
+	footer {
+
+		margin-top:50px;
+
+		.info {
+
+			.contenedor { display:block; }
+
+			.col {
+				margin:0 auto; margin-bottom:20px; text-align:center; padding:0; border:0; justify-content:center;
+				&:last-child { margin-right:auto; }
+			}
+
+			p {
+				font-size:14px;
+			}
+
+			.newsletter {
+				input[type="email"] {
+					margin:15px auto;
+				}
+			}
+
+			.redes {
+				justify-content:center;
+				margin:16px 0;
+				a {
+					margin-right:20px;
+					height:22px; width:22px;
+					transition:none;
+					&:hover { transform:none; }
+				}
+			}
+		}
+	}
+}
+
+
+
+.popup .texto.importante { max-width:750px; padding:30px; }
+.popup .texto.importante h2 { font-size:18px; color:#80132c; font-weight:600; line-height:50px; text-transform:uppercase; padding-right:62px; padding-bottom:10px; margin-bottom:20px; border-bottom:1px solid #aaa; background-image:url(../img/iconos/lanus.svg); background-size:50px; background-position:right 5px top; background-repeat:no-repeat; }
+.popup .texto.importante h3 { font-size:18px; color:black; margin-bottom:20px; }
+.popup .texto.importante p { font-size:14px; color:#231f20; font-weight:300; line-height:1.6em; margin-bottom:20px; }
+.popup .texto.importante a.boton { display:inline-block; vertical-align:middle; background-color:#80132c; padding:6px 12px; color:white; font-weight:700; text-transform:uppercase; text-decoration:none; }
+@media(max-width:650px) {
+	.popup .texto.importante { padding:15px; }
+}
+
+//para los popups de imágenes
+.popup img {
+	display: block;
+	max-width:90vw;
+	max-height:90vh;
+	width: auto;
+	height: auto;
+	object-fit:contain;
+}

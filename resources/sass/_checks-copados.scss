@@ -1,0 +1,43 @@
+/// checkbox copados
+input[type="radio"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: var(white);
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+  color: $celeste;
+  width: 1.5em;
+  height: 1.5em;
+  border: 1px solid #ccc;
+  //border-radius: 0.15em;
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em $celeste;
+  /* Windows High Contrast Mode */
+  background-color: $celeste;
+}
+
+input[type="radio"]:checked {
+	border:1px solid $celeste;
+	&::before {
+  		transform: scale(1);
+  	}
+}
+///
