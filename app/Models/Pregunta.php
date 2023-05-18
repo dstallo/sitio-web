@@ -4,21 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Axys\Traits\EsOrdenable;
+use App\Axys\Traits\EsMultiIdioma;
 
 class Pregunta extends Model
 {
-    use EsOrdenable;
-    
-    protected $table = 'preguntas';
-    protected $fillable = ['pregunta'];
+	use EsOrdenable;
+	use EsMultiIdioma;
 
-    public function encuesta()
-    {
-    	return $this->belongsTo(Encuesta::class, 'id_encuesta');
-    }
+	protected $table = 'preguntas';
+	protected $idiomatizados = ['pregunta'];
+	protected $fillable = ['pregunta'];
 
-    public function opciones()
-    {
-        return $this->hasMany(Opcion::class, 'id_pregunta')->orderBy('orden');
-    }
+	public function encuesta()
+	{
+		return $this->belongsTo(Encuesta::class, 'id_encuesta');
+	}
+
+	public function opciones()
+	{
+		return $this->hasMany(Opcion::class, 'id_pregunta')->orderBy('orden');
+	}
 }

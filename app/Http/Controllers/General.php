@@ -2,147 +2,146 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Axys\AxysFlasher as Flasher;
-use Illuminate\Support\Facades\Validator;
-
-use App\Notifications\NuevaConsulta;
-
-use App\Models\InscriptoNewsletter as Inscripto;
+use App\Models\Popup;
 use App\Models\Slide;
-use App\Models\Servicio;
 use App\Models\Novedad;
-use App\Models\Contenido;
-use App\Models\Icono;
 use App\Models\Consulta;
 use App\Models\Contacto;
-use App\Models\Popup;
 use App\Models\Encuesta;
+use App\Models\Servicio;
+use App\Models\Contenido;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
+use App\Notifications\NuevaConsulta;
+use Illuminate\Support\Facades\Validator;
+use App\Models\InscriptoNewsletter as Inscripto;
 
 class General extends Controller
 {
-    public function home()
-    {
-        $slides = Slide::front()->get();
-        $servicios = Servicio::front()->get();
-        $novedades = Novedad::front()->limit(3)->get();
-        $contenidos = Contenido::front()->get();
-        $popup = Popup::where('visible', true)->orderBy('id', 'desc')->first();
+	public function home()
+	{
+		$slides = Slide::front()->get();
+		$servicios = Servicio::front()->get();
+		$novedades = Novedad::front()->limit(3)->get();
+		$contenidos = Contenido::front()->get();
+		$popup = Popup::where('visible', true)->orderBy('id', 'desc')->first();
 
-        return view('home', compact('slides', 'servicios', 'novedades', 'contenidos', 'popup'));
-    }
+		return view('home', compact('slides', 'servicios', 'novedades', 'contenidos', 'popup'));
+	}
 
-    public function novedad(Novedad $novedad, $titulo)
-    {
-        if(!$novedad->visible) abort(404);
+	public function novedad(Novedad $novedad, $titulo)
+	{
+		if (!$novedad->visible) {
+			abort(404);
+		}
 
-        $ficha = $novedad;
+		$ficha = $novedad;
 
-        return view('ficha', compact('ficha'));
-    }
+		return view('ficha', compact('ficha'));
+	}
 
-    public function servicio(Servicio $servicio, $titulo)
-    {
-        if(!$servicio->visible) abort(404);
+	public function servicio(Servicio $servicio, $titulo)
+	{
+		if (!$servicio->visible) {
+			abort(404);
+		}
 
-        $ficha = $servicio;
+		$ficha = $servicio;
 
-        return view('ficha', compact('ficha'));
-    }
+		return view('ficha', compact('ficha'));
+	}
 
-        
+	public function newsletter(Request $request)
+	{
+		$validator = Validator::make($request->all(), [
+			'email' => 'required|email',
+		]);
 
-    public function newsletter(Request $request)
-    {
+		if ($validator->fails()) {
+			return response(['ok' => false, 'errores' => $validator->errors()->all()], 200);
+		}
 
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-        ]);
+		if (!Inscripto::where('email', $request->get('email'))->first()) {
+			$inscripto = new Inscripto($request->all());
+			$inscripto->save();
+		}
 
-        if ($validator->fails()) {
-            return response(['ok'=>false, 'errores'=>$validator->errors()->all()], 200);
-        }
+		return response(['ok' => true], 200);
+	}
 
-        if(!Inscripto::where('email',$request->get('email'))->first()) {
-            $inscripto = new Inscripto($request->all());
-            $inscripto->save();
-        }
+	public function consultar(Request $request)
+	{
+		$this->validate($request, [
+			'nombre' => 'required',
+			'email' => 'required|email',
+			'mensaje' => 'required',
+		]);
 
-        return response(['ok'=>true], 200);
-    }
+		if (!validar_recaptcha($request)) {
+			return redirect(URL::previous() . '#consulta')->withErrors(['captcha' => __('textos.consulta.errores.captcha')])
+				->withInput($request->all());
+		}
 
-    public function consultar(Request $request)
-    {
-        $this->validate($request, [
-            'nombre' => 'required',
-            'email' => 'required|email',
-            'mensaje' => 'required',
-        ]);
+		$consulta = new Consulta();
+		$consulta->fill($request->all());
+		$consulta->save();
 
-        if(!validar_recaptcha($request)) {
-            return redirect(\URL::previous()."#consulta")->withErrors(['captcha' => 'No tildaste la opción "No soy un robot"'])
-                ->withInput($request->all());
-        }
+		$contacto = new Contacto();
+		if ($contacto->email) {
+			$contacto->notify(new NuevaConsulta($consulta));
+		}
 
-        $consulta = new Consulta;
-        $consulta->fill($request->all());
-        $consulta->save();
+		return redirect('/consulta-enviada');
+	}
 
-        $contacto = new Contacto;
-        if($contacto->email) {
-            $contacto->notify(new NuevaConsulta($consulta));
-        }
+	public function consultaEnviada()
+	{
+		return view('consulta-enviada');
+	}
 
-        //Flasher::set("Tu consulta fue registrada exitosamente. Muchas gracias por comunicarte con nosotros.", 'Excelente!', 'success')->flashear();
-        //return back();
+	public function verEncuesta()
+	{
+		$encuesta = Encuesta::where('visible', true)->orderBy('id', 'desc')
+			->with(['preguntas', 'preguntas.opciones'])
+			->first();
+		if (!$encuesta) {
+			abort(404);
+		}
 
-        return redirect('/consulta-enviada');
-    }
+		if (session()->get('encuesta-votada')) {
+			return redirect('encuesta-completa');
+		}
 
-    public function consultaEnviada()
-    {
-        return view('consulta-enviada');
-    }
+		return view('encuesta', compact('encuesta'));
+	}
 
-    public function verEncuesta()
-    {
-        $encuesta = Encuesta::where('visible', true)->orderBy('id', 'desc')
-            ->with(['preguntas', 'preguntas.opciones'])
-            ->first();
-        if(!$encuesta) abort(404);
+	public function votarEncuesta(Request $request)
+	{
+		$encuesta = Encuesta::where('visible', true)->orderBy('id', 'desc')
+			->with(['preguntas', 'preguntas.opciones'])
+			->first();
+		if (!$encuesta) {
+			abort(404);
+		}
 
-        if(session()->get('encuesta-votada')) {
-            return redirect('encuesta-completa');
-        }
+		//procesar voto
+		if (!session()->get('encuesta-votada')) {
+			foreach ($encuesta->preguntas as $pregunta) {
+				$id_opcion = $request->input('pregunta_' . $pregunta->id);
+				$pregunta->opciones()->where('id', $id_opcion)->update([
+					'votos' => DB::raw('votos + 1')
+				]);
+			}
 
-        return view('encuesta', compact('encuesta'));
-    }
+			session()->put(['encuesta-votada' => true]);
+		}
 
-    public function votarEncuesta(Request $request)
-    {
-        $encuesta = Encuesta::where('visible', true)->orderBy('id', 'desc')
-            ->with(['preguntas', 'preguntas.opciones'])
-            ->first();
-        if(!$encuesta) abort(404);
+		return redirect('/encuesta-completa');
+	}
 
-        //procesar voto
-        if(!session()->get('encuesta-votada')) {
-
-            foreach($encuesta->preguntas as $pregunta) {
-                $id_opcion = $request->input('pregunta_' . $pregunta->id);
-                $pregunta->opciones()->where('id', $id_opcion)->update([
-                    'votos' => \DB::raw('votos + 1')
-                ]);
-            }
-
-            session()->put(['encuesta-votada' => true]);
-        }
-
-        return redirect('/encuesta-completa');
-    }
-
-    public function encuestaCompleta()
-    {
-        return view('encuesta-completa');
-    }
+	public function encuestaCompleta()
+	{
+		return view('encuesta-completa');
+	}
 }

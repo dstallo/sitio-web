@@ -103,7 +103,7 @@ header {
 		display:flex; flex-flow:row wrap; align-items:center;
 		background-color:#9ECCD9; padding:10px;
 		a {
-			display:block; width:34px; height:34px;
+			display:flex; width:34px; height:34px;
 			box-sizing:border-box;
 			margin:0 3px; border:2px solid white;
 			@include fondo-contain; background-size:55%;
@@ -111,6 +111,18 @@ header {
 			&.compartir { background-image:url(../img/compartir.svg); }
 			transition:transform .2s ease;
 			&:hover { transform:scale(1.1); }
+		}
+		a.idioma {
+			text-align: center;
+			color: white;
+			span {
+				margin:0 auto;
+				align-self: center;
+			}
+			&.activo {
+				color:$celeste;
+				background-color: white;
+			}
 		}
 	}
 }

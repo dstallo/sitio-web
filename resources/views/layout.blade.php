@@ -64,19 +64,20 @@
             <nav>
                 <a class="desplegar-menu-principal"><span></span></a>
                 <ul>
-                    <li><a href="/#servicios">Ganesha</a></li>
-                    <li><a href="/#novedades">Novedades</a></li>
-                    <li><a href="/#galeria">Galería</a></li>
-                    <li><a href="/#ubicacion">Dónde estamos</a></li>
-                    <li><a href="" target="_blank">Reservar</a></li>
-                    <li><a href="/#consulta">Contacto</a></li>
+                    <li><a href="/#servicios">@lang('textos.menu.servicios')</a></li>
+                    <li><a href="/#novedades">@lang('textos.menu.novedades')</a></li>
+                    <li><a href="/#galeria">@lang('textos.menu.galeria')</a></li>
+                    <li><a href="/#ubicacion">@lang('textos.menu.ubicacion')</a></li>
+                    <li><a href="" target="_blank">@lang('textos.menu.reservar')</a></li>
+                    <li><a href="/#consulta">@lang('textos.menu.contacto')</a></li>
                 </ul>
             </nav>
             
             <a class="airbnb" href="" target="_blank"></a>
             
             <div class="redes">
-                <a class="email" href="mailto:casaganesha@abulafiagroup.com"></a>
+                <a class="idioma {{ App::getLocale() == 'es' ? 'activo' : '' }}" href="{{ url('idioma/es') }}"><span>ES</span></a>
+                <a class="idioma {{ App::getLocale() == 'en' ? 'activo' : '' }}" href="{{ url('idioma/en') }}"><span>EN</span></a>
                 <a class="compartir addthis_button_more"></a>
             </div>
         </div>
@@ -89,9 +90,7 @@
         <section class="ubicacion contenedor">
             <h2>Dónde estamos</h2>
             <div class="intro">
-                <p>
-                    A sólo 10 kilometros del Casco histórico, puerto ó terminal de buses y luego de atravesar un precioso camino rural aledaño al Río de la Plata, llegarás a Casa Ganesha Colonia.
-                </p>
+                <p>A sólo 10 kilometros del Casco histórico, puerto ó terminal de buses y luego de atravesar un precioso camino rural aledaño al Río de la Plata, llegarás a Casa Ganesha Colonia.</p>
             </div>
             <div class="mapa" id="mapa">
                 <a href="https://goo.gl/maps/GFoLBKja82q5Be1N7" target="_blank">

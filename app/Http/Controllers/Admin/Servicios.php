@@ -7,115 +7,114 @@ use Illuminate\Http\Request;
 use App\Axys\AxysFlasher as Flasher;
 use App\Axys\AxysListado as Listado;
 use App\Axys\Traits\TieneVisibilidad;
-
 use App\Models\Servicio;
 
 class Servicios extends Controller
 {
-    use TieneVisibilidad;
+	use TieneVisibilidad;
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
 
-    public function index(Request $request)
-    {
-        $query = Servicio::orderBy('orden');
+	public function index(Request $request)
+	{
+		$query = Servicio::orderBy('orden');
 
-        $listado=new Listado(
-            'servicios',
-            $query,
-            $request,
-            [],
-            [
-                'buscando'  =>[
-                    ['campo'=>'titulo','comparacion'=>'like'],
-                ],
-                'buscando_id' =>[
-                    ['campo'=>'id','comparacion'=>'igual']
-                ]
-            ]
-        );
-        
-        //$servicios=$listado->paginar(50);
-        $servicios=$listado->get();
+		$listado = new Listado(
+			'servicios',
+			$query,
+			$request,
+			[],
+			[
+				'buscando' => [
+					['campo' => 'titulo_es', 'comparacion' => 'like'],
+				],
+				'buscando_id' => [
+					['campo' => 'id', 'comparacion' => 'igual']
+				]
+			]
+		);
 
-        return view('admin.servicios.index', compact('servicios', 'listado'));
-    }
+		//$servicios=$listado->paginar(50);
+		$servicios = $listado->get();
 
-    public function eliminar(Servicio $servicio)
-    {
-        try {
-            $servicio->delete();
-            $flasher=Flasher::set("El servicio fue eliminado.", 'Servicio Eliminado', 'success');
-        } catch (\Exception $e) {
-            $flasher=Flasher::set('No se pudo borrar el servicio, ya tiene contenido asociado.', 'Error', 'error');
-        }
-        $flasher->flashear();
-        return redirect()->back();
-    }
+		return view('admin.servicios.index', compact('servicios', 'listado'));
+	}
 
-    public function eliminarArchivo(Servicio $servicio, $campo)
-    {
-        $servicio->eliminarArchivo($campo)->save();
-        Flasher::set("Se eliminó el archivo $campo", 'Archivo Eliminado', 'success')->flashear();
-        return back();
-    }
+	public function eliminar(Servicio $servicio)
+	{
+		try {
+			$servicio->delete();
+			$flasher = Flasher::set('El servicio fue eliminado.', 'Servicio Eliminado', 'success');
+		} catch (\Exception $e) {
+			$flasher = Flasher::set('No se pudo borrar el servicio, ya tiene contenido asociado.', 'Error', 'error');
+		}
+		$flasher->flashear();
+		return redirect()->back();
+	}
 
-    public function crear(Request $request)
-    {
-        $servicio = new Servicio;
+	public function eliminarArchivo(Servicio $servicio, $campo)
+	{
+		$servicio->eliminarArchivo($campo)->save();
+		Flasher::set("Se eliminó el archivo $campo", 'Archivo Eliminado', 'success')->flashear();
+		return back();
+	}
 
-        return view('admin.servicios.crear',compact('servicio'));
-    }
+	public function crear(Request $request)
+	{
+		$servicio = new Servicio();
 
-    public function editar(Servicio $servicio, Request $request)
-    {
-        return view('admin.servicios.editar',compact('servicio'));
-    }
+		return view('admin.servicios.crear', compact('servicio'));
+	}
 
-    public function guardar(Request $request, $id=null)
-    {
-        $this->validate($request, [
-            'titulo' => 'required',
-            'link' => 'nullable|url',
-            'imagen' => 'file|mimes:png,svg|max:1024',
-        ]);
+	public function editar(Servicio $servicio, Request $request)
+	{
+		return view('admin.servicios.editar', compact('servicio'));
+	}
 
-        if($id) {
-            $servicio=Servicio::findOrFail($id);
-        } else {
-            $servicio=new Servicio;
-            $servicio->ordenar();
-        }
+	public function guardar(Request $request, $id = null)
+	{
+		$this->validate($request, [
+			'titulo_es' => 'required',
+			'link' => 'nullable|url',
+			'imagen' => 'file|mimes:png,svg|max:1024',
+		]);
 
-        $servicio->fill($request->all())
-            ->subir($request->file('imagen'),'imagen')
-            ->save();
+		if ($id) {
+			$servicio = Servicio::findOrFail($id);
+		} else {
+			$servicio = new Servicio();
+			$servicio->ordenar();
+		}
 
-        if($id) {
-            Flasher::set("El servicio fue modificado exitosamente.", 'Servicio Editado', 'success')->flashear();
-            return back();
-        } else {
-            Flasher::set("El servicio fue creado exitosamente.", 'Servicio Creado', 'success')->flashear();
-            return redirect()->route('editar_servicio', $servicio);
-        }
-    }
+		$servicio->fill($request->all())
+			->subir($request->file('imagen'), 'imagen')
+			->save();
 
-    public function ordenar(Request $request)
-    {
-        $ids = $request->all()['ids'];
-        $orden = 1;
-        foreach($ids as $id) {
-            Servicio::where('id', $id)->update(['orden' => $orden]);
-            $orden += 1;
-        }
-        return ['ok'=>true];
-    }
+		if ($id) {
+			Flasher::set('El servicio fue modificado exitosamente.', 'Servicio Editado', 'success')->flashear();
+			return back();
+		} else {
+			Flasher::set('El servicio fue creado exitosamente.', 'Servicio Creado', 'success')->flashear();
+			return redirect()->route('editar_servicio', $servicio);
+		}
+	}
 
-    public function visibilidad(Servicio $servicio)
-    {
-        return $this->cambiarVisibilidad($servicio);
-    }
+	public function ordenar(Request $request)
+	{
+		$ids = $request->all()['ids'];
+		$orden = 1;
+		foreach ($ids as $id) {
+			Servicio::where('id', $id)->update(['orden' => $orden]);
+			$orden += 1;
+		}
+		return ['ok' => true];
+	}
+
+	public function visibilidad(Servicio $servicio)
+	{
+		return $this->cambiarVisibilidad($servicio);
+	}
 }

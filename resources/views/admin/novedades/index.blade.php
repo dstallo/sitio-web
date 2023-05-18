@@ -59,7 +59,7 @@
                 <thead>
                     <tr>
                         <th><a href="{{ $listado->linkOrden('id') }}">#</a></th>
-                        <th><a href="{{ $listado->linkOrden('titulo') }}">Título</a></th>
+                        <th><a href="{{ $listado->linkOrden('titulo_es') }}">Título</a></th>
                         <th>Link</th>
                         <th></th>
                     </tr>

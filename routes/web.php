@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\General;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Localizacion;
 
 if (config('app.env') === 'production') {
-    \URL::forceScheme('https');
+	URL::forceScheme('https');
 }
 
 /*
@@ -20,10 +21,12 @@ if (config('app.env') === 'production') {
 */
 
 Route::prefix('admin')->group(function () {
-	require __DIR__.'/admin-auth.php';
+	require __DIR__ . '/admin-auth.php';
 
-	require __DIR__.'/admin-rutas.php';
+	require __DIR__ . '/admin-rutas.php';
 });
+
+Route::get('idioma/{idioma}', [Localizacion::class, 'cambiarIdioma']);
 
 Route::post('ajax/newsletter', [General::class, 'newsletter']);
 Route::post('consultar', [General::class, 'consultar'])->name('consultar');

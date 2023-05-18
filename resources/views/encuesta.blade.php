@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('titulo')Hotel El Galeón - Encuesta de satisfacción@endsection
+@section('titulo') {{ config('app.name') }} - @lang('textos.encuesta.titulo') @endsection
 
 @section('script.header')
     
@@ -11,14 +11,11 @@
 	<div class="encuesta contenedor">
 		
 		<div class="intro">
-			<p>
-				Te invitamos a completar esta encuesta  de satisfacción.<br>
-				Tu participación nos ayudan a seguir mejorando nuestro servicio.
-			</p>
+			@lang('textos.encuesta.intro')
 		</div>
 
 		<div class="titulo">
-			<span>Encuesta de satisfacción</span>
+			<span>@lang('textos.encuesta.titulo')</span>
 		</div>
 
 		<form method="post">
@@ -39,7 +36,7 @@
 				@endforeach
 			</ul>
 			<div class="boton">
-				<button type="submit">ENVIAR</button>
+				<button type="submit">@lang('textos.encuesta.boton')</button>
 			</div>
 		</form>
 	</div>

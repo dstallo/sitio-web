@@ -9,11 +9,14 @@
         </div>
     @endif
 </div>
-<div class="col-md-8 form-group{{ has_error($errors,'titulo') }}">
-    <label>Título</label>
-    <input type="text" class="form-control" name="titulo" value="{{ old('titulo',$slide->titulo) }}">
+@foreach(config('idiomas.idiomas') as $kidioma => $idioma)
+<?php $campo = 'titulo_'.$kidioma; ?>
+<div class="col-md-4 form-group{{ has_error($errors, $campo) }}">
+    <label>Título ({{ $idioma }})</label>
+    <input type="text" class="form-control" name="{{ $campo }}" value="{{ old($campo, $slide->$campo) }}">
     <span class="help-block">Empezar con . para que no sea visible en el front</span>
 </div>
+@endforeach
 <div class="col-md-12">&nbsp;</div>
 <div class="col-md-6 form-group{{ has_error($errors,'link') }}">
     <label>Link</label>

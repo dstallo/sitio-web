@@ -10,10 +10,13 @@
     @endif
 </div>
 
-<div class="col-md-6 form-group{{ has_error($errors,'titulo') }}">
-    <label>Título</label>
-    <input type="text" class="form-control" name="titulo" value="{{ old('titulo',$novedad->titulo) }}">
+@foreach(config('idiomas.idiomas') as $kidioma => $idioma)
+<?php $campo = 'titulo_'.$kidioma; ?>
+<div class="col-md-4 form-group{{ has_error($errors, $campo) }}">
+    <label>Título ({{ $idioma }})</label>
+    <input type="text" class="form-control" name="{{ $campo }}" value="{{ old($campo, $novedad->$campo) }}">
 </div>
+@endforeach
 <div class="col-md-6 form-group{{ has_error($errors,'link') }}">
     <label>Link</label>
     <input type="text" class="form-control" name="link" value="{{ old('link',$novedad->link) }}">
@@ -33,15 +36,24 @@
     @endif
 </div>
 <div class="col-md-12"><hr><h4>Ficha</h4></div>
-<div class="col-md-4 form-group{{ has_error($errors,'titulo') }}">
-    <label>Título</label>
-    <input type="text" class="form-control" name="ficha_titulo" value="{{ old('titulo',$novedad->ficha_titulo) }}">
+@foreach(config('idiomas.idiomas') as $kidioma => $idioma)
+<?php $campo = 'ficha_titulo_'.$kidioma; ?>
+<div class="col-md-6 form-group{{ has_error($errors, $campo) }}">
+    <label>Título ({{ $idioma }})</label>
+    <input type="text" class="form-control" name="{{ $campo }}" value="{{ old($campo, $novedad->$campo) }}">
 </div>
-<div class="col-md-8 form-group{{ has_error($errors,'bajada') }}">
-    <label>Bajada</label>
-    <textarea class="form-control" style="height:180px;" name="ficha_bajada">{{ old('ficha_bajada',$novedad->ficha_bajada) }}</textarea>
+@endforeach
+@foreach(config('idiomas.idiomas') as $kidioma => $idioma)
+<?php $campo = 'ficha_bajada_'.$kidioma; ?>
+<div class="col-md-6 form-group{{ has_error($errors, $campo) }}">
+    <label>Bajada ({{ $idioma }})</label>
+    <textarea style="height:180px;" class="tiny" name="{{ $campo }}">{{ old($campo, $novedad->$campo) }}</textarea>
 </div>
-<div class="col-md-12 form-group{{ has_error($errors,'texto') }}">
-    <label>Texto</label>
-    <textarea class="tiny" style="height:180px;" name="ficha_texto">{{ old('ficha_texto',$novedad->ficha_texto) }}</textarea>
+@endforeach
+@foreach(config('idiomas.idiomas') as $kidioma => $idioma)
+<?php $campo = 'ficha_texto_'.$kidioma; ?>
+<div class="col-md-6 form-group{{ has_error($errors, $campo) }}">
+    <label>Texto ({{ $idioma }})</label>
+    <textarea style="height:180px;" class="tiny" name="{{ $campo }}">{{ old($campo, $novedad->$campo) }}</textarea>
 </div>
+@endforeach

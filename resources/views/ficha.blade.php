@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('titulo')Hotel El Galeón - {{ $ficha->titulo }}@endsection
+@section('titulo'){{ config('app.name') }} - {{ $ficha->titulo }}@endsection
 
 @section('script.header')
 	<link rel="stylesheet" type="text/css" href="{{ url('js/lib/slick/slick.css') }}">

@@ -77,9 +77,7 @@
 	<section class="galeria contenedor">
 		<h2>Nuestro lugar</h2>
 		<div class="intro">
-			<p>
-				Casa Ganesha posee un gran jardín para tomar sol, bañarse en el estanque, comer una fruta de un árbol, disfrutar el cantar de los pájaros y tambien jugar en familia. Nuestra galería, con una infusión o comida de por medio, es el lugar propicio para relajarse y observar la vista del campo abierto, sus animales y los cambios de colores a la puesta del sol.
-			</p>
+			<p>Casa Ganesha posee un gran jardín para tomar sol, bañarse en el estanque, comer una fruta de un árbol, disfrutar el cantar de los pájaros y tambien jugar en familia. Nuestra galería, con una infusión o comida de por medio, es el lugar propicio para relajarse y observar la vista del campo abierto, sus animales y los cambios de colores a la puesta del sol.</p>
 		</div>
 		@if($contenidos->count())
 			<div class="ancla" id="galeria"></div>
