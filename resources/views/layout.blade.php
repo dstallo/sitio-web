@@ -68,12 +68,12 @@
                     <li><a href="/#novedades">@lang('textos.menu.novedades')</a></li>
                     <li><a href="/#galeria">@lang('textos.menu.galeria')</a></li>
                     <li><a href="/#ubicacion">@lang('textos.menu.ubicacion')</a></li>
-                    <li><a href="" target="_blank">@lang('textos.menu.reservar')</a></li>
+                    <li><a href="https://www.airbnb.com.ar/rooms/2158738" target="_blank">@lang('textos.menu.reservar')</a></li>
                     <li><a href="/#consulta">@lang('textos.menu.contacto')</a></li>
                 </ul>
             </nav>
             
-            <a class="airbnb" href="" target="_blank"></a>
+            <a class="airbnb" href="https://www.airbnb.com.ar/rooms/2158738" target="_blank"></a>
             
             <div class="redes">
                 <a class="idioma {{ App::getLocale() == 'es' ? 'activo' : '' }}" href="{{ url('idioma/es') }}"><span>ES</span></a>
