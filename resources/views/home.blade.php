@@ -27,7 +27,7 @@
 		<div class="ancla" id="servicios"></div>
 		<section class="servicios contenedor">		
 			<div class="intro">
-				<p>Una tradicional casa de campo de los años cuarenta, para disfrutar de la tranquilidad, admirar nuestra decoración inspirada en muebles antiguos y artesanías de nuestros viajes, elejir un libro de la biblioteca y descansar con una buena película.</p>
+				@lang('textos.servicios.texto')
 			</div>
 			<ul>
 				@foreach($servicios as $servicio)
@@ -53,7 +53,7 @@
 	@if($novedades->count())
 		<div class="ancla" id="novedades"></div>
 		<section class="novedades contenedor">
-			<h2>Novedades y Promociones</h2>
+			<h2>@lang('textos.novedades.titulo')</h2>
 			<ul>
 				@foreach($novedades as $novedad)
 					<li data-mantener-relacion-alto="100">
@@ -75,9 +75,9 @@
 
 	<div class="ancla" id="gym"></div>
 	<section class="galeria contenedor">
-		<h2>Nuestro lugar</h2>
+		<h2>@lang('textos.galeria.titulo')</h2>
 		<div class="intro">
-			<p>Casa Ganesha posee un gran jardín para tomar sol, bañarse en el estanque, comer una fruta de un árbol, disfrutar el cantar de los pájaros y tambien jugar en familia. Nuestra galería, con una infusión o comida de por medio, es el lugar propicio para relajarse y observar la vista del campo abierto, sus animales y los cambios de colores a la puesta del sol.</p>
+			@lang('textos.galeria.texto')
 		</div>
 		@if($contenidos->count())
 			<div class="ancla" id="galeria"></div>

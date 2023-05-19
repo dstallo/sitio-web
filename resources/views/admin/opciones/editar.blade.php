@@ -3,7 +3,7 @@
 @section('content_header')
     <h4>
         <a href="{{ route('encuestas') }}">Encuestas</a> > <a href="{{ route('editar_encuesta', [$encuesta]) }}">{{ $encuesta->nombre }}</a> >
-        <a href="{{ route('preguntas', $encuesta) }}">Preguntas</a> > <a href="{{ route('editar_pregunta', [$encuesta, $pregunta]) }}">{{ $pregunta->pregunta }}</a>
+        <a href="{{ route('preguntas', $encuesta) }}">Preguntas</a> > <a href="{{ route('editar_pregunta', [$encuesta, $pregunta]) }}">{{ $pregunta->pregunta_es }}</a>
     </h4>
     <h1>Opciones</h1>
 @stop

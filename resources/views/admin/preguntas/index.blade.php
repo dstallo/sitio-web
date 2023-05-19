@@ -68,7 +68,7 @@
                         <tr>
                             <td class="hidden">{{ $pregunta->orden }}</td>
                             <td>{{ $pregunta->id }}</td>
-                            <td>{{ $pregunta->pregunta }}</td>
+                            <td>{{ $pregunta->pregunta_es }}</td>
                             <td class="text-right">
                                 <a href="{{ route('opciones', [$encuesta, $pregunta]) }}" class="btn btn-primary btn-sm">Opciones</a>
                                 <a href="{{ route('editar_pregunta', compact('encuesta', 'pregunta')) }}" role="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-edit"></i></a>

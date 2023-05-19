@@ -78,7 +78,7 @@
             <div class="redes">
                 <a class="idioma {{ App::getLocale() == 'es' ? 'activo' : '' }}" href="{{ url('idioma/es') }}"><span>ES</span></a>
                 <a class="idioma {{ App::getLocale() == 'en' ? 'activo' : '' }}" href="{{ url('idioma/en') }}"><span>EN</span></a>
-                <a class="compartir addthis_button_more"></a>
+                <a href="#" class="compartir addthis_button_more"></a>
             </div>
         </div>
     </header>
@@ -88,9 +88,9 @@
 
         <div class="ancla" id="ubicacion"></div>
         <section class="ubicacion contenedor">
-            <h2>Dónde estamos</h2>
+            <h2>@lang('textos.ubicacion.titulo')</h2>
             <div class="intro">
-                <p>A sólo 10 kilometros del Casco histórico, puerto ó terminal de buses y luego de atravesar un precioso camino rural aledaño al Río de la Plata, llegarás a Casa Ganesha Colonia.</p>
+                @lang('textos.ubicacion.texto')
             </div>
             <div class="mapa" id="mapa">
                 <a href="https://goo.gl/maps/GFoLBKja82q5Be1N7" target="_blank">
@@ -137,19 +137,19 @@
                     <div class="campos">
                         
                         <div class="col c-100">
-                            <input type="text" name="nombre" value="{{ old('nombre') }}" placeholder="Nombre" required>
+                            <input type="text" name="nombre" value="{{ old('nombre') }}" placeholder="@lang('textos.consulta.campos.nombre')" required>
                         </div>
 
                         <div class="col c-50">
-                            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" required>
+                            <input type="email" name="email" value="{{ old('email') }}" placeholder="@lang('textos.consulta.campos.email')" required>
                         </div>
 
                         <div class="col c-50">
-                            <input type="text" name="telefono" value="{{ old('telefono') }}" placeholder="Teléfono">
+                            <input type="text" name="telefono" value="{{ old('telefono') }}" placeholder="@lang('textos.consulta.campos.telefono')">
                         </div>
 
                         <div class="col c-100">
-                            <textarea name="mensaje" placeholder="Mensaje" required>{{ old('mensaje') }}</textarea>
+                            <textarea name="mensaje" placeholder="@lang('textos.consulta.campos.mensaje')" required>{{ old('mensaje') }}</textarea>
                         </div>
 
                     </div>
@@ -159,7 +159,7 @@
                     </div>
 
                     <div class="accion">
-                        <button type="submit">Enviar</button>
+                        <button type="submit">@lang('textos.consulta.boton')</button>
                     </div>
                 </form>
             </div>
@@ -169,7 +169,7 @@
         @if($iconos->count())
             <div class="ancla" id="marcas"></div>
             <section class="iconos contenedor">
-                <h2>¡Gracias por acompañarnos!</h2>
+                <h2>@lang('textos.iconos.titulo')</h2>
                 <ul>
                     @foreach($iconos as $icono)
                         <li>
@@ -188,7 +188,7 @@
         <div class="destacado">
             <div class="contenedor">
                 <p>
-                    ¡Te esperamos para disfrutar Casa Ganesha!
+                    @lang('textos.pie.destacado')
                 </p>
             </div>
         </div>
@@ -217,15 +217,15 @@
                             <a href="#" class="compartir addthis_button_more"></a>
                         </div>
                         <div class="newsletter">
-                            <h3>Newsletter</h3>
-                            <p>¡Suscribite y recibí novedades y promociones!</p>
+                            <h3>@lang('textos.pie.newsletter.titulo')</h3>
+                            @lang('textos.pie.newsletter.texto')
                             <form data-formulario="{{ url('ajax/newsletter') }}">
                                 {{ csrf_field() }}
-                                <input type="hidden" name="exito_titulo" value="Inscripción realizada">
-                                <input type="hidden" name="exito_texto" value="Tu e-mail fue inscripto a nuestro newsletter con éxito.">
-                                <input type="hidden" name="error_titulo" value="Error">
-                                <input type="hidden" name="error_texto" value="Ocurrió un error al enviar tu inscripción. Por favor intentá de nuevo más tarde.">
-                                <input type="email" name="email" placeholder="tu email acá" required>
+                                <input type="hidden" name="exito_titulo" value="@lang('textos.pie.newsletter.exito.titulo')">
+                                <input type="hidden" name="exito_texto" value="@lang('textos.pie.newsletter.exito.texto')">
+                                <input type="hidden" name="error_titulo" value="@lang('textos.pie.newsletter.error.titulo')">
+                                <input type="hidden" name="error_texto" value="@lang('textos.pie.newsletter.error.texto')">
+                                <input type="email" name="email" placeholder="@lang('textos.pie.newsletter.campo')" required>
                                 <button type="submit"></button>
                             </form>
                         </div>

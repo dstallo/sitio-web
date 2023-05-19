@@ -9,7 +9,10 @@
         </div>
     @endif
 </div>
-<div class="col-md-6 form-group{{ has_error($errors,'pregunta') }}">
-    <label>Pregunta</label>
-    <input type="text" class="form-control" name="pregunta" value="{{ old('pregunta',$pregunta->pregunta) }}">
+@foreach(config('idiomas.idiomas') as $kidioma => $idioma)
+<?php $campo = 'pregunta_'.$kidioma; ?>
+<div class="col-md-6 form-group{{ has_error($errors, $campo) }}">
+    <label>Pregunta ({{ $idioma }})</label>
+    <input type="text" class="form-control" name="{{ $campo }}" value="{{ old($campo, $pregunta->$campo) }}">
 </div>
+@endforeach

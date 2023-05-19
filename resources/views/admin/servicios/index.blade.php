@@ -68,7 +68,7 @@
                         <tr>
                             <td class="hidden">{{ $servicio->orden }}</td>
                             <td>{{ $servicio->id }}</td>
-                            <td>{{ $servicio->titulo }}</td>
+                            <td>{{ $servicio->titulo_es }}</td>
                             <td>
                                 @if($servicio->link)
                                     <a href="{{ $servicio->link }}" target="_blank">{{ $servicio->link }}</a>

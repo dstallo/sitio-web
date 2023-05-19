@@ -3,68 +3,68 @@
 return [
 	'menu' => [
 		'servicios' => 'Ganesha',
-		'novedades' => 'Novedades',
-		'galeria' => 'Galería',
-		'ubicacion' => 'Dónde estamos',
-		'reservar' => 'Reservar',
-		'contacto' => 'Contacto',
+		'novedades' => 'News',
+		'galeria' => 'Photos',
+		'ubicacion' => 'Location',
+		'reservar' => 'Book',
+		'contacto' => 'Contact us',
 	],
 	'servicios' => [
 		'texto' => '<p>Una tradicional casa de campo de los años cuarenta, para disfrutar de la tranquilidad, admirar nuestra decoración inspirada en muebles antiguos y artesanías de nuestros viajes, elejir un libro de la biblioteca y descansar con una buena película.</p>',
 	],
 	'novedades' => [
-		'titulo' => 'Novedades y Promociones',
+		'titulo' => 'News',
 	],
 	'galeria' => [
-		'titulo' => 'Nuestro lugar',
+		'titulo' => 'Our place',
 		'texto' => '<p>Casa Ganesha posee un gran jardín para tomar sol, bañarse en el estanque, comer una fruta de un árbol, disfrutar el cantar de los pájaros y tambien jugar en familia. Nuestra galería, con una infusión o comida de por medio, es el lugar propicio para relajarse y observar la vista del campo abierto, sus animales y los cambios de colores a la puesta del sol.</p>',
 	],
 	'ubicacion' => [
-		'titulo' => 'Dónde estamos',
+		'titulo' => 'Location',
 		'texto' => '<p>A sólo 10 kilometros del Casco histórico, puerto ó terminal de buses y luego de atravesar un precioso camino rural aledaño al Río de la Plata, llegarás a Casa Ganesha Colonia.</p>',
 	],
 	'consulta' => [
 		'campos' => [
-			'nombre' => 'Nombre',
+			'nombre' => 'Name',
 			'email' => 'Email',
-			'telefono' => 'Teléfono',
-			'mensaje' => 'Mensaje',
+			'telefono' => 'Phone',
+			'mensaje' => 'Message',
 		],
-		'boton' => 'Enviar',
+		'boton' => 'Send',
 		'errores' => [
-			'captcha' => 'No tildaste la opción "No soy un robot"',
+			'captcha' => "You didn't check the captcha",
 		],
 		'exito' => [
-			'titulo' => 'Información enviada',
-			'texto' => '<p>Gracias por ponerte en contacto con nosotros.</p><p>Muy pronto nos podremos en contacto con vos.</p>',
+			'titulo' => 'Message sent',
+			'texto' => '<p>Thank you for contacting us.</p><p>We will contact you soon.</p>',
 		],
 	],
 	'iconos' => [
-		'titulo' => '¡Gracias por acompañarnos!',
+		'titulo' => 'Thank you for joining us!',
 	],
 	'pie' => [
-		'destacado' => '¡Te esperamos para disfrutar Casa Ganesha!',
+		'destacado' => 'Casa Ganesha!',
 		'newsletter' => [
 			'titulo' => 'Newsletter',
-			'texto' => '<p>¡Suscribite y recibí novedades y promociones!</p>',
-			'campo' => 'tu email acá',
+			'texto' => '<p>Subscribe and get our latest news and promotions!</p>',
+			'campo' => 'your email',
 			'exito' => [
-				'titulo' => 'Inscripción realizada',
-				'texto' => 'Tu e-mail fue inscripto a nuestro newsletter con éxito.',
+				'titulo' => 'Subscription successfull',
+				'texto' => 'Your e-mail address was successfully registered on our newsletter.',
 			],
 			'error' => [
 				'titulo' => 'Error',
-				'texto' => 'Ocurrió un error al enviar tu inscripción. Por favor intentá de nuevo más tarde.',
+				'texto' => 'An error has occurred. Please try again later.',
 			],
 		],
 	],
 	'encuesta' => [
-		'titulo' => 'Encuesta de satisfacción',
-		'intro' => '<p>Te invitamos a completar esta encuesta  de satisfacción.<br>Tu participación nos ayudan a seguir mejorando nuestro servicio.</p>',
-		'boton' => 'ENVIAR',
+		'titulo' => 'Customer experience survey',
+		'intro' => '<p>We invite you to complete our survey.<br>Your answers will help us get better.</p>',
+		'boton' => 'SEND',
 		'exito' => [
-			'titulo' => 'Encuesta completa',
-			'texto' => '<p>Gracias por darnos tu opinión.</p>',
+			'titulo' => 'Your answers have been sent',
+			'texto' => '<p>Thank you.</p>',
 		]
 	],
 ];

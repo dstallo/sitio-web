@@ -54,7 +54,7 @@ header {
 	
 	.contenedor {
 		width: 100%; padding:0 3%;
-		display:flex; flex-flow:row wrap; align-items:stretch;
+		display:flex; align-items:stretch;
 		justify-content: space-between;
 	}
 
@@ -100,8 +100,8 @@ header {
 	
 
 	.redes {
-		display:flex; flex-flow:row wrap; align-items:center;
-		background-color:#9ECCD9; padding:10px;
+		display:flex; align-items:center;
+		background-color:#9ECCD9; padding:10px; margin-left:10px;
 		a {
 			display:flex; width:34px; height:34px;
 			box-sizing:border-box;

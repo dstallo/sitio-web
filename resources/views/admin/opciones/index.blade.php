@@ -3,7 +3,7 @@
 @section('content_header')
     <h4>
         <a href="{{ route('encuestas') }}">Encuestas</a> > <a href="{{ route('editar_encuesta', [$encuesta]) }}">{{ $encuesta->nombre }}</a> >
-        <a href="{{ route('preguntas', $encuesta) }}">Preguntas</a> > <a href="{{ route('editar_pregunta', [$encuesta, $pregunta]) }}">{{ $pregunta->pregunta }}</a>
+        <a href="{{ route('preguntas', $encuesta) }}">Preguntas</a> > <a href="{{ route('editar_pregunta', [$encuesta, $pregunta]) }}">{{ $pregunta->pregunta_es }}</a>
     </h4>
     <h1>Opciones</h1>
 @stop
@@ -71,7 +71,7 @@
                         <tr>
                             <td class="hidden">{{ $opcion->orden }}</td>
                             <td>{{ $opcion->id }}</td>
-                            <td>{{ $opcion->valor }}</td>
+                            <td>{{ $opcion->valor_es }}</td>
                             <td class="text-right">
                                 <a href="{{ route('editar_opcion', compact('encuesta', 'pregunta', 'opcion')) }}" role="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
                                 <a href="{{ route('eliminar_opcion', compact('encuesta', 'pregunta', 'opcion')) }}" role="button" class="btn btn-danger btn-circle axys-confirmar-eliminar"><i class="glyphicon glyphicon-remove"></i></a>

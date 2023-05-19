@@ -68,7 +68,7 @@
                     @forelse($novedades as $novedad)
                         <tr>
                             <td>{{ $novedad->id }}</td>
-                            <td>{{ $novedad->titulo }}</td>
+                            <td>{{ $novedad->titulo_es }}</td>
                             <td>
                                 @if($novedad->link)
                                     <a href="{{ $novedad->link }}" target="_blank">{{ $novedad->link }}</a>

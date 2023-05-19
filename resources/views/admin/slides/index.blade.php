@@ -67,7 +67,7 @@
                         <tr>
                             <td class="hidden">{{ $slide->orden }}</td>
                             <td>{{ $slide->id }}</td>
-                            <td>{{ $slide->titulo }}</td>
+                            <td>{{ $slide->titulo_es }}</td>
                             <td class="text-right">
                                 {!! accion_visibilidad($slide->visible, route('visibilidad_slide',compact('slide'))) !!}
                                 <a href="{{ route('editar_slide', compact('slide')) }}" role="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
