@@ -80,6 +80,7 @@ header {
 			& > li {
 				position:relative; margin:0 10px;
 				color:black; font-weight:700; font-size:15px;
+				&.idioma-movil { display:none; }
 				a {
 					display:block; padding:5px;
 					&:hover { text-decoration:underline; }
@@ -252,6 +253,8 @@ footer {
 					margin:0; padding:10px 10px; border-bottom:1px solid #ddd;
 					text-align:center;
 					&:last-child { border-bottom:0; }
+
+					&.idioma-movil { display:block; color:$celeste; }
 				}
 			}
 

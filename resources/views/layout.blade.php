@@ -70,6 +70,11 @@
                     <li><a href="/#ubicacion">@lang('textos.menu.ubicacion')</a></li>
                     <li><a href="https://www.airbnb.com.ar/rooms/2158738" target="_blank">@lang('textos.menu.reservar')</a></li>
                     <li><a href="/#consulta">@lang('textos.menu.contacto')</a></li>
+                    @if(App::getLocale() == 'es')
+                        <li class="idioma-movil"><a href="{{ url('idioma/en') }}">ENGLISH</a></li>
+                    @else
+                        <li class="idioma-movil"><a href="{{ url('idioma/es') }}">ESPAÑOL</a></li>
+                    @endif
                 </ul>
             </nav>
             
@@ -94,7 +99,8 @@
             </div>
             <div class="mapa" id="mapa">
                 <a href="https://goo.gl/maps/GFoLBKja82q5Be1N7" target="_blank">
-                    <img src="{{ url('img/mapa.jpg') }}" alt="Mapa">
+                    <img src="{{ url('img/mapa.jpg') }}" class="grande" alt="Mapa">
+                    <img src="{{ url('img/mapa-chico.jpg') }}" class="chico" alt="Mapa">
                 </a>
             </div>
             <?php /*
