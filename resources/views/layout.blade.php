@@ -217,9 +217,9 @@
                 <div class="col">
                     <div>
                         <div class="redes">
-                            <a href="https://facebook.com" target="_blank" class="facebook"></a>
-                            <a href="https://twitter.com" target="_blank" class="twitter"></a>
-                            <a href="https://instagram.com" target="_blank" class="instagram"></a>
+                            <a href="https://www.facebook.com/profile.php?id=100064152729544&mibextid=LQQJ4d" target="_blank" class="facebook"></a>
+                            <a href="https://www.youtube.com/@CasaGaneshaColoniaUY" target="_blank" class="youtube"></a>
+                            <a href="https://www.instagram.com/casaganeshacolonia/" target="_blank" class="instagram"></a>
                             <a href="#" class="compartir addthis_button_more"></a>
                         </div>
                         <div class="newsletter">
