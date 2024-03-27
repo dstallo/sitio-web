@@ -10,7 +10,7 @@ return [
 		'contacto' => 'Contact us',
 	],
 	'servicios' => [
-		'texto' => '<p>Te invitamos a transitar juntos el camino hacia el equilibrio entre cuerpo y mente a través de la combinación de dos técnicas milenarias: YOGA + ASTROLOGÍA.<br />¡Tu transformación empieza en Conciencia Astral. ¿Te animás? ¡Sumate!</p>',
+		'texto' => '<p>Te invitamos a transitar juntos el camino hacia el equilibrio entre cuerpo y mente a través de la combinación de dos técnicas milenarias: YOGA + ASTROLOGÍA</p>',
 	],
 	'novedades' => [
 		'titulo' => 'News',
