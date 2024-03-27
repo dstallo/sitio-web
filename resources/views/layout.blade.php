@@ -85,8 +85,8 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
             </nav>
             
             <div class="redes">
-                <a class="idioma instagram" href="#"></a>
-                <a class="idioma email" href="#"></a>
+                <a class="idioma instagram" href="https://www.instagram.com/conciencia.astral/" target="_blank"></a>
+                <a class="idioma email" href="mailto:info@concienciaastral.com.ar"></a>
             </div>
         </div>
     </header>
@@ -221,7 +221,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                         <div class="redes">
                             <a href="#" target="_blank" class="facebook"></a>
                             <a href="#" target="_blank" class="twitter"></a>
-                            <a href="#" target="_blank" class="instagram"></a>
+                            <a href="https://www.instagram.com/conciencia.astral/" target="_blank" class="instagram"></a>
                         </div>
                         <div class="newsletter">
                             <h3>@lang('textos.pie.newsletter.titulo')</h3>
