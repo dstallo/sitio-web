@@ -54,22 +54,22 @@
 		<div class="ancla" id="novedades"></div>
 		<section class="novedades contenedor">
 			<h2>@lang('textos.novedades.titulo')</h2>
-			<ul>
-				@foreach($novedades as $novedad)
-					<li data-mantener-relacion-alto="100">
-						<article>
-							<div class="imagen" style="background-image:url({{ $novedad->url('thumbnail') }})"></div>
-							<div class="over"></div>
-							<h3>{{ $novedad->titulo }}</h3>
-							@if($novedad->link)
-								<a href="{{ $novedad->link }}" target="_blank"></a>
-							@elseif($href = $novedad->href())
-								<a href="{{ $href }}"></a>
-							@endif
-						</article>
-					</li>
-				@endforeach
-			</ul>
+			<div class="listado">
+            @foreach($novedades as $novedad)
+                <div class="novedad">
+                    <article>
+                        <div class="imagen" style="background-image:url({{ $novedad->url('thumbnail') }})"></div>
+                        <div class="over"></div>
+                        <h3>{{ $novedad->titulo }}</h3>
+                        @if($novedad->link)
+                            <a href="{{ $novedad->link }}" target="_blank"></a>
+                        @elseif($href = $novedad->href())
+                            <a href="{{ $href }}"></a>
+                        @endif
+                    </article>
+                </div>
+            @endforeach
+            </div>
 		</section>
 	@endif
 

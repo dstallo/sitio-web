@@ -1,21 +1,26 @@
 .novedades {
 
 	margin:50px auto;
-	margin-left:auto; margin-right:auto;
+	padding:0 30px;
 
-	ul {
+	.listado {
 
-		display:flex; flex-flow:row nowrap; justify-content:center;
+        .slick-prev, .slick-next {
+			font-size:0; position:absolute; top:50%; transform: translateY(-50%); z-index:400; width:50px; height:50px; mask-repeat:no-repeat; mask-size:50%;
+			background-color:$color-primary; mask-position:center; cursor:pointer; border-radius:50%;
 
-		li {
-			flex-basis:0; flex-grow:1;
+		}
+		.slick-prev { mask-image:url(../img/anterior.svg); left:-60px; }
+		.slick-next { mask-image:url(../img/siguiente.svg); right:-60px; }
+
+		.novedad {
+		
 			max-width:400px;
 			position:relative; margin:0 2.5px;
+            height:400px;
 		}
 
 		article {
-
-			position:absolute; top:0; left:0; right:0; bottom:0;
 
 			.imagen {
 				position:absolute; z-index:10; top:0; left:0; right:0; bottom:0;
@@ -24,7 +29,8 @@
 
 			.over {
 				position:absolute; z-index:20; top:0; left:0; right:0; bottom:0;
-				opacity:.6; transition:opacity .2s ease;
+				opacity:.2; transition:opacity .2s ease;
+                background-color:$color-primary;
 			}
 
 			h3 {
@@ -39,7 +45,7 @@
 			}
 		}
 
-		li:hover {
+		.novedad:hover {
 			.over { opacity:0; }
 			h3 { transform:scale(1.05); }
 		}
@@ -47,17 +53,17 @@
 
 	@media(max-width:840px) {
 		margin:30px auto;
-		ul {
+		.listado {
 			display:block;
-			li {
-				max-width:400px; margin:0 auto;
+			.novedad {
+				max-width:none; margin:0 auto;
 				margin-bottom:15px;
 			}
 			article {
 				.over { transition:none; }
 				h3 { font-size:18px; }
 			}
-			li:hover .over { opacity:.6; }
+			.novedad:hover .over { opacity:0; }
 		}
 	}
 }

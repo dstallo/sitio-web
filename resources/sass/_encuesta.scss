@@ -15,7 +15,7 @@
 		margin-bottom:40px; border-bottom:1px solid #aaa; padding-bottom:10px;
 
 		span {
-			display:inline-block; padding:6px 12px; background-color:$celeste; color:white;
+			display:inline-block; padding:6px 12px; background-color:$color-primary; color:white;
 			font-size:15px; font-weight:600; text-transform:uppercase;		
 		}
 	}
@@ -26,7 +26,7 @@
 
 			margin-bottom:30px;
 
-			.pregunta { font-size:25px; font-weight:600; color:$celeste; margin-bottom:20px; }
+			.pregunta { font-size:25px; font-weight:600; color: $color-primary; margin-bottom:20px; }
 			.opciones {
 				display:flex; flex-flow:row wrap; justify-content:flex-start;
 				li {
@@ -43,7 +43,7 @@
 		text-align:center; margin:30px 0;
 
 		button {
-			display:inline-block; background-color:$celeste; color:white; padding:6px 12px;
+			display:inline-block; background-color:$color-primary; color:white; padding:6px 12px;
 			font-size:18px;
 		}
 	}

@@ -16,7 +16,9 @@
 @mixin fondo-contain() { background-size:contain; background-position:center; background-repeat:no-repeat; }
 @mixin reiniciar-input() { -webkit-appearance:none; -moz-appearance:none; -ms-appearance:none; -o-appearance:none; appearance:none; box-sizing:border-box; border-radius:0; outline:none; }
 
-$celeste: #488B9B;
+$font-size-basico: 15px;
+$color-primary: #88499b;
+$color-secondary: #595b61;
 
 @import "layout";
 

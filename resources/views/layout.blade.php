@@ -1,3 +1,8 @@
+<?php
+$tiene_servicios = App\Models\Servicio::front()->count();
+$tiene_novedades = App\Models\Novedad::front()->count();
+$tiene_contenidos = App\Models\Contenido::front()->count();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,13 +13,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ url('icono.png') }}" />
 
-    <meta name="description" content="Casa Ganesha - Colonia del Sacramento - Uruguay" />
+    <meta name="description" content="Conciencia Astral" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta property="og:locale" content="es_AR" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="@yield('imagen', url('logo.png'))" />
     <meta property="og:title" content="@yield('titulo', config('app.name'))" />
-    <meta property="og:description" content="@yield('bajada', 'Casa Ganesha - Colonia del Sacramento - Uruguay.')" />
+    <meta property="og:description" content="@yield('bajada', 'Conciencia Astral')" />
     <meta property="og:url" content="{{ config('app.url') }}" />
     <meta property="og:site_name" content="{{ config('app.name') }}" />
 
@@ -56,34 +61,32 @@
         <div class="contenedor">
             <a href="{{ url('/') }}" class="logo">
                 @if(!isset($ficha))
-                    <h1>Casa Ganesha</h1>
+                    <h1>{{ config('app.name') }}</h1>
                 @else
-                    <h2>Casa Ganesha</h2>
+                    <h2>{{ config('app.name') }}</h2>
                 @endif
             </a>
             <nav>
                 <a class="desplegar-menu-principal"><span></span></a>
                 <ul>
+                @if ($tiene_servicios)
                     <li><a href="/#servicios">@lang('textos.menu.servicios')</a></li>
+                @endif
+                @if ($tiene_novedades)
                     <li><a href="/#novedades">@lang('textos.menu.novedades')</a></li>
+                @endif
+                @if ($tiene_contenidos)
                     <li><a href="/#galeria">@lang('textos.menu.galeria')</a></li>
+                @endif
                     <li><a href="/#ubicacion">@lang('textos.menu.ubicacion')</a></li>
-                    <li><a href="https://www.airbnb.com.ar/rooms/2158738" target="_blank">@lang('textos.menu.reservar')</a></li>
+                    <li><a href="https://bit.ly/concienciaastral" target="_blank">@lang('textos.menu.inscripcion')</a></li>
                     <li><a href="/#consulta">@lang('textos.menu.contacto')</a></li>
-                    @if(App::getLocale() == 'es')
-                        <li class="idioma-movil"><a href="{{ url('idioma/en') }}">ENGLISH</a></li>
-                    @else
-                        <li class="idioma-movil"><a href="{{ url('idioma/es') }}">ESPAÑOL</a></li>
-                    @endif
                 </ul>
             </nav>
             
-            <a class="airbnb" href="https://www.airbnb.com.ar/rooms/2158738" target="_blank"></a>
-            
             <div class="redes">
-                <a class="idioma {{ App::getLocale() == 'es' ? 'activo' : '' }}" href="{{ url('idioma/es') }}"><span>ES</span></a>
-                <a class="idioma {{ App::getLocale() == 'en' ? 'activo' : '' }}" href="{{ url('idioma/en') }}"><span>EN</span></a>
-                <a href="#" class="compartir addthis_button_more"></a>
+                <a class="idioma instagram" href="#"></a>
+                <a class="idioma email" href="#"></a>
             </div>
         </div>
     </header>
@@ -98,7 +101,7 @@
                 @lang('textos.ubicacion.texto')
             </div>
             <div class="mapa" id="mapa">
-                <a href="https://goo.gl/maps/GFoLBKja82q5Be1N7" target="_blank">
+                <a href="https://maps.app.goo.gl/gMGWddbfxzzMhQpEA" target="_blank">
                     <img src="{{ url('img/mapa.jpg') }}" class="grande" alt="Mapa">
                     <img src="{{ url('img/mapa-chico.jpg') }}" class="chico" alt="Mapa">
                 </a>
@@ -159,11 +162,11 @@
                         </div>
 
                     </div>
-
+                
                     <div class="recaptcha">
                         <div class="g-recaptcha" data-sitekey="{{ config('google.recaptcha.sitekey') }}"></div>
                     </div>
-
+                
                     <div class="accion">
                         <button type="submit">@lang('textos.consulta.boton')</button>
                     </div>
@@ -201,26 +204,24 @@
         <div class="info">
             <div class="contenedor">
                 <div class="col">
-                    <a class="logo" href="{{ url('/') }}">Gasa Ganesha</a>
+                    <a class="logo" href="{{ url('/') }}">{{ config('app.name') }}</a>
                 </div>
                 <div class="col">
                     <p>
-                        Tula Suarez de Cutinella, 70000<br>
-                        Colonia del Sacramento,<br>
-                        Departamento de Colonia, Uruguay<br>
+                        Av. Pedro Goyena 1054, C1424<br>
+                        Cdad. Autónoma de Buenos Aires
                         <br>
-                        
-                        <a href="mailto:casaganesha@abulafiagroup.com">casaganesha@abulafiagroup.com</a><br>
-                        <a href="https://api.whatsapp.com/send?phone=5491132527673" target="_blank">Whatsapp +5491132527673</a><br>
+                        <br>
+                        <a href="mailto:info@concienciaastral.com.ar">info@concienciaastral.com.ar</a><br>
+                        <a href="https://api.whatsapp.com/send?phone=5491130667262" target="_blank">Whatsapp +5491130667262</a><br>
                     </p>
                 </div>
                 <div class="col">
                     <div>
                         <div class="redes">
-                            <a href="https://www.facebook.com/profile.php?id=100064152729544&mibextid=LQQJ4d" target="_blank" class="facebook"></a>
-                            <a href="https://www.youtube.com/@CasaGaneshaColoniaUY" target="_blank" class="youtube"></a>
-                            <a href="https://www.instagram.com/casaganeshacolonia/" target="_blank" class="instagram"></a>
-                            <a href="#" class="compartir addthis_button_more"></a>
+                            <a href="#" target="_blank" class="facebook"></a>
+                            <a href="#" target="_blank" class="twitter"></a>
+                            <a href="#" target="_blank" class="instagram"></a>
                         </div>
                         <div class="newsletter">
                             <h3>@lang('textos.pie.newsletter.titulo')</h3>
@@ -240,6 +241,6 @@
             </div>
         </div>
     </footer>
-    <a href="https://api.whatsapp.com/send?phone=5491132527673" target="_blank" class="whatsapp"></a>
+    <a href="https://api.whatsapp.com/send?phone=5491130667262" target="_blank" class="whatsapp"></a>
 </body>
 </html>

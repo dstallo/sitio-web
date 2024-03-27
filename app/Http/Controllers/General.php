@@ -23,7 +23,7 @@ class General extends Controller
 	{
 		$slides = Slide::front()->get();
 		$servicios = Servicio::front()->get();
-		$novedades = Novedad::front()->limit(3)->get();
+		$novedades = Novedad::front()->get();
 		$contenidos = Contenido::front()->get();
 		$popup = Popup::where('visible', true)->orderBy('id', 'desc')->first();
 
@@ -77,12 +77,12 @@ class General extends Controller
 			'email' => 'required|email',
 			'mensaje' => 'required',
 		]);
-
+        
 		if (!validar_recaptcha($request)) {
 			return redirect(URL::previous() . '#consulta')->withErrors(['captcha' => __('textos.consulta.errores.captcha')])
 				->withInput($request->all());
 		}
-
+        
 		$consulta = new Consulta();
 		$consulta->fill($request->all());
 		$consulta->save();

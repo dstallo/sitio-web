@@ -94,6 +94,24 @@ $(function() {
         ]
     });
     
+    $('.novedades .listado').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        dots: false,
+        infinite: true,
+        autoplay: false,
+        responsive: [{
+            breakpoint: 1000,
+            settings: {
+                slidesToShow: 2,
+            }
+        },{
+            breakpoint: 850,
+            settings: {
+                slidesToShow: 1,
+            }
+        }]
+    });
 
 });
 

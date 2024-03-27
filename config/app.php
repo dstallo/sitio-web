@@ -15,7 +15,7 @@ return [
 	|
 	*/
 
-	'name' => env('APP_NAME', 'Casa Ganesha'),
+	'name' => env('APP_NAME', 'Conciencia Astral'),
 
 	/*
 	|--------------------------------------------------------------------------

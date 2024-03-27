@@ -13,7 +13,7 @@ return [
 	|
 	*/
 
-	'title' => 'Casa Ganesha',
+	'title' => 'Conciencia Astral',
 
 	'title_prefix' => '',
 
@@ -30,9 +30,9 @@ return [
 	|
 	*/
 
-	'logo' => '<b>Casa Ganesha</b>',
+	'logo' => '<b>Conciencia Astral</b>',
 
-	'logo_mini' => '<b>CG</b>',
+	'logo_mini' => '<b>CA</b>',
 
 	/*
 	|--------------------------------------------------------------------------

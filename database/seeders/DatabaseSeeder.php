@@ -16,20 +16,9 @@ class DatabaseSeeder extends Seeder
 	public function run()
 	{
 		DB::table('administradores')->insert([
-			'nombre' => 'Gaby',
-			'email' => 'gaby86@gmail.com',
-			'password' => bcrypt('mandi0ca'),
-
-			'remember_token' => Str::random(100),
-
-			'created_at' => date('Y-m-d H:i:s'),
-			'updated_at' => date('Y-m-d H:i:s'),
-		]);
-
-		DB::table('administradores')->insert([
-			'nombre' => 'Gastón',
-			'email' => 'gastonsiseles@gmail.com',
-			'password' => bcrypt('mandioca'),
+			'nombre' => 'Admin Conciencia Astral',
+			'email' => 'admin@concienciaastral.com.ar',
+			'password' => bcrypt('password'),
 
 			'remember_token' => Str::random(100),
 

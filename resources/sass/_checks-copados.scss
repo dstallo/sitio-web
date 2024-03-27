@@ -10,7 +10,7 @@ input[type="radio"] {
   margin: 0;
 
   font: inherit;
-  color: $celeste;
+  color: $color-primary;
   width: 1.5em;
   height: 1.5em;
   border: 1px solid #ccc;
@@ -29,13 +29,13 @@ input[type="radio"]::before {
   transform: scale(0);
   transform-origin: bottom left;
   transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em $celeste;
+  box-shadow: inset 1em 1em $color-primary;
   /* Windows High Contrast Mode */
-  background-color: $celeste;
+  background-color: $color-primary;
 }
 
 input[type="radio"]:checked {
-	border:1px solid $celeste;
+	border:1px solid $color-primary;
 	&::before {
   		transform: scale(1);
   	}
