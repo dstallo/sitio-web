@@ -219,8 +219,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                 <div class="col">
                     <div>
                         <div class="redes">
-                            <a href="#" target="_blank" class="facebook"></a>
-                            <a href="#" target="_blank" class="twitter"></a>
+                            <a href="https://www.facebook.com/profile.php?id=100057833411499" target="_blank" class="facebook"></a>
                             <a href="https://www.instagram.com/conciencia.astral/" target="_blank" class="instagram"></a>
                         </div>
                         <div class="newsletter">
