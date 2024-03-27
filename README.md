@@ -3,7 +3,7 @@ Sitio web de Conciencia Astral
 
 ## Dependencias / Requisitos
 ```sh
-- PHP ^7.3
+- PHP ^7.4
 - MySQL con autenticación mysql_native_password: CREATE USER '...'@'localhost' IDENTIFIED WITH mysql_native_password BY '...'
 ```
 ## Paso a paso
