@@ -79,7 +79,9 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                     <li><a href="/#galeria">@lang('textos.menu.galeria')</a></li>
                 @endif
                     <li><a href="/#ubicacion">@lang('textos.menu.ubicacion')</a></li>
+                <? /*
                     <li><a href="https://bit.ly/concienciaastral" target="_blank">@lang('textos.menu.inscripcion')</a></li>
+                */ ?>
                     <li><a href="/#consulta">@lang('textos.menu.contacto')</a></li>
                 </ul>
             </nav>
