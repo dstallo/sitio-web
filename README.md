@@ -1,5 +1,5 @@
-# Conciencia Astral
-Sitio web de Conciencia Astral
+# Dialisis
+Sitio web de Dialisis
 
 ## Dependencias / Requisitos
 ```sh
