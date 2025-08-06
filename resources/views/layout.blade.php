@@ -217,7 +217,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                 <div class="col">
                     <a class="logo" href="{{ url('/') }}">{{ config('app.name') }}</a>
                 </div>
-                <div class="col">
+                <div class="col datos">
                     @lang('textos.pie.contacto')
                 </div>
                 <div class="col">

@@ -163,6 +163,10 @@ footer {
 			margin:0 30px; max-width:300px;
 			padding-right:30px; border-right:1px solid rgba(255, 255, 255, .4);
 			display:flex; align-items:center;
+            &.datos {flex-direction: column;
+                flex: 1;
+                margin-left: 0;
+                justify-content: center;}
 			&:last-child { padding-right:0; border-right:0; margin-right:0; }
 		}
 
@@ -272,6 +276,7 @@ footer {
 
 			.col {
 				margin:0 auto; margin-bottom:20px; text-align:center; padding:0; border:0; justify-content:center;
+                max-width:none;
 				&:last-child { margin-right:auto; }
 			}
 
