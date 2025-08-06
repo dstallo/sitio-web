@@ -13,7 +13,7 @@ return [
 	|
 	*/
 
-	'title' => 'Conciencia Astral',
+	'title' => env('APP_NAME', ''),
 
 	'title_prefix' => '',
 
@@ -30,9 +30,9 @@ return [
 	|
 	*/
 
-	'logo' => '<b>Conciencia Astral</b>',
+	'logo' => '<b>' . env('APP_NAME', '') . '</b>',
 
-	'logo_mini' => '<b>CA</b>',
+	'logo_mini' => '<b>' . env('APP_SHORT_NAME', '') . '</b>',
 
 	/*
 	|--------------------------------------------------------------------------

@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\URL;
 use App\Notifications\NuevaConsulta;
 use Illuminate\Support\Facades\Validator;
 use App\Models\InscriptoNewsletter as Inscripto;
+use App\Models\Pagina;
+use App\Models\Sucursal;
 
 class General extends Controller
 {
@@ -24,10 +26,11 @@ class General extends Controller
 		$slides = Slide::front()->get();
 		$servicios = Servicio::front()->get();
 		$novedades = Novedad::front()->get();
+        $paginas = Pagina::front()->get();
 		$contenidos = Contenido::front()->get();
 		$popup = Popup::where('visible', true)->orderBy('id', 'desc')->first();
 
-		return view('home', compact('slides', 'servicios', 'novedades', 'contenidos', 'popup'));
+		return view('home', compact('paginas', 'slides', 'servicios', 'novedades', 'contenidos', 'popup'));
 	}
 
 	public function novedad(Novedad $novedad, $titulo)
@@ -37,8 +40,9 @@ class General extends Controller
 		}
 
 		$ficha = $novedad;
+        $paginas = Pagina::front()->get();
 
-		return view('ficha', compact('ficha'));
+		return view('ficha', compact('ficha', 'paginas'));
 	}
 
 	public function servicio(Servicio $servicio, $titulo)
@@ -48,8 +52,29 @@ class General extends Controller
 		}
 
 		$ficha = $servicio;
+        $paginas = Pagina::front()->get();
 
-		return view('ficha', compact('ficha'));
+		return view('ficha', compact('ficha', 'paginas'));
+	}
+
+    public function pagina(Pagina $pagina)
+	{
+		if (!$pagina->visible) {
+			abort(404);
+		}
+
+		$ficha = $pagina;
+        $paginas = Pagina::front()->get();
+
+		return view('ficha', compact('ficha', 'paginas'));
+	}
+
+    public function sucursales()
+	{
+        $sucursales = Sucursal::front()->get();
+        $paginas = Pagina::front()->get();
+
+		return view('sucursales', compact('sucursales', 'paginas'));
 	}
 
 	public function newsletter(Request $request)
@@ -97,7 +122,8 @@ class General extends Controller
 
 	public function consultaEnviada()
 	{
-		return view('consulta-enviada');
+        $paginas = Pagina::front()->get();
+		return view('consulta-enviada', compact('paginas'));
 	}
 
 	public function verEncuesta()
@@ -113,7 +139,9 @@ class General extends Controller
 			return redirect('encuesta-completa');
 		}
 
-		return view('encuesta', compact('encuesta'));
+        $paginas = Pagina::front()->get();
+
+		return view('encuesta', compact('encuesta', 'paginas'));
 	}
 
 	public function votarEncuesta(Request $request)
@@ -142,6 +170,7 @@ class General extends Controller
 
 	public function encuestaCompleta()
 	{
-		return view('encuesta-completa');
+        $paginas = Pagina::front()->get();
+		return view('encuesta-completa', compact('paginas'));
 	}
 }

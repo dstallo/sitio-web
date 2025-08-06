@@ -11,15 +11,17 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{ url('icono.png') }}" />
+    <link rel="shortcut icon" href="{{ url('favicon.svg') }}" type="image/svg+xml"  />
+    <link rel="icon" href="{{ url('favicon.ico') }}" sizes="32x32" />
+    <link rel="apple-touch-icon" href="{{ url('apple-touch-icon.png') }}" />
 
-    <meta name="description" content="Conciencia Astral" />
+    <meta name="description" content="@yield('descripcion', config('app.description'))" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta property="og:locale" content="es_AR" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="@yield('imagen', url('logo.png'))" />
+    <meta property="og:image" content="@yield('imagen', url('favicon.png'))" />
     <meta property="og:title" content="@yield('titulo', config('app.name'))" />
-    <meta property="og:description" content="@yield('bajada', 'Conciencia Astral')" />
+    <meta property="og:description" content="@yield('bajada', config('app.description'))" />
     <meta property="og:url" content="{{ config('app.url') }}" />
     <meta property="og:site_name" content="{{ config('app.name') }}" />
 
@@ -69,27 +71,33 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
             <nav>
                 <a class="desplegar-menu-principal"><span></span></a>
                 <ul>
+                @foreach($paginas as $pagina)
+                    <li><a href="{{ $pagina->link ? $pagina->link : $pagina->href() }}">{{ $pagina->titulo }}</a></li>
+                @endforeach
                 @if ($tiene_servicios)
                     <li><a href="/#servicios">@lang('textos.menu.servicios')</a></li>
+                @endif
+                @if (App\Models\Sucursal::front()->count()>0)
+                    <li><a href="{{ route('sucursales') }}">@lang('textos.menu.sucursales')</a></li>
                 @endif
                 @if ($tiene_novedades)
                     <li><a href="/#novedades">@lang('textos.menu.novedades')</a></li>
                 @endif
                 @if ($tiene_contenidos)
-                    <li><a href="/#galeria">@lang('textos.menu.galeria')</a></li>
+                    <li><a href="/#nuestro-lugar">@lang('textos.menu.lugar')</a></li>
                 @endif
                     <li><a href="/#ubicacion">@lang('textos.menu.ubicacion')</a></li>
-                <?php /*
-                    <li><a href="https://bit.ly/concienciaastral" target="_blank">@lang('textos.menu.inscripcion')</a></li>
-                */ ?>
+                @if (App\Models\Icono::front()->count()>0)
+                    <li><a href="/#coberturas">@lang('textos.menu.coberturas')</a></li>
+                @endif
                     <li><a href="/#consulta">@lang('textos.menu.contacto')</a></li>
                 </ul>
             </nav>
             
-            <div class="redes">
-                <a class="idioma instagram" href="https://www.instagram.com/conciencia.astral/" target="_blank"></a>
-                <a class="idioma email" href="mailto:info@concienciaastral.com.ar"></a>
-            </div>
+            <ul class="redes">
+                <li><a class="idioma instagram" href="#" target="_blank"></a></li>
+                <li><a class="idioma email" href="#"></a></li>
+            </ul>
         </div>
     </header>
 
@@ -103,9 +111,9 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                 @lang('textos.ubicacion.texto')
             </div>
             <div class="mapa" id="mapa">
-                <a href="https://maps.app.goo.gl/gMGWddbfxzzMhQpEA" target="_blank">
-                    <img src="{{ url('img/mapa.jpg') }}" class="grande" alt="Mapa">
-                    <img src="{{ url('img/mapa-chico.jpg') }}" class="chico" alt="Mapa">
+                <a href="https://maps.app.goo.gl/6r668PQKbwMpWwu7A" target="_blank">
+                    <img src="{{ url('img/mapa.png') }}" class="grande" alt="Mapa">
+                    <img src="{{ url('img/mapa-chico.png') }}" class="chico" alt="Mapa">
                 </a>
             </div>
             <?php /*
@@ -124,7 +132,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                     // });
                 }
             </script>
-            <script async defer
+            <script async defer>
                 src="https://maps.googleapis.com/maps/api/js?key={{ config('google.maps.api_key') }}&callback=iniciarMapa">
             </script>
             */ ?>
@@ -178,9 +186,12 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
 
         <?php $iconos = App\Models\Icono::front()->get(); ?>
         @if($iconos->count())
-            <div class="ancla" id="marcas"></div>
+            <div class="ancla" id="coberturas"></div>
             <section class="iconos contenedor">
                 <h2>@lang('textos.iconos.titulo')</h2>
+                <div class="intro">
+                    @lang('textos.iconos.texto')
+                </div>
                 <ul>
                     @foreach($iconos as $icono)
                         <li>
@@ -199,7 +210,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
         <div class="destacado">
             <div class="contenedor">
                 <p>
-                    @lang('textos.pie.destacado')
+                    @lang('textos.pie.texto')
                 </p>
             </div>
         </div>
@@ -210,19 +221,16 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                 </div>
                 <div class="col">
                     <p>
-                        Av. Pedro Goyena 1054, C1424<br>
-                        Cdad. Autónoma de Buenos Aires
-                        <br>
-                        <br>
-                        <a href="mailto:info@concienciaastral.com.ar">info@concienciaastral.com.ar</a><br>
-                        <a href="https://api.whatsapp.com/send?phone=5491130667262" target="_blank">Whatsapp +5491130667262</a><br>
+                        Lorem ipsum dolor sit amet, 
+                        <br />consectetur adipiscing elit. 
+                        <br  />Nam vel diam eget augue euismod dictum vitae a orci.
                     </p>
                 </div>
                 <div class="col">
                     <div>
                         <div class="redes">
-                            <a href="https://www.facebook.com/profile.php?id=100057833411499" target="_blank" class="facebook"></a>
-                            <a href="https://www.instagram.com/conciencia.astral/" target="_blank" class="instagram"></a>
+                            <a href="#" target="_blank" class="facebook"></a>
+                            <a href="#" target="_blank" class="instagram"></a>
                         </div>
                         <div class="newsletter">
                             <h3>@lang('textos.pie.newsletter.titulo')</h3>
@@ -242,6 +250,6 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
             </div>
         </div>
     </footer>
-    <a href="https://api.whatsapp.com/send?phone=5491130667262" target="_blank" class="whatsapp"></a>
+    <a href="https://api.whatsapp.com/send?phone=" target="_blank" class="whatsapp"></a>
 </body>
 </html>

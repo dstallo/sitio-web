@@ -15,8 +15,8 @@ strong,b { font-weight:700; }
 .ancla { position:relative; top:-105px; } //-95 - 10
 
 h2 {
-	margin:30px auto; text-align:center; color:black;
-	font-weight:700; font-size:36px; line-height:1.4em;
+	margin:30px auto; text-align:center; color: #595b61;
+	font-weight: 600; font-size:36px; line-height:1.4em;
 
 	&:after {
 		display:block; content:''; width:80px; margin:10px auto;
@@ -99,16 +99,24 @@ header {
 	.redes {
 		display:flex; align-items:center;
 		background-color:#FFF; padding:10px; margin-left:120px;
-		a {
-			display:flex; width:34px; height:34px;
-			box-sizing:border-box;
-			margin:0 3px; 
+        li {
+            margin:0 3px;
             border:2px solid $color-primary;
-			@include fondo-contain; background-size:55%;
-			&.email { background-image:url(../img/email-color.svg); }
-			&.compartir { background-image:url(../img/compartir.svg); }
-            &.instagram { background-image:url(../img/instagram-color.svg); }
-			transition:transform .2s ease;
+            box-sizing:border-box; 
+            transition:transform .2s ease;
+            &:hover { transform:scale(1.1); }
+        }
+		a {
+            display:flex; width:34px; height:34px;
+            background-color: $color-primary;
+			mask-size: contain;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            mask-size: 55%;
+            transition:transform .2s ease;
+			&.email { mask-image:url(../img/email.svg); }
+			&.compartir { mask-image:url(../img/compartir.svg); }
+            &.instagram { mask-image:url(../img/instagram.svg); }
 			&:hover { transform:scale(1.1); }
 		}
 		a.idioma {

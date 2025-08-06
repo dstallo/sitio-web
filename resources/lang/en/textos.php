@@ -1,28 +1,38 @@
 <?php
 
+use App\Models\Texto;
+
+$texto = Texto::cargar();
+
 return [
 	'menu' => [
-		'servicios' => 'Conciencia Astral',
+		'servicios' => 'Services',
+        'sucursales' => 'Centros',
 		'novedades' => 'News',
-		'galeria' => 'Photos',
+		'lugar' => 'Our Place',
 		'ubicacion' => 'Location',
 		'inscripcion' => 'Subscribe',
 		'contacto' => 'Contact us',
+        'coberturas' => 'Coverage'
 	],
 	'servicios' => [
-		'texto' => '<p>Te invitamos a transitar juntos el camino hacia el equilibrio entre cuerpo y mente a través de la combinación de dos técnicas milenarias: YOGA + ASTROLOGÍA</p>',
+		'texto' => $texto->obtener('servicios.texto', 'en'),
 	],
 	'novedades' => [
 		'titulo' => 'News',
+        'texto'  => $texto->obtener('novedades.texto', 'en'),
 	],
-	'galeria' => [
+	'lugar' => [
 		'titulo' => 'Our place',
-		'texto' => '<p>Un espacio completamente preparado para que puedas expandir todo tu potencial y sentirte cada día mejor. Conocelo!</p>',
+		'texto' => $texto->obtener('lugar.texto', 'en'),
 	],
 	'ubicacion' => [
 		'titulo' => 'Location',
-		'texto' => '<p>En el corazón del barrio de Caballito, Pedro Goyena 1054, te esperamos para compartir un viaje transformador con nuestros cursos y talleres. ¿Te animás?</p>',
+		'texto' => $texto->obtener('ubicacion.texto', 'en'),
 	],
+    'sucursales' => [
+        'titulo' => 'Centros de Atención',
+    ],
 	'consulta' => [
 		'campos' => [
 			'nombre' => 'Name',
@@ -40,10 +50,11 @@ return [
 		],
 	],
 	'iconos' => [
-		'titulo' => 'Thank you for joining us!',
+        'titulo' => "Coverage y Associates",
+		'texto' => $texto->obtener('coberturas.texto', 'en'),
 	],
 	'pie' => [
-		'destacado' => '¿Estás listo para cambiar tu calidad de vida?',
+		'texto' => $texto->obtener('pie.texto', 'en'),
 		'newsletter' => [
 			'titulo' => 'Newsletter',
 			'texto' => '<p>Subscribe and get our latest news and promotions!</p>',

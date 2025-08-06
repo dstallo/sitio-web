@@ -15,7 +15,11 @@ return [
 	|
 	*/
 
-	'name' => env('APP_NAME', 'Conciencia Astral'),
+	'name' => env('APP_NAME', ''),
+
+    'short_name' => env('APP_SHORT_NAME', ''),
+
+    'description' => env('APP_DESCRIPTION', ''),
 
 	/*
 	|--------------------------------------------------------------------------

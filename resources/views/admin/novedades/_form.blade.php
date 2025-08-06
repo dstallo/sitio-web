@@ -52,7 +52,7 @@
 @endforeach
 @foreach(config('idiomas.idiomas') as $kidioma => $idioma)
 <?php $campo = 'ficha_texto_'.$kidioma; ?>
-<div class="col-md-6 form-group{{ has_error($errors, $campo) }}">
+<div class="col-md-12 form-group{{ has_error($errors, $campo) }}">
     <label>Texto ({{ $idioma }})</label>
     <textarea style="height:180px;" class="tiny" name="{{ $campo }}">{{ old($campo, $novedad->$campo) }}</textarea>
 </div>

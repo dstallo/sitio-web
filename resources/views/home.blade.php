@@ -73,14 +73,13 @@
 		</section>
 	@endif
 
-	<div class="ancla" id="gym"></div>
+	<div class="ancla" id="nuestro-lugar"></div>
 	<section class="galeria contenedor">
-		<h2>@lang('textos.galeria.titulo')</h2>
+		<h2>@lang('textos.lugar.titulo')</h2>
 		<div class="intro">
-			@lang('textos.galeria.texto')
+			@lang('textos.lugar.texto')
 		</div>
 		@if($contenidos->count())
-			<div class="ancla" id="galeria"></div>
 			<div class="contenidos">
 				@foreach($contenidos as $contenido)
 					<article>

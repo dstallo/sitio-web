@@ -1,7 +1,7 @@
 @extends('vendor.adminlte.page')
 
 @section('content_header')
-    <h1>Contenido multimedia</h1>
+    <h1>Nuestro Lugar - Contenido multimedia</h1>
 @stop
 
 @section('content')

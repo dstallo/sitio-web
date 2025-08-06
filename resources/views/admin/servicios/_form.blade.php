@@ -9,7 +9,14 @@
         </div>
     @endif
 </div>
-<div class="col-md-4 form-group{{ has_error($errors,'imagen') }}">
+@foreach(config('idiomas.idiomas') as $kidioma => $idioma)
+<?php $campo = 'titulo_'.$kidioma; ?>
+<div class="col-md-6 form-group{{ has_error($errors, $campo) }}">
+    <label>Título ({{ $idioma }})</label>
+    <input type="text" class="form-control" name="{{ $campo }}" value="{{ old($campo, $servicio->$campo) }}">
+</div>
+@endforeach
+<div class="col-md-6 form-group{{ has_error($errors,'imagen') }}">
     <label>Imagen p/ícono</label>
     @if($servicio->tiene('imagen'))
         <div style="position:relative;">
@@ -22,13 +29,6 @@
         <input type="file" class="form-control" name="imagen" value="{{ old('imagen') }}">
     @endif
 </div>
-@foreach(config('idiomas.idiomas') as $kidioma => $idioma)
-<?php $campo = 'titulo_'.$kidioma; ?>
-<div class="col-md-4 form-group{{ has_error($errors, $campo) }}">
-    <label>Título ({{ $idioma }})</label>
-    <input type="text" class="form-control" name="{{ $campo }}" value="{{ old($campo, $servicio->$campo) }}">
-</div>
-@endforeach
 <div class="col-md-6 form-group{{ has_error($errors,'link') }}">
     <label>Link</label>
     <input type="text" class="form-control" name="link" value="{{ old('link',$servicio->link) }}">
@@ -58,7 +58,7 @@
 @endforeach
 @foreach(config('idiomas.idiomas') as $kidioma => $idioma)
 <?php $campo = 'ficha_texto_'.$kidioma; ?>
-<div class="col-md-6 form-group{{ has_error($errors, $campo) }}">
+<div class="col-md-12 form-group{{ has_error($errors, $campo) }}">
     <label>Texto ({{ $idioma }})</label>
     <textarea style="height:180px;" class="tiny" name="{{ $campo }}">{{ old($campo, $servicio->$campo) }}</textarea>
 </div>

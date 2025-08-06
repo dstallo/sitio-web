@@ -2,8 +2,6 @@
 
 return [
 	'idiomas' => [
-		'es' => 'Español',
-		'en' => 'Inglés',
+		'es' => 'Español'
 	],
-
 ];

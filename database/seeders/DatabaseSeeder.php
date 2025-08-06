@@ -16,14 +16,18 @@ class DatabaseSeeder extends Seeder
 	public function run()
 	{
 		DB::table('administradores')->insert([
-			'nombre' => 'Admin Conciencia Astral',
-			'email' => 'admin@concienciaastral.com.ar',
-			'password' => bcrypt('password'),
+			'nombre' => 'Admin',
+			'email' => 'admin@admin.com.ar',
+			'password' => bcrypt('p@ssw@rd'),
 
 			'remember_token' => Str::random(100),
 
 			'created_at' => date('Y-m-d H:i:s'),
 			'updated_at' => date('Y-m-d H:i:s'),
 		]);
+
+        $this->call([
+            TextosSeeder::class
+        ]);
 	}
 }

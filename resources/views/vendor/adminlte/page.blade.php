@@ -143,10 +143,13 @@
                     </a></li>
                     <li><a href="{{ url('admin/newsletter/inscriptos') }}"><i class="fa fa-fw fa-envelope"></i> <span>Newsletter</span></a></li>
                     <li class="header">CONTENIDOS</li>
+                    <li><a href="{{ url('admin/paginas') }}"><i class="fa fa-file-text-o"></i> <span>Páginas</span></a></li>
+                    <li><a href="{{ url('admin/textos') }}"><i class="fa fa-font"></i> <span>Textos</span></a></li>
                     <li><a href="{{ url('admin/slides') }}"><i class="fa fa-image"></i> <span>Slides</span></a></li>
                     <li><a href="{{ url('admin/servicios') }}"><i class="fa fa-handshake-o"></i> <span>Servicios</span></a></li>
                     <li><a href="{{ url('admin/novedades') }}"><i class="fa fa-newspaper-o"></i> <span>Novedades</span></a></li>
-                    <li><a href="{{ url('admin/multimedia') }}"><i class="fa fa-image"></i> <span>Multimedia</span></a></li>
+                    <li><a href="{{ url('admin/centros') }}"><i class="fa fa-map-marker"></i> <span>Centros</span></a></li>
+                    <li><a href="{{ url('admin/multimedia') }}"><i class="fa fa-image"></i> <span>Nuestro Lugar</span></a></li>
                     <li><a href="{{ url('admin/iconos') }}"><i class="fa fa-link"></i> <span>Íconos</span></a></li>
                     <li><a href="{{ url('admin/popups') }}"><i class="fa fa-fw fa-window-maximize"></i><span>Popups home</span></a></li>
                     <li><a href="{{ url('admin/encuestas') }}"><i class="fa fa-fw fa-question"></i><span>Encuestas satisfacción</span></a></li>

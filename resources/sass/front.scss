@@ -17,7 +17,7 @@
 @mixin reiniciar-input() { -webkit-appearance:none; -moz-appearance:none; -ms-appearance:none; -o-appearance:none; appearance:none; box-sizing:border-box; border-radius:0; outline:none; }
 
 $font-size-basico: 15px;
-$color-primary: #88499b;
+$color-primary: #186a8e;
 $color-secondary: #595b61;
 
 @import "layout";
@@ -41,3 +41,5 @@ $color-secondary: #595b61;
 @import "ficha";
 
 @import "encuesta";
+
+@import "sucursales";

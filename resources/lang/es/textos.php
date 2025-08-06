@@ -1,27 +1,37 @@
 <?php
 
+use App\Models\Texto;
+
+$texto = Texto::cargar();
+
 return [
 	'menu' => [
-		'servicios' => 'Conciencia Astral',
+		'servicios' => 'Servicios',
 		'novedades' => 'Novedades',
-		'galeria' => 'Galería',
+		'lugar' => 'Nuestro Lugar',
 		'ubicacion' => 'Dónde estamos',
 		'inscripcion' => 'Inscripción',
 		'contacto' => 'Contacto',
+        'coberturas' => 'Coberturas',
+        'sucursales' => 'Centros'
 	],
 	'servicios' => [
-		'texto' => '<p>Te invitamos a transitar juntos el camino hacia el equilibrio entre cuerpo y mente a través de la combinación de dos técnicas milenarias: YOGA + ASTROLOGÍA</p>',
+		'texto' => $texto->obtener('servicios.texto', 'es'),
 	],
 	'novedades' => [
-		'titulo' => 'Novedades y Promociones',
+		'titulo' => 'Novedades',
+        'texto' => $texto->obtener('novedades.texto', 'es'),
 	],
-	'galeria' => [
+    'sucursales' => [
+        'titulo' => 'Centros de Atención',
+    ],
+	'lugar' => [
 		'titulo' => 'Nuestro lugar',
-		'texto' => '<p>Un espacio completamente preparado para que puedas expandir todo tu potencial y sentirte cada día mejor. Conocelo!</p>',
+		'texto' => $texto->obtener('lugar.texto', 'es'),
 	],
 	'ubicacion' => [
 		'titulo' => 'Dónde estamos',
-		'texto' => '<p>En el corazón del barrio de Caballito, Pedro Goyena 1054, te esperamos para compartir un viaje transformador con nuestros cursos y talleres. ¿Te animás? </p>',
+		'texto' => $texto->obtener('ubicacion.texto', 'es'),
 	],
 	'consulta' => [
 		'campos' => [
@@ -40,10 +50,11 @@ return [
 		],
 	],
 	'iconos' => [
-		'titulo' => '¡Gracias por acompañarnos!',
+        'titulo' => "Coberturas y Convenios",
+		'texto' => $texto->obtener('coberturas.texto', 'es'),
 	],
 	'pie' => [
-		'destacado' => '¿Estás listo para cambiar tu calidad de vida?',
+		'texto' => $texto->obtener('pie.texto', 'es'),
 		'newsletter' => [
 			'titulo' => 'Newsletter',
 			'texto' => '<p>¡Suscribite y recibí novedades y promociones!</p>',

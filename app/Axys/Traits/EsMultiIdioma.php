@@ -62,7 +62,8 @@ trait EsMultiIdioma
 	 */
 	public function __get($key)
 	{
-		if (in_array($key, $this->idiomatizados)) {
+		// Solo procesar si la propiedad está en idiomatizados
+		if (isset($this->idiomatizados) && in_array($key, $this->idiomatizados)) {
 			return $this->traducir($key);
 		}
 
