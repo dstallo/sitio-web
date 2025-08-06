@@ -209,9 +209,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
     <footer>
         <div class="destacado">
             <div class="contenedor">
-                <p>
-                    @lang('textos.pie.texto')
-                </p>
+                @lang('textos.pie.texto')
             </div>
         </div>
         <div class="info">
@@ -220,11 +218,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                     <a class="logo" href="{{ url('/') }}">{{ config('app.name') }}</a>
                 </div>
                 <div class="col">
-                    <p>
-                        Lorem ipsum dolor sit amet, 
-                        <br />consectetur adipiscing elit. 
-                        <br  />Nam vel diam eget augue euismod dictum vitae a orci.
-                    </p>
+                    @lang('textos.pie.contacto')
                 </div>
                 <div class="col">
                     <div>

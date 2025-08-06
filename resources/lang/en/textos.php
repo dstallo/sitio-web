@@ -55,6 +55,7 @@ return [
 	],
 	'pie' => [
 		'texto' => $texto->obtener('pie.texto', 'en'),
+        'contacto' => $texto->obtener('pie.contacto', 'es'),
 		'newsletter' => [
 			'titulo' => 'Newsletter',
 			'texto' => '<p>Subscribe and get our latest news and promotions!</p>',

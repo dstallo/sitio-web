@@ -49,5 +49,11 @@ class TextosSeeder extends Seeder
             'texto_es' => '<p>Estamos en contacto.</p>',
             'texto_en' => '<p>Contact Us.</p>'
         ]);
+
+        DB::table('textos')->insert([
+            'id' => 'pie.contacto',
+            'texto_es' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
+            'texto_en' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'
+        ]);
     }
 }
