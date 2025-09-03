@@ -79,8 +79,8 @@ class Iconos extends Controller
     {
         $this->validate($request, [
             'nombre' => 'required',
-            'link' => 'url',
-            'imagen' => 'file|mimes:png|max:1024',
+            'link' => 'nullable|url',
+            'imagen' => 'file|mimes:png,jpeg,jpg,svg,gif|max:1024',
         ]);
 
         if($id) {
