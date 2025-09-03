@@ -15,6 +15,7 @@
                 </div>
                 <div class="box-body">
                     <a href="{{ route('crear_encuesta') }}" class="btn btn-primary">Crear encuesta</a>
+                    <a href="{{ route('ver_encuesta') }}" class="btn btn-success">Ver encuesta pública</a>
                 </div>
             </div>
         </div>

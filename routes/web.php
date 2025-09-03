@@ -41,7 +41,7 @@ Route::get('paginas/{pagina:slug}', [General::class, 'pagina'])->name('pagina');
 Route::get('centros', [General::class, 'sucursales'])->name('sucursales');
 
 
-Route::get('encuesta-satisfaccion', [General::class, 'verEncuesta']);
+Route::get('encuesta-satisfaccion', [General::class, 'verEncuesta'])->name('ver_encuesta');
 Route::post('encuesta-satisfaccion', [General::class, 'votarEncuesta']);
 Route::get('encuesta-completa', [General::class, 'encuestaCompleta']);
 
