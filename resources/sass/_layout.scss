@@ -74,7 +74,7 @@ header {
 			display:flex; flex-flow:row wrap; align-items:center;
 			justify-content:center;
 			& > li {
-				position:relative; margin:0 10px;
+				position:relative; margin:0 5px;
 				color:#FFF; font-weight:700; font-size:15px;
 				&.idioma-movil { display:none; }
 				a {
@@ -98,7 +98,7 @@ header {
 
 	.redes {
 		display:flex; align-items:center;
-		background-color:#FFF; padding:10px; margin-left:120px;
+		background-color:#FFF; padding:10px;
         li {
             margin:0 3px;
             border:2px solid $color-primary;

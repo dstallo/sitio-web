@@ -17,7 +17,8 @@
 @mixin reiniciar-input() { -webkit-appearance:none; -moz-appearance:none; -ms-appearance:none; -o-appearance:none; appearance:none; box-sizing:border-box; border-radius:0; outline:none; }
 
 $font-size-basico: 15px;
-$color-primary: #186a8e;
+//$color-primary: #186a8e;
+$color-primary: #181f4a;
 $color-secondary: #595b61;
 
 @import "layout";
