@@ -94,10 +94,12 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                 </ul>
             </nav>
             
-            <ul class="redes">
-                <li><a class="idioma instagram" href="#" target="_blank"></a></li>
-                <li><a class="idioma email" href="#"></a></li>
-            </ul>
+            
+                <ul class="redes">
+                    <li><a class="idioma email" href="mailto:info@daxsalud.com.ar"></a></li>
+                </ul>
+            
+            
         </div>
     </header>
 
@@ -110,34 +112,54 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
             <div class="intro">
                 @lang('textos.ubicacion.texto')
             </div>
-            <div class="mapa" id="mapa">
-                <a href="https://maps.app.goo.gl/6r668PQKbwMpWwu7A" target="_blank">
-                    <img src="{{ url('img/mapa.png') }}" class="grande" alt="Mapa">
-                    <img src="{{ url('img/mapa-chico.png') }}" class="chico" alt="Mapa">
-                </a>
-            </div>
-            <?php /*
-            <script>
-                var mapa;
-                function iniciarMapa() {
-                    mapa = new google.maps.Map(
-                        document.getElementById('mapa'), {zoom: 15, center: {lat: -34.462281902203145, lng: -58.86145648945509 }});
+        </section>
+        <div class="ubicacion contenedor-mapa">
+            <div class="mapa" id="mapa"></div>
+            
+            <script type="text/javascript">
+                var mapa, marcador, info, bounds;
 
-                    // google.maps.event.addListener(mapa, 'click', function(e) {
-                    //     marcar(e.latLng);
-                    // });
-                    // marcador = new google.maps.Marker({
-                    //     position: {lat: -34.462281902203145, lng: -58.86145648945509 }, 
-                    //     map: mapa
-                    // });
+
+                var marcadores = [
+                    {"lat": -34.582874, "lng": -58.4101125, "popup": '<h1 style="font-size:20px; margin-bottom:10px;">Buenos Aires</h1><p style="font-size:16px; margin-bottom:5px;">Las Heras 3341, Piso 11</p><p style="font-size:16px; margin-bottom:5px;">Tel.: 11 2881 0425</p><p style="font-size:16px;"><a href="mailto:info@daxsalud.com.ar">info@daxsalud.com.ar</a></p>'},
+                    {"lat": -31.740675, "lng": -60.5216869, "popup": '<h1 style="font-size:20px; margin-bottom:10px;">Entre Ríos</h1><p style="font-size:16px; margin-bottom:5px;">Pascual Echague 1065, Paraná</p><p style="font-size:16px;"><a href="mailto:info.er@daxsalud.com.ar">info.er@daxsalud.com.ar</a></p>'},
+                    {"lat": -26.825056, "lng": -65.2028709, "popup": '<h1 style="font-size:20px; margin-bottom:10px;">Tucumán</h1><p style="font-size:16px; margin-bottom:5px;">Torre Vittalia: Santiago del Estero 157, Piso 2</p><p style="font-size:16px; margin-bottom:5px;">Tel.: 11 2881 0425</p><p style="font-size:16px;"><a href="mailto:info.tuc@daxsalud.com.ar">info.tuc@daxsalud.com.ar</a></p>'}
+                ];
+
+
+                function iniciarMapa() {
+
+                    mapa = new google.maps.Map(document.getElementById('mapa'), {zoom: 10, center: {lat: -30.987320358631, lng: -62.485087265736446 }});
+
+                    bounds = new google.maps.LatLngBounds();
+                    
+
+                    marcadores.forEach(function(item){
+
+                        let position = {lat: item.lat, lng: item.lng};
+
+                        item.marker = new google.maps.Marker({
+                            position: position, 
+                            map: mapa
+                        });
+
+                        item.infoWindow = new google.maps.InfoWindow({
+                            content: item.popup
+                        });
+
+                        item.marker.addListener('click', function() {
+                            item.infoWindow.open(mapa, item.marker);
+                        });
+
+                        bounds.extend(position);
+                    })
+
+                    mapa.fitBounds(bounds);
+                    
                 }
             </script>
-            <script async defer>
-                src="https://maps.googleapis.com/maps/api/js?key={{ config('google.maps.api_key') }}&callback=iniciarMapa">
-            </script>
-            */ ?>
-        </section>
-
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('google.maps.api_key') }}&libraries=maps,marker&callback=iniciarMapa"></script>
+        </div>
         <div class="ancla" id="consulta"></div>
         <section class="consulta contenedor">
             <div class="formulario">
@@ -222,10 +244,11 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                 </div>
                 <div class="col">
                     <div>
+                    
                         <div class="redes">
-                            <a href="#" target="_blank" class="facebook"></a>
-                            <a href="#" target="_blank" class="instagram"></a>
+                            <a href="mailto:info@daxsalud.com.ar" target="_blank" class="email"></a>
                         </div>
+                    
                         <div class="newsletter">
                             <h3>@lang('textos.pie.newsletter.titulo')</h3>
                             @lang('textos.pie.newsletter.texto')
@@ -244,6 +267,6 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
             </div>
         </div>
     </footer>
-    <a href="https://api.whatsapp.com/send?phone=" target="_blank" class="whatsapp"></a>
+    <a href="https://api.whatsapp.com/send?phone=1128810425" target="_blank" class="whatsapp"></a>
 </body>
 </html>

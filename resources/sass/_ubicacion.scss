@@ -3,18 +3,22 @@
 	margin:50px auto;
 
 	.mapa {
-		//height:60vh;
+		height:60vh;
+        /*
 		img {
 			width:100%;
 			&.grande { display: block; }
 			&.chico { display: none; }
 		}
+        */
 		@media(max-width:650px) {
 			img {
+            /*
 				// object-fit:cover;
 				// height:40vh;
 				&.grande { display: none; }
 				&.chico { display: block; }
+            */
 			}
 		}
 
