@@ -96,7 +96,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
             
             
                 <ul class="redes">
-                    <li><a class="idioma email" href="mailto:info@daxsalud.com.ar"></a></li>
+                    <li><a class="idioma email" href="mailto:info@drogueriarobles.com.ar"></a></li>
                 </ul>
             
             
@@ -121,15 +121,12 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
 
 
                 var marcadores = [
-                    {"lat": -34.582874, "lng": -58.4101125, "popup": '<h1 style="font-size:20px; margin-bottom:10px;">Buenos Aires</h1><p style="font-size:16px; margin-bottom:5px;">Las Heras 3341, Piso 11</p><p style="font-size:16px; margin-bottom:5px;">Tel.: 11 2881 0425</p><p style="font-size:16px;"><a href="mailto:info@daxsalud.com.ar">info@daxsalud.com.ar</a></p>'},
-                    {"lat": -31.740675, "lng": -60.5216869, "popup": '<h1 style="font-size:20px; margin-bottom:10px;">Entre Ríos</h1><p style="font-size:16px; margin-bottom:5px;">Pascual Echague 1065, Paraná</p><p style="font-size:16px;"><a href="mailto:info.er@daxsalud.com.ar">info.er@daxsalud.com.ar</a></p>'},
-                    {"lat": -26.825056, "lng": -65.2028709, "popup": '<h1 style="font-size:20px; margin-bottom:10px;">Tucumán</h1><p style="font-size:16px; margin-bottom:5px;">Torre Vittalia: Santiago del Estero 157, Piso 2</p><p style="font-size:16px; margin-bottom:5px;">Tel.: 11 2881 0425</p><p style="font-size:16px;"><a href="mailto:info.tuc@daxsalud.com.ar">info.tuc@daxsalud.com.ar</a></p>'}
+                    {"lat": -34.4516942586787, "lng": -58.53769388127857, "popup": '<p style="font-size:16px; margin-bottom:5px;"><b>Dirección:</b> Alfredo Palacios 1063, B1644BRK Victoria, Provincia de Buenos Aires</p><p style="font-size:16px; margin-bottom:5px;"><b>Whatsapp:</b> 11 5315 7340</p><p style="font-size:16px;"><b>E-Mail:</b> <a href="mailto:info@drogueriarobles.com.ar">info@drogueriarobles.com.ar</a></p>'},
                 ];
-
 
                 function iniciarMapa() {
 
-                    mapa = new google.maps.Map(document.getElementById('mapa'), {zoom: 10, center: {lat: -30.987320358631, lng: -62.485087265736446 }});
+                    mapa = new google.maps.Map(document.getElementById('mapa'), {zoom: 15, center: {lat: -34.4516942586787, lng: -58.53769388127857 }});
 
                     bounds = new google.maps.LatLngBounds();
                     
@@ -154,7 +151,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                         bounds.extend(position);
                     })
 
-                    mapa.fitBounds(bounds);
+                    //mapa.fitBounds(bounds);
                     
                 }
             </script>
@@ -246,7 +243,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                     <div>
                     
                         <div class="redes">
-                            <a href="mailto:info@daxsalud.com.ar" target="_blank" class="email"></a>
+                            <a href="mailto:info@drogueriarobles.com.ar" target="_blank" class="email"></a>
                         </div>
                     
                         <div class="newsletter">
@@ -267,6 +264,6 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
             </div>
         </div>
     </footer>
-    <a href="https://api.whatsapp.com/send?phone=1128810425" target="_blank" class="whatsapp"></a>
+    <a href="https://api.whatsapp.com/send?phone=1153157340" target="_blank" class="whatsapp"></a>
 </body>
 </html>
