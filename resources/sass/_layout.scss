@@ -227,7 +227,8 @@ footer {
 	header {
 		.contenedor {
 			display:block; width:100%;
-		}
+            position:relative;
+		}   
 
 		.logo {
 			justify-content:center;
@@ -245,13 +246,12 @@ footer {
 		}
 
 		nav {
-			position:relative;
 			.desplegar-menu-principal {
-				display:block; width:25px; height:18px; position:relative;
-				position:absolute; right:15px; top:-45px;
-				span { position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); border-top:1px solid #999; }
-				&:before { display:block; content:''; position:absolute; left:0; right:0; top:0; border-top:1px solid #999; }
-				&:after { display:block; content:''; position:absolute; left:0; right:0; bottom:0; border-top:1px solid #999; }
+				display:block; width:25px; height:18px;
+				position:absolute; right:15px; top:45px;
+				span { position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); border-top:1px solid #FFF; }
+				&:before { display:block; content:''; position:absolute; left:0; right:0; top:0; border-top:1px solid #FFF; }
+				&:after { display:block; content:''; position:absolute; left:0; right:0; bottom:0; border-top:1px solid #FFF; }
 			}
 			ul {
 				display:none;

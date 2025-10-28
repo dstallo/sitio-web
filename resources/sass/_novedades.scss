@@ -15,13 +15,14 @@
 
 		.novedad {
 		
-			max-width:400px;
-			position:relative; margin:0 2.5px;
+			margin:0 5px;
             height:400px;
 		}
 
 		article {
-
+            position:relative;
+            height:100%;
+            width: calc(100% - 10px);
 			.imagen {
 				position:absolute; z-index:10; top:0; left:0; right:0; bottom:0;
 				@include fondo-cover;
@@ -53,17 +54,23 @@
 
 	@media(max-width:840px) {
 		margin:30px auto;
+        padding: 0;
+        width:100%;
 		.listado {
 			display:block;
 			.novedad {
-				max-width:none; margin:0 auto;
+				margin:0;
 				margin-bottom:15px;
 			}
 			article {
+                width: 100%;
 				.over { transition:none; }
 				h3 { font-size:18px; }
 			}
 			.novedad:hover .over { opacity:0; }
+
+            .slick-prev { mask-image:url(../img/anterior.svg); left:0; }
+		    .slick-next { mask-image:url(../img/siguiente.svg); right:0; }
 		}
 	}
 }
