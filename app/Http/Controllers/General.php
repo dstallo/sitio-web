@@ -111,12 +111,12 @@ class General extends Controller
 		$consulta = new Consulta();
 		$consulta->fill($request->all());
 		$consulta->save();
-        /*
+        
 		$contacto = new Contacto();
 		if ($contacto->email) {
 			$contacto->notify(new NuevaConsulta($consulta));
 		}
-        */
+        
 		return redirect('/consulta-enviada');
 	}
 
