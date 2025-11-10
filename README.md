@@ -1,5 +1,5 @@
 # Dialisis
-Sitio web de Dialisis
+Sitio web de Froebel
 
 ## Dependencias / Requisitos
 ```sh
