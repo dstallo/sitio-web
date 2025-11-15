@@ -1,8 +1,17 @@
 @extends('vendor.adminlte.page')
 
 @section('content_header')
-    <h1>Contenido multimedia</h1>
-    <h3><a href="{{ route('editar_servicio', compact('servicio', 'contenido')) }}">{{ $servicio->titulo }}</a></h3>
+    @if ($ficha?->articulo)
+        <h4>
+            <a href="{{ $ficha->articulo->href('list') }}">Todos</a> > 
+            <a href="{{ $ficha->articulo->href('edit') }}">{{ $ficha->articulo->titulo }}</a> > 
+            <a href="{{ route('contenidos_ficha', $ficha) }}">Contenidos</a> > 
+            Editar contenido</h4>
+        <h1>Contenido multimedia</h1>
+    @else
+        <h4><a href="{{ route('contenidos') }}">Todo el contenido</a> > Editar contenido
+        <h1>Nuestro Lugar - Contenido Multimedia</h1>
+    @endif
 @stop
 
 @section('content')
@@ -10,8 +19,8 @@
         <div class="box-header with-border">
           <h3 class="box-title">Editar contenido</h3>
         </div>
-        <form method="post" enctype="multipart/form-data" action="{{ route('guardar_contenido_servicio', [$servicio, $contenido]) }}">
-            {{ csrf_field() }}
+        <form method="post" enctype="multipart/form-data" action="{{ $ficha ? route('guardar_contenido_ficha', [$ficha, $contenido]) : route('guardar_contenido', $contenido) }}">
+            @csrf
             <div class="box-body">
                 <div class="col-md-12">
                     @if (count($errors)>0)
@@ -43,12 +52,13 @@
                             <input type="text" class="form-control" name="video" value="{{ old('video',$contenido->video) }}">
                         </div>
                     </div>
+                @else
                     <div class="col-md-6 form-group{{ has_error($errors,'imagen') }}">
                         <label>Imagen</label>
                         @if($contenido->tiene('imagen'))
                             <div style="position:relative;">
                                 <div style="position:absolute; left:-14px; top:4px;">
-                                    <a href="{{ route('eliminar_imagen_contenido_servicio', compact('servicio', 'contenido')) }}" class="btn btn-circle btn-sm btn-danger" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></a>
+                                    <a href="{{ $ficha ? route('eliminar_imagen_contenido_ficha', compact('ficha', 'contenido')) : route('eliminar_imagen_contenido', compact('contenido')) }}" class="btn btn-circle btn-sm btn-danger" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></a>
                                 </div>
                                 <a href="{{ $contenido->url('imagen') }}" data-lity><img src="{{ $contenido->url('imagen') }}"></a>
                             </div>
@@ -60,7 +70,11 @@
             </div>
             <div class="box-footer text-right">
                 <button type="submit" class="btn btn-primary">Guardar</button>
-                <a href="{{ route('contenidos_servicio', $servicio) }}" class="btn btn-info">Volver</a>
+            @if ($ficha)
+                <a href="{{ $ficha->articulo->href('edit') }}" class="btn btn-info">Volver</a>
+            @else
+                <a href="{{ route('contenidos') }}" class="btn btn-info">Volver</a>
+            @endif
             </div>
         </form>
     </div>

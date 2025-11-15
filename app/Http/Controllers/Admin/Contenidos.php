@@ -5,15 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Axys\AxysFlasher as Flasher;
-use App\Axys\AxysListado as Listado;
 use App\Axys\Traits\TieneVisibilidad;
 use App\Axys\AxysVideo as Video;
 use Illuminate\Support\Facades\Validator;
 
-use App\Models\Pagina;
-use App\Models\ContenidoPagina as Contenido;
+use App\Models\Ficha;
+use App\Models\Contenido as Contenido;
 
-class ContenidosPaginas extends Controller
+class Contenidos extends Controller
 {
     use TieneVisibilidad;
 
@@ -22,15 +21,17 @@ class ContenidosPaginas extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Pagina $pagina, Request $request)
+    public function index(Request $request, ?Ficha $ficha = null)
     {
-        
-        $contenidos = $pagina->contenidos;
+        if ($ficha)
+            $contenidos = $ficha->contenidos;
+        else
+            $contenidos = Contenido::whereNull('id_ficha')->orderBy('orden')->get();
 
-        return view('admin.multimedia-paginas.index', compact('pagina', 'contenidos'));
+        return view('admin.contenidos.index', compact('ficha', 'contenidos'));
     }
 
-    public function eliminar(Pagina $pagina, Contenido $contenido)
+    public function eliminar(Request $request, ?Ficha $ficha = null, Contenido $contenido)
     {
         try {
             $contenido->delete();
@@ -42,7 +43,7 @@ class ContenidosPaginas extends Controller
         return redirect()->back();
     }
 
-    public function crearVideo(Pagina $pagina, Request $request)
+    public function crearVideo(Request $request, ?Ficha $ficha = null)
     {
         Video::agregarValidacion();
 
@@ -55,12 +56,12 @@ class ContenidosPaginas extends Controller
         
         $contenido=new Contenido;
         $contenido->tipo = 'video';
-        $contenido->id_pagina = $pagina->id;
+        $contenido->id_ficha = $ficha?->id;
 
         $contenido->fill($request->all())
             ->subir($request->file('imagen'),'imagen')
             ->crearThumbnails()
-            ->ordenar([['id_pagina', $pagina->id]])
+            ->ordenar($ficha ? [['id_ficha', $ficha->id]] : [])
             ->save();
 
         
@@ -69,7 +70,7 @@ class ContenidosPaginas extends Controller
         return back();
     }
 
-    public function subirImagen(Pagina $pagina, Request $request)
+    public function subirImagen(Request $request, ?Ficha $ficha = null)
     {
         $validator = Validator::make($request->all(), [
             'imagen' => 'file|max:10240|mimes:jpeg,png,jpg',
@@ -81,23 +82,26 @@ class ContenidosPaginas extends Controller
         $imagen=(new Contenido)
             ->subir($request->file('imagen'), 'imagen')
             ->crearThumbnails()
-            ->ordenar([['id_pagina',$pagina->id]]);
+            ->ordenar($ficha ? [['id_ficha', $ficha->id]] : []);
 
         $imagen->tipo = 'imagen';
         $imagen->nombre = pathinfo($request->file('imagen')->getClientOriginalName(), PATHINFO_FILENAME);
 
-        $pagina->contenidos()->save($imagen);
+        if ($ficha)
+            $ficha->contenidos()->save($imagen);
+        else
+            $imagen->save();
         
         return response('OK', 200);
     }
 
-    public function editar(Pagina $pagina, Contenido $contenido)
+    public function editar(?Ficha $ficha = null, Contenido $contenido)
     {
         $video=new Video($contenido->video);
-        return view('admin.multimedia-paginas.editar',compact('pagina', 'contenido', 'video'));
+        return view('admin.contenidos.editar',compact('ficha', 'contenido', 'video'));
     }
 
-    public function guardar(Pagina $pagina, Contenido $contenido, Request $request)
+    public function guardar(Request $request, ?Ficha $ficha = null, Contenido $contenido)
     {
         Video::agregarValidacion();
 
@@ -110,7 +114,7 @@ class ContenidosPaginas extends Controller
         $contenido->fill($request->all())
             ->subir($request->file('imagen'),'imagen')
             ->crearThumbnails()
-            ->ordenar([['id_pagina', $pagina->id]])
+            ->ordenar($ficha ? [['id_ficha', $ficha->id]] : null)
             ->save();
 
         Flasher::set("El contenido multimedia fue modificado exitosamente.", 'Contenido Editado', 'success')->flashear();
@@ -118,24 +122,24 @@ class ContenidosPaginas extends Controller
         return back();
     }
 
-    public function visibilidad(Pagina $pagina, Contenido $contenido)
+    public function visibilidad(?Ficha $ficha = null, Contenido $contenido)
     {
         return $this->cambiarVisibilidad($contenido);
     }
 
-    public function eliminarImagen(Pagina $pagina, Contenido $contenido)
+    public function eliminarImagen(?Ficha $ficha = null, Contenido $contenido)
     {
         $contenido->eliminarArchivo('imagen')->save();
         Flasher::set("Se eliminó la imagen", 'Archivo Eliminado', 'success')->flashear();
         return back();
     }
 
-    public function ordenar(Pagina $pagina, Request $request)
+    public function ordenar(Request $request)
     {
         $ids = $request->all()['ids'];
         $orden = 1;
         foreach($ids as $id) {
-            $pagina->contenidos()->where('id', $id)->update(['orden' => $orden]);
+            Contenido::where('id', $id)->update(['orden' => $orden]);
             $orden += 1;
         }
         return ['ok'=>true];

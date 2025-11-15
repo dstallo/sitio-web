@@ -18,8 +18,10 @@
 
 $font-size-basico: 15px;
 //$color-primary: #186a8e;
-$color-primary: #179d91;
+$color-primary: #1b285a;
 $color-secondary: #595b61;
+$color-header:#f1f1f1;
+$color-footer: #136fa3;
 
 @import "layout";
 
@@ -44,3 +46,5 @@ $color-secondary: #595b61;
 @import "encuesta";
 
 @import "sucursales";
+
+@import "publicaciones";

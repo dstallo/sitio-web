@@ -93,6 +93,8 @@ class Servicios extends Controller
 			->subir($request->file('imagen'), 'imagen')
 			->save();
 
+        $servicio->guardarFicha($request);
+
 		if ($id) {
 			Flasher::set('El servicio fue modificado exitosamente.', 'Servicio Editado', 'success')->flashear();
 			return back();

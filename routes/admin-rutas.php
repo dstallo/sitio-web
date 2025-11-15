@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Multimedia;
 use App\Http\Controllers\Admin\Iconos;
 use App\Http\Controllers\Admin\InscriptosNewsletter;
 use App\Http\Controllers\Admin\Consultas;
+use App\Http\Controllers\Admin\Contenidos;
 use App\Http\Controllers\Admin\ContenidosPaginas;
 use App\Http\Controllers\Admin\Popups;
 use App\Http\Controllers\Admin\Encuestas;
@@ -66,16 +67,6 @@ Route::post('servicios/ordenar', [Servicios::class, 'ordenar'])->name('ordenar_s
 Route::get('servicios/{servicio}/visibilidad', [Servicios::class, 'visibilidad'])->name('visibilidad_servicio');
 Route::get('servicios/{servicio}/eliminar-archivo/{campo}', [Servicios::class, 'eliminarArchivo'])->name('eliminar_archivo_servicio');
 
-// contenidos
-Route::get('servicios/{servicio}/multimedia', [ContenidosServicios::class, 'index'])->name('contenidos_servicio');
-Route::post('servicios/{servicio}/multimedia/subir', [ContenidosServicios::class, 'subirImagen'])->name('subir_imagen_servicio');
-Route::post('servicios/{servicio}/multimedia/crear-video', [ContenidosServicios::class, 'crearVideo'])->name('crear_video_servicio');
-Route::get('servicios/{servicio}/multimedia/{contenido}/editar', [ContenidosServicios::class, 'editar'])->name('editar_contenido_servicio');
-Route::post('servicios/{servicio}/multimedia/{contenido}/guardar', [ContenidosServicios::class, 'guardar'])->name('guardar_contenido_servicio');
-Route::get('servicios/{servicio}/multimedia/{contenido}/eliminar', [ContenidosServicios::class, 'eliminar'])->name('eliminar_contenido_servicio');
-Route::get('servicios/{servicio}/multimedia/{contenido}/eliminar-imagen', [ContenidosServicios::class, 'eliminarImagen'])->name('eliminar_imagen_contenido_servicio');
-Route::post('servicios/{servicio}/multimedia/ordenar', [ContenidosServicios::class, 'ordenar'])->name('ordenar_contenidos_servicio');
-
 // novedades
 Route::get('novedades', [Novedades::class, 'index'])->name('novedades');
 Route::get('novedades/crear', [Novedades::class, 'crear'])->name('crear_novedad');
@@ -85,25 +76,35 @@ Route::get('novedades/{novedad}/eliminar', [Novedades::class, 'eliminar'])->name
 Route::get('novedades/{novedad}/eliminar-archivo/{campo}', [Novedades::class, 'eliminarArchivo'])->name('eliminar_archivo_novedad');
 Route::get('novedades/{novedad}/visibilidad', [Novedades::class, 'visibilidad'])->name('visibilidad_novedad');
 
-// contenidos
-Route::get('novedades/{novedad}/multimedia', [ContenidosNovedades::class, 'index'])->name('contenidos_novedad');
-Route::post('novedades/{novedad}/multimedia/subir', [ContenidosNovedades::class, 'subirImagen'])->name('subir_imagen_novedad');
-Route::post('novedades/{novedad}/multimedia/crear-video', [ContenidosNovedades::class, 'crearVideo'])->name('crear_video_novedad');
-Route::get('novedades/{novedad}/multimedia/{contenido}/editar', [ContenidosNovedades::class, 'editar'])->name('editar_contenido_novedad');
-Route::post('novedades/{novedad}/multimedia/{contenido}/guardar', [ContenidosNovedades::class, 'guardar'])->name('guardar_contenido_novedad');
-Route::get('novedades/{novedad}/multimedia/{contenido}/eliminar', [ContenidosNovedades::class, 'eliminar'])->name('eliminar_contenido_novedad');
-Route::get('novedades/{novedad}/multimedia/{contenido}/eliminar-imagen', [ContenidosNovedades::class, 'eliminarImagen'])->name('eliminar_imagen_contenido_novedad');
-Route::post('novedades/{novedad}/multimedia/ordenar', [ContenidosNovedades::class, 'ordenar'])->name('ordenar_contenidos_novedad');
+
+// paginas
+Route::get('paginas', [Paginas::class, 'index'])->name('paginas');
+Route::get('paginas/crear', [Paginas::class, 'crear'])->name('crear_pagina');
+Route::get('paginas/{pagina}/editar', [Paginas::class, 'editar'])->name('editar_pagina');
+Route::post('paginas/guardar/{pagina?}', [Paginas::class, 'guardar'])->name('guardar_pagina');
+Route::get('paginas/{pagina}/eliminar', [Paginas::class, 'eliminar'])->name('eliminar_pagina');
+Route::get('paginas/{pagina}/eliminar-archivo/{campo}', [Paginas::class, 'eliminarArchivo'])->name('eliminar_archivo_pagina');
+Route::get('paginas/{pagina}/visibilidad', [Paginas::class, 'visibilidad'])->name('visibilidad_pagina');
+
+// contenidos multimedia para fichas
+Route::get('ficha/{ficha}/contenidos', [Contenidos::class, 'index'])->name('contenidos_ficha');
+Route::post('ficha/{ficha}/contenidos/subir', [Contenidos::class, 'subirImagen'])->name('subir_imagen_ficha');
+Route::post('ficha/{ficha}/contenidos/crear-video', [Contenidos::class, 'crearVideo'])->name('crear_video_ficha');
+Route::get('ficha/{ficha}/contenidos/{contenido}/editar', [Contenidos::class, 'editar'])->name('editar_contenido_ficha');
+Route::post('ficha/{ficha}/contenidos/{contenido}/guardar', [Contenidos::class, 'guardar'])->name('guardar_contenido_ficha');
+Route::get('ficha/{ficha}/contenidos/{contenido}/eliminar', [Contenidos::class, 'eliminar'])->name('eliminar_contenido_ficha');
+Route::get('ficha/{ficha}/contenidos/{contenido}/eliminar-imagen', [Contenidos::class, 'eliminarImagen'])->name('eliminar_imagen_contenido_ficha');
+Route::post('ficha/{ficha}/contenidos/ordenar', [Contenidos::class, 'ordenar'])->name('ordenar_contenidos_ficha');
 
 // multimedia
-Route::get('multimedia', [Multimedia::class, 'index'])->name('contenidos');
-Route::post('multimedia/subir', [Multimedia::class, 'subirImagen'])->name('subir_imagen');
-Route::post('multimedia/crear-video', [Multimedia::class, 'crearVideo'])->name('crear_video');
-Route::get('multimedia/{contenido}/editar', [Multimedia::class, 'editar'])->name('editar_contenido');
-Route::post('multimedia/{contenido}/guardar', [Multimedia::class, 'guardar'])->name('guardar_contenido');
-Route::get('multimedia/{contenido}/eliminar', [Multimedia::class, 'eliminar'])->name('eliminar_contenido');
-Route::get('multimedia/{contenido}/eliminar-imagen', [Multimedia::class, 'eliminarImagen'])->name('eliminar_imagen_contenido');
-Route::post('multimedia/ordenar', [Multimedia::class, 'ordenar'])->name('ordenar_contenidos');
+Route::get('contenidos', [Contenidos::class, 'index'])->name('contenidos');
+Route::post('contenidos/subir', [Contenidos::class, 'subirImagen'])->name('subir_imagen');
+Route::post('contenidos/crear-video', [Contenidos::class, 'crearVideo'])->name('crear_video');
+Route::get('contenidos/{contenido}/editar', [Contenidos::class, 'editar'])->name('editar_contenido');
+Route::post('contenidos/{contenido}/guardar', [Contenidos::class, 'guardar'])->name('guardar_contenido');
+Route::get('contenidos/{contenido}/eliminar', [Contenidos::class, 'eliminar'])->name('eliminar_contenido');
+Route::get('contenidos/{contenido}/eliminar-imagen', [Contenidos::class, 'eliminarImagen'])->name('eliminar_imagen_contenido');
+Route::post('contenidos/ordenar', [Contenidos::class, 'ordenar'])->name('ordenar_contenidos');
 
 // íconos
 Route::get('iconos', [Iconos::class, 'index'])->name('iconos');
@@ -157,25 +158,6 @@ Route::post('encuestas/{encuesta}/preguntas/{pregunta}/opciones/ordenar', [Opcio
 Route::get('textos', [Textos::class, 'index'])->name('textos');
 Route::get('textos/{texto}/editar', [Textos::class, 'editar'])->name('editar_texto');
 Route::post('textos/guardar/{texto?}', [Textos::class, 'guardar'])->name('guardar_texto');
-
-// paginas
-Route::get('paginas', [Paginas::class, 'index'])->name('paginas');
-Route::get('paginas/crear', [Paginas::class, 'crear'])->name('crear_pagina');
-Route::get('paginas/{pagina}/editar', [Paginas::class, 'editar'])->name('editar_pagina');
-Route::post('paginas/guardar/{pagina?}', [Paginas::class, 'guardar'])->name('guardar_pagina');
-Route::get('paginas/{pagina}/eliminar', [Paginas::class, 'eliminar'])->name('eliminar_pagina');
-Route::get('paginas/{pagina}/eliminar-archivo/{campo}', [Paginas::class, 'eliminarArchivo'])->name('eliminar_archivo_pagina');
-Route::get('paginas/{pagina}/visibilidad', [Paginas::class, 'visibilidad'])->name('visibilidad_pagina');
-
-// contenidos
-Route::get('paginas/{pagina}/multimedia', [ContenidosPaginas::class, 'index'])->name('contenidos_pagina');
-Route::post('paginas/{pagina}/multimedia/subir', [ContenidosPaginas::class, 'subirImagen'])->name('subir_imagen_pagina');
-Route::post('paginas/{pagina}/multimedia/crear-video', [ContenidosPaginas::class, 'crearVideo'])->name('crear_video_pagina');
-Route::get('paginas/{pagina}/multimedia/{contenido}/editar', [ContenidosPaginas::class, 'editar'])->name('editar_contenido_pagina');
-Route::post('paginas/{pagina}/multimedia/{contenido}/guardar', [ContenidosPaginas::class, 'guardar'])->name('guardar_contenido_pagina');
-Route::get('paginas/{pagina}/multimedia/{contenido}/eliminar', [ContenidosPaginas::class, 'eliminar'])->name('eliminar_contenido_pagina');
-Route::get('paginas/{pagina}/multimedia/{contenido}/eliminar-imagen', [ContenidosPaginas::class, 'eliminarImagen'])->name('eliminar_imagen_contenido_pagina');
-Route::post('paginas/{pagina}/multimedia/ordenar', [ContenidosPaginas::class, 'ordenar'])->name('ordenar_contenidos_pagina');
 
 // Sucursales - Centros
 Route::get('centros', [Sucursales::class, 'index'])->name('admin.sucursales');

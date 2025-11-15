@@ -91,8 +91,9 @@ class Novedades extends Controller
 
 		$novedad->fill($request->all());
 
-		$novedad->subir($request->file('thumbnail'), 'thumbnail')
-			->save();
+        $novedad->subir($request->file('thumbnail'), 'thumbnail')->save();
+
+        $novedad->guardarFicha($request);
 
 		if ($id) {
 			Flasher::set('La novedad fue modificada exitosamente.', 'Novedad Editada', 'success')->flashear();

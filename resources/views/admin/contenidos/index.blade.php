@@ -7,8 +7,19 @@
 @stop
 
 @section('content_header')
-    <h4><a href="{{ route('paginas') }}">Páginas</a> > <a href="{{ route('editar_pagina', $pagina) }}">{{ $pagina->titulo }}</a></h4>
-    <h1>Contenido multimedia</h1>
+@if ($ficha)
+    @if ($ficha->articulo)
+        <h4>
+            <a href="{{ $ficha->articulo->href('list') }}">Todos</a> > 
+            <a href="{{ $ficha->articulo->href('edit') }}">{{ $ficha->articulo->titulo }}</a> > 
+            Contenidos
+        </h4>
+    @endif
+    <h1>Contenido Multimedia</h1>
+@else
+    <h1>Nuestro Lugar - Contenido Multimedia</h1>
+@endif
+    
 @stop
 
 @section('content')
@@ -23,8 +34,8 @@
                 @forelse($contenidos as $contenido)
                 <div class="col-md-2 col-xs-6" data-id-contenido="{{ $contenido->id }}" style="position:relative; margin-bottom:20px;">
                     <div style="position:absolute; left:0; top:4px;">
-                        <a href="{{ route('editar_contenido_pagina',[$pagina, $contenido]) }}" class="btn btn-circle btn-sm btn-warning" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a href="{{ route('eliminar_contenido_pagina',[$pagina, $contenido]) }}" class="btn btn-circle btn-sm btn-danger" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a href="{{ $contenido->href('edit') }}" class="btn btn-circle btn-sm btn-warning" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a href="{{ $contenido->href('delete') }}" class="btn btn-circle btn-sm btn-danger" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></a>
                     </div>
                     @if($contenido->tipo == 'imagen')
                         <a href="{{ $contenido->url('imagen') }}" data-lity><img src="{{ $contenido->url('imagen') }}" style="border-radius:5px;"></a>
@@ -48,15 +59,15 @@
         <div class="row">
             <div class="col-md-6 form-group">
                 <h4>Subir imágenes</h4>
-                <div class="dropzone" data-input="imagen" data-cantidad="multi" data-mimes="image/*" data-url="{{ route('subir_imagen_pagina', $pagina) }}" max="2" data-reload="si">
+                <div class="dropzone" data-input="imagen" data-cantidad="multi" data-mimes="image/*" data-url="{{ $ficha ? route('subir_imagen_ficha', $ficha) : route('subir_imagen') }}" max="2" data-reload="si">
                     <div class="dz-message" data-dz-message><span>Arrastrá los archivos o clickeá para subir imagenés.</span></div>
                 </div>
             </div>
             <div id="crear-video" class="col-md-6 form-group">
                 <h4>Crear un video</h4>
                 
-                <form method="post" enctype="multipart/form-data" action="{{ route('crear_video_pagina', $pagina) }}">
-                    {{ csrf_field() }}
+                <form method="post" enctype="multipart/form-data" action="{{ $ficha ? route('crear_video_ficha', $ficha) : route('crear_video') }}">
+                    @csrf
                     <div class="row">
                         <div class="col-md-12">
                             @if (count($errors)>0)
@@ -97,7 +108,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('editar_pagina', $pagina) }}" class="btn btn-info">Volver</a>
+                <a href="{{ $ficha?->articulo ? $ficha->articulo->href('edit') : route('contenidos') }}" class="btn btn-info">Volver</a>
             </div>
         </div>
     </div>
@@ -119,7 +130,7 @@
                 ids.push($(this).data('id-contenido'));
             });
             $.ajax({
-                url:'{{ route("ordenar_contenidos_pagina", compact("pagina")) }}',
+                url:'{{ $ficha ? route("ordenar_contenidos_ficha", compact("ficha")) : route("ordenar_contenidos") }}',
                 method:'post',
                 data:{'ids':ids},
                 success:function(ret){

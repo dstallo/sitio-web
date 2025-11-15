@@ -106,6 +106,8 @@ class Paginas extends Controller
 
 		$pagina->subir($request->file('thumbnail'), 'thumbnail')
 			->save();
+        
+        $pagina->guardarFicha($request);
 
 		if ($id) {
 			Flasher::set('La página fue modificada exitosamente.', 'Página Editada', 'success')->flashear();

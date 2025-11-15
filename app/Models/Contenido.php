@@ -9,9 +9,9 @@ use App\Axys\AxysVideo as Video;
 
 class Contenido extends Model
 {
-	use EsOrdenable, TieneArchivos;
+    use EsOrdenable, TieneArchivos;
 
-    protected $table = 'multimedia';
+    protected $table = 'contenidos_fichas';
 
     protected $fillable = ['nombre', 'video', 'epigrafe'];
 
@@ -20,11 +20,24 @@ class Contenido extends Model
     protected $eliminarConArchivos = ['imagen'];
 
     protected $thumbnails = [
-    	'imagen' => [
-            'tn' => [420, 180],
+        'imagen' => [
+            'tn' => [1290, 585],
         ]
     ];
-    
+
+    public function scopeFront($query)
+	{
+		return $query
+            ->whereNull('id_ficha')
+			->where('visible', true)
+			->orderBy('orden', 'asc');
+	}
+
+    public function ficha()
+    {
+        return $this->belongsTo(Ficha::class, 'id_ficha');
+    }
+
     public function getVideo()
     {
         if(empty($this->video)) {
@@ -37,10 +50,19 @@ class Contenido extends Model
         return null;
     }
 
-    public function scopeFront($query) {
-        return $query
-            ->where('visible',true)
-            ->orderBy('orden');
+    public function href($type) {
+        if ($type == 'edit') {
+            if ($this->ficha)
+                return route('editar_contenido_ficha', ['ficha' => $this->ficha, 'contenido' => $this]);
+            else
+                return route('editar_contenido', ['contenido' => $this]);
+        }
+        else if ($type == 'delete') {
+            if ($this->ficha)
+                return route('eliminar_contenido_ficha', ['ficha' => $this->ficha, 'contenido' => $this]);
+            else
+                return route('eliminar_contenido', ['contenido' => $this]);
+        }
     }
     
 }

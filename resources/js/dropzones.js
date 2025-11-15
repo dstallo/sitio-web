@@ -15,6 +15,9 @@ $(function() {
 		$(this).dropzone({
 			url: url,
 			paramName: input,
+            headers: {
+                'X-CSRF-TOKEN': window.Laravel['csrfToken']
+            },
 			maxFiles: (cantidad == 'multi' ? null : 1),
 			maxFilesize: (max ? max : 10),
 			acceptedFiles: mimes,

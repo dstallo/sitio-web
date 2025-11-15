@@ -72,7 +72,7 @@
                             <td>
                                 @if($pagina->link)
                                     <a href="{{ $pagina->link }}" target="_blank">{{ $pagina->link }}</a>
-                                @elseif($pagina->ficha_titulo)
+                                @elseif($pagina->ficha)
                                     <a href="{{ $pagina->href() }}" target="_blank">Ver página
                                 @else
                                     -

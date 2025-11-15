@@ -72,8 +72,8 @@
                             <td>
                                 @if($servicio->link)
                                     <a href="{{ $servicio->link }}" target="_blank">{{ $servicio->link }}</a>
-                                @elseif($servicio->ficha_titulo)
-                                    Ficha
+                                @elseif($servicio->ficha)
+                                    <a href="{{ $servicio->href() }}" target="_blank">Ver servicio
                                 @else
                                     -
                                 @endif

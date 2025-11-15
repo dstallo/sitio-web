@@ -107,4 +107,6 @@ return [
         ],
     ],
 
+    'mailto' => env('MAIL_MAILTO', 'test@test.com')
+
 ];

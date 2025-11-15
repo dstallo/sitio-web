@@ -149,7 +149,7 @@
                     <li><a href="{{ url('admin/servicios') }}"><i class="fa fa-handshake-o"></i> <span>Servicios</span></a></li>
                     <li><a href="{{ url('admin/novedades') }}"><i class="fa fa-newspaper-o"></i> <span>Novedades</span></a></li>
                     <li><a href="{{ url('admin/centros') }}"><i class="fa fa-map-marker"></i> <span>Centros</span></a></li>
-                    <li><a href="{{ url('admin/multimedia') }}"><i class="fa fa-image"></i> <span>Nuestro Lugar</span></a></li>
+                    <li><a href="{{ route('contenidos') }}"><i class="fa fa-image"></i> <span>Nuestro Lugar</span></a></li>
                     <li><a href="{{ url('admin/iconos') }}"><i class="fa fa-link"></i> <span>Íconos</span></a></li>
                     <li><a href="{{ url('admin/popups') }}"><i class="fa fa-fw fa-window-maximize"></i><span>Popups home</span></a></li>
                     <li><a href="{{ url('admin/encuestas') }}"><i class="fa fa-fw fa-question"></i><span>Encuestas satisfacción</span></a></li>

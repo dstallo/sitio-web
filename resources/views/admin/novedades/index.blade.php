@@ -72,8 +72,8 @@
                             <td>
                                 @if($novedad->link)
                                     <a href="{{ $novedad->link }}" target="_blank">{{ $novedad->link }}</a>
-                                @elseif($novedad->ficha_titulo)
-                                    Ficha
+                                @elseif($novedad->ficha)
+                                    <a href="{{ $novedad->href() }}" target="_blank">Ver novedad
                                 @else
                                     -
                                 @endif

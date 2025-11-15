@@ -20,18 +20,20 @@
             </div>
         </form>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Acciones</h3>
-                </div>
-                <div class="box-body">
-                    <a href="{{ route('contenidos_pagina', $pagina) }}" class="btn btn-warning">Cargar contenido multimedia</a>
+    @if ($pagina->ficha)
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                    <h3 class="box-title">Acciones</h3>
+                    </div>
+                    <div class="box-body">
+                        <a href="{{ route('contenidos_ficha', $pagina->ficha) }}" class="btn btn-warning">Cargar contenido multimedia</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endsection
 
 @section('script.abajo')

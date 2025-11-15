@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use App\Axys\Traits\TieneArchivos;
 use Illuminate\Database\Eloquent\Model;
 use App\Axys\Traits\EsMultiIdioma;
+use Illuminate\Http\Request;
 
 class Novedad extends Model
 {
@@ -14,12 +15,16 @@ class Novedad extends Model
 
 	protected $table = 'novedades';
 
-	protected $idiomatizados = ['titulo', 'ficha_titulo', 'ficha_bajada', 'ficha_texto'];
-	protected $fillable = ['titulo', 'link', 'ficha_titulo', 'ficha_bajada', 'ficha_texto'];
+	protected $idiomatizados = ['titulo'];
+	protected $fillable = ['titulo', 'link'];
 
 	protected $dir = [
 		'thumbnail' => 'novedades',
 	];
+
+    protected $with = [
+        'ficha'
+    ];
 
 	protected $eliminarConArchivos = ['thumbnail'];
 
@@ -32,14 +37,44 @@ class Novedad extends Model
 
 	public function contenidos()
 	{
-		return $this->hasMany(ContenidoNovedad::class, 'id_novedad')->orderBy('orden');
+		return $this->ficha?->contenidos() ?? collect([]);
 	}
 
-	public function href()
-	{
-		if (!$this->ficha_titulo) {
-			return '';
-		}
-		return route('novedad', [$this, Str::slug($this->titulo)]);
+    public function ficha(){
+        return $this->morphOne(Ficha::class, 'articulo', 'tipo_articulo', 'id_articulo');
+    }
+
+	public function href($type = 'view')
+	{   
+		if ($type == 'view') {
+            if ($this->link)
+                return $this->link;
+
+            if (! $this->ficha) {
+                return '#';
+            }
+
+            return route('novedad', [$this, Str::slug($this->titulo)]);
+        }
+        elseif ($type == 'edit') {
+            return route('editar_novedad', [$this]);
+        }
+        elseif ($type == 'list') {
+            return route('novedades');
+        }
+        elseif ($type == 'delete') {
+            return route('eliminar_novedad', [$this]);
+        }
 	}
+
+    public function guardarFicha(Request $request) {
+        $ficha = $this->ficha;
+        if (! $ficha)
+            $ficha = new Ficha();
+        
+        $ficha->fill($request->all());
+        $ficha->articulo()->associate($this);
+        $ficha->save();
+    }
+
 }

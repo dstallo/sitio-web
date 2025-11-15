@@ -15,7 +15,7 @@ strong,b { font-weight:700; }
 .ancla { position:relative; top:-105px; } //-95 - 10
 
 h2 {
-	margin:30px auto; text-align:center; color: #595b61;
+	margin:30px auto; text-align:center; color: $color-secondary;
 	font-weight: 600; font-size:36px; line-height:1.4em;
 
 	&:after {
@@ -24,7 +24,7 @@ h2 {
 	}
 }
 
-.intro { font-size:22px; color:#58595B; margin:30px auto; text-align:center; width:90%; }
+.intro { font-size:22px; color:$color-secondary; margin:30px auto; text-align:center; width:90%; }
 
 @media(max-width:850px) {
 	h2 { font-size:25px; }
@@ -46,7 +46,7 @@ header {
 
 	position:relative; z-index:100;
 	position:fixed; width:100%; top:0; z-index:800;
-	background-color:$color-primary;
+	background-color: $color-header;
 	
 	.contenedor {
 		width: 100%; padding:0 3%;
@@ -56,6 +56,7 @@ header {
 
 	.logo {
 		padding:20px 10px; display:flex; flex-flow:row wrap; align-items:center;
+        background-color: $color-primary;
 		&:before {
 			display:block; content:''; height:70px; width:220px;
 			background-image:url(../img/logo.svg); @include fondo-contain;
@@ -75,7 +76,7 @@ header {
 			justify-content:center;
 			& > li {
 				position:relative; margin:0 5px;
-				color:#FFF; font-weight:700; font-size:15px;
+				color: $color-primary; font-weight:700; font-size:15px;
 				&.idioma-movil { display:none; }
 				a {
 					display:block; padding:5px;
@@ -98,17 +99,17 @@ header {
 
 	.redes {
 		display:flex; align-items:center;
-		background-color:#FFF; padding:10px;
+		background-color:$color-primary; padding:10px;
         li {
             margin:0 3px;
-            border:2px solid $color-primary;
+            border:2px solid #FFFFFF;
             box-sizing:border-box; 
             transition:transform .2s ease;
             &:hover { transform:scale(1.1); }
         }
 		a {
             display:flex; width:34px; height:34px;
-            background-color: $color-primary;
+            background-color: #FFFFFF;
 			mask-size: contain;
             mask-position: center;
             mask-repeat: no-repeat;
@@ -152,7 +153,7 @@ footer {
 	.info {
 
 		padding:50px 0;
-		background-color:#010101;
+		background-color:$color-footer;
 		@include fondo-cover;
 		color:white;
 		//text-shadow:2px 2px 3px rgba(0, 0, 0, .4);

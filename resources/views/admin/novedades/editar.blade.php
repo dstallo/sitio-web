@@ -20,6 +20,7 @@
             </div>
         </form>
     </div>
+@if ($novedad->ficha)
     <div class="row">
         <div class="col-md-6">
             <div class="box box-info">
@@ -27,11 +28,12 @@
                   <h3 class="box-title">Acciones</h3>
                 </div>
                 <div class="box-body">
-                    <a href="{{ route('contenidos_novedad', $novedad) }}" class="btn btn-warning">Cargar contenido multimedia</a>
+                    <a href="{{ route('contenidos_ficha', $novedad->ficha) }}" class="btn btn-warning">Cargar contenido multimedia</a>
                 </div>
             </div>
         </div>
     </div>
+@endif
 @endsection
 
 @section('script.abajo')

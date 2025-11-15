@@ -39,7 +39,7 @@ class General extends Controller
 			abort(404);
 		}
 
-		$ficha = $novedad;
+		$ficha = $novedad->ficha;
         $paginas = Pagina::front()->get();
 
 		return view('ficha', compact('ficha', 'paginas'));
@@ -51,7 +51,7 @@ class General extends Controller
 			abort(404);
 		}
 
-		$ficha = $servicio;
+		$ficha = $servicio->ficha;
         $paginas = Pagina::front()->get();
 
 		return view('ficha', compact('ficha', 'paginas'));
@@ -63,7 +63,7 @@ class General extends Controller
 			abort(404);
 		}
 
-		$ficha = $pagina;
+		$ficha = $pagina->ficha;
         $paginas = Pagina::front()->get();
 
 		return view('ficha', compact('ficha', 'paginas'));

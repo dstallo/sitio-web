@@ -11,7 +11,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{ url('favicon.svg') }}" type="image/svg+xml"  />
+    <link rel="shortcut icon" href="{{ url('favicon.png') }}" type="image/png"  />
     <link rel="icon" href="{{ url('favicon.ico') }}" sizes="32x32" />
     <link rel="apple-touch-icon" href="{{ url('apple-touch-icon.png') }}" />
 
@@ -72,7 +72,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                 <a class="desplegar-menu-principal"><span></span></a>
                 <ul>
                 @foreach($paginas as $pagina)
-                    <li><a href="{{ $pagina->link ? $pagina->link : $pagina->href() }}">{{ $pagina->titulo }}</a></li>
+                    <li><a href="{{ $pagina->href() }}">{{ $pagina->titulo }}</a></li>
                 @endforeach
                 @if ($tiene_servicios)
                     <li><a href="/#servicios">@lang('textos.menu.servicios')</a></li>
@@ -96,7 +96,8 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
             
             
                 <ul class="redes">
-                    <li><a class="idioma email" href="mailto:info@drogueriarobles.com.ar"></a></li>
+                    <li><a class="idioma email" href="mailto:{{ config('mail.mailto') }}"></a></li>
+                    
                 </ul>
             
             
@@ -121,7 +122,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
 
 
                 var marcadores = [
-                    {"lat": -34.4516942586787, "lng": -58.53769388127857, "popup": '<p style="font-size:16px; margin-bottom:5px;"><b>Dirección:</b> Alfredo Palacios 1063, B1644BRK Victoria, Provincia de Buenos Aires</p><p style="font-size:16px; margin-bottom:5px;"><b>Whatsapp:</b> 11 5315 7340</p><p style="font-size:16px;"><b>E-Mail:</b> <a href="mailto:info@drogueriarobles.com.ar">info@drogueriarobles.com.ar</a></p>'},
+                    {"lat": -34.4516942586787, "lng": -58.53769388127857, "popup": '<p style="font-size:16px; margin-bottom:5px;"><b>Dirección:</b> Alfredo Palacios 1063, B1644BRK Victoria, Provincia de Buenos Aires</p><p style="font-size:16px; margin-bottom:5px;"><b>Whatsapp:</b> 11 5315 7340</p><p style="font-size:16px;"><b>E-Mail:</b> <a href="mailto:{{ config('mail.mailto') }}">{{ config('mail.mailto') }}</a></p>'},
                 ];
 
                 function iniciarMapa() {
@@ -243,7 +244,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                     <div>
                     
                         <div class="redes">
-                            <a href="mailto:info@drogueriarobles.com.ar" target="_blank" class="email"></a>
+                            <a href="mailto:{{ config('mail.mailto') }}" target="_blank" class="email"></a>
                         </div>
                     
                         <div class="newsletter">
