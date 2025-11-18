@@ -54,12 +54,21 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
     @yield('script.header')
 </head>
 <body>
-    @if(config('app.env') == 'production')
-        
-    @endif
     @include('flasher.flasher')
     
     <header>
+        <div class="contenedor barra">
+            <ul class="info">
+                <li><span class="icono marcador"></span>@lang('textos.datos.direccion')</li>
+                <li><span class="icono telefono"></span>@lang('textos.datos.telefono')</li>
+                <li><span class="icono email"></span><a href="mailto:@lang('textos.datos.email')">@lang('textos.datos.email')</a></li>
+            </ul>
+            <ul class="apps">
+                <li><a href="#"><span>Xendra</span></a></li>
+                <li><a href="#"><span class="icono email"></span><span>WebMail</span></a></li>
+                <li><a href="#"><span class="icono lapiz"></span><span>Pre-Inscripción</span></a></li>
+            </ul>
+        </div>
         <div class="contenedor">
             <a href="{{ url('/') }}" class="logo">
                 @if(!isset($ficha))
@@ -88,7 +97,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                 @endif
                     <li><a href="/#ubicacion">@lang('textos.menu.ubicacion')</a></li>
                 @if (App\Models\Icono::front()->count()>0)
-                    <li><a href="/#coberturas">@lang('textos.menu.coberturas')</a></li>
+                    <li><a href="/#socios">@lang('textos.menu.socios')</a></li>
                 @endif
                     <li><a href="/#consulta">@lang('textos.menu.contacto')</a></li>
                 </ul>
@@ -96,8 +105,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
             
             
                 <ul class="redes">
-                    <li><a class="idioma email" href="mailto:{{ config('mail.mailto') }}"></a></li>
-                    
+                    <li><a class="idioma email" href="mailto:@lang('textos.datos.email')"></a></li>
                 </ul>
             
             
@@ -122,7 +130,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
 
 
                 var marcadores = [
-                    {"lat": -34.4516942586787, "lng": -58.53769388127857, "popup": '<p style="font-size:16px; margin-bottom:5px;"><b>Dirección:</b> Alfredo Palacios 1063, B1644BRK Victoria, Provincia de Buenos Aires</p><p style="font-size:16px; margin-bottom:5px;"><b>Whatsapp:</b> 11 5315 7340</p><p style="font-size:16px;"><b>E-Mail:</b> <a href="mailto:{{ config('mail.mailto') }}">{{ config('mail.mailto') }}</a></p>'},
+                    {"lat": -34.4516942586787, "lng": -58.53769388127857, "popup": '<p style="font-size:16px; margin-bottom:5px;"><b>Dirección:</b> Alfredo Palacios 1063, B1644BRK Victoria, Provincia de Buenos Aires</p><p style="font-size:16px; margin-bottom:5px;"><b>Whatsapp:</b> 11 5315 7340</p><p style="font-size:16px;"><b>E-Mail:</b> <a href="mailto:@lang('textos.datos.email')">@lang('textos.datos.email')</a></p>'},
                 ];
 
                 function iniciarMapa() {
@@ -206,11 +214,11 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
 
         <?php $iconos = App\Models\Icono::front()->get(); ?>
         @if($iconos->count())
-            <div class="ancla" id="coberturas"></div>
+            <div class="ancla" id="socios"></div>
             <section class="iconos contenedor">
-                <h2>@lang('textos.iconos.titulo')</h2>
+                <h2>@lang('textos.socios.titulo')</h2>
                 <div class="intro">
-                    @lang('textos.iconos.texto')
+                    @lang('textos.socios.texto')
                 </div>
                 <ul>
                     @foreach($iconos as $icono)
@@ -244,7 +252,7 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                     <div>
                     
                         <div class="redes">
-                            <a href="mailto:{{ config('mail.mailto') }}" target="_blank" class="email"></a>
+                            <a href="mailto:@lang('textos.datos.email')" target="_blank" class="email"></a>
                         </div>
                     
                         <div class="newsletter">

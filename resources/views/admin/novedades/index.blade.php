@@ -74,9 +74,8 @@
                                     <a href="{{ $novedad->link }}" target="_blank">{{ $novedad->link }}</a>
                                 @elseif($novedad->ficha)
                                     <a href="{{ $novedad->href() }}" target="_blank">Ver novedad
-                                @else
-                                    -
                                 @endif
+                                <a href="#" class="copiable copiable-link" data-clipboard-text="{{ $novedad->href() }}"><i class="fa fa-clipboard"></i> Copiar link</a>
                             </td>
                             <td class="text-right">
                                 {!! accion_visibilidad($novedad->visible, route('visibilidad_novedad',compact('novedad'))) !!}

@@ -10,9 +10,8 @@ strong,b { font-weight:700; }
 
 .contenedor { width:90%; max-width:1700px; margin:0 auto; }
 
-//95px es el alto del header (en general, jeje)
-.landing { margin-top:calc(95px + 30px); }
-.ancla { position:relative; top:-105px; } //-95 - 10
+.landing { margin-top:calc(var(--header-height) + 15px); }
+.ancla { position:relative; top: calc(var(--header-height) * -1 - 15px); }
 
 h2 {
 	margin:30px auto; text-align:center; color: $color-secondary;
@@ -42,17 +41,67 @@ h2 {
 	}
 }
 
+.icono {
+    display:block; width:15px; height:15px; background-color:#FFF; mask-position: center; mask-repeat:no-repeat; mask-size:contain;
+    &.telefono {mask-image:url(../img/telefono.svg);}
+    &.marcador {mask-image:url(../img/marcador.svg);}
+    &.email {mask-image:url(../img/email.svg);}
+    &.lapiz {mask-image:url(../img/lapiz.svg); width:10px;}
+}
+
 header {
 
 	position:relative; z-index:100;
 	position:fixed; width:100%; top:0; z-index:800;
-	background-color: $color-header;
 	
 	.contenedor {
 		width: 100%; padding:0 3%;
 		display:flex; align-items:stretch;
 		justify-content: space-between;
+        background-color: $color-header;
 	}
+
+    .contenedor.barra {
+        background-color: $color-header-barra;
+        font-size:12px;
+    }
+
+    .info {
+        display:flex; align-items:center; gap:30px;
+        color: $color-header-barra-info;
+        li {
+            display:flex; gap:10px; align-items:center; padding:10px 0;
+        }
+        .icono {background-color:$color-header-barra-info;}
+        a {
+            color: $color-header-barra-info;
+            &:hover, &:focus {text-decoration:underline;}
+        }
+        
+    }
+
+    .apps {
+        display:flex; align-items:center;
+        color: $color-header-barra-apps;
+        .icono {background-color:$color-header-barra-apps;}
+        li {
+            height:100%; min-height:35px; border-right:1px solid $color-header-barra-info;
+            &:last-child {border:none;}
+        }
+        a {
+            display:flex; height:100%; min-height:35px;
+            gap:10px;
+            padding:0 15px;
+            align-items:center;
+            &:hover, &:focus {
+                background-color: #252525;
+            }
+            &:active {
+                background-color: #151515;
+            }
+        }
+
+    }
 
 	.logo {
 		padding:20px 10px; display:flex; flex-flow:row wrap; align-items:center;
@@ -223,13 +272,20 @@ footer {
 	// section.landing { padding-top:0; }
 	// header { position:static; }
 
+
+
 	header .redes { display:flex; }
 
 	header {
 		.contenedor {
 			display:block; width:100%;
             position:relative;
-		}   
+            padding:0;
+		}
+
+        .info {display: none;}
+
+        .apps {justify-self: end;}
 
 		.logo {
 			justify-content:center;

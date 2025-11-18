@@ -62,4 +62,18 @@ $(function(){
 
 		});
 	});
+
+    $('.select2').select2({
+        width: '100%',
+        selectionCssClass: 'form-control'
+    }).on('select2:open', function(e) {
+
+        if (! $(this).data('search-placeholder'))
+            return;
+
+        $('.select2-search__field').attr('placeholder', $(this).data('search-placeholder'));
+        
+    });
+
+    new ClipboardJS('.copiable');
 });

@@ -105,8 +105,6 @@ return [
         'paths' => [
             resource_path('views/vendor/mail'),
         ],
-    ],
-
-    'mailto' => env('MAIL_MAILTO', 'test@test.com')
+    ]
 
 ];

@@ -1,7 +1,7 @@
 @extends('vendor.adminlte.page')
 
 @section('content_header')
-    <h1>Servicios</h1>
+    <h1>Equipos</h1>
 @stop
 
 @section('content')
@@ -14,7 +14,7 @@
                   <h3 class="box-title">Acciones</h3>
                 </div>
                 <div class="box-body">
-                    <a href="{{ route('crear_servicio') }}" class="btn btn-primary">Crear servicio</a>
+                    <a href="{{ route('crear_equipo') }}" class="btn btn-primary">Crear miembro</a>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                                <input type="text" class="form-control" name="buscando" placeholder="Buscar servicio..." value="{{ $listado->old('buscando') }}">
+                                <input type="text" class="form-control" name="buscando" placeholder="Buscar miembro / equipo..." value="{{ $listado->old('buscando') }}">
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
 
         <div class="box-header with-border">
             <h3 class="box-title">Listado</h3>
-            <p>* Para modificar el orden de los elementos, arrastralos con el mouse.</p>
+            <p>* Para modificar el orden de los miembros de un equipo, arrastralos con el mouse.</p>
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
@@ -58,40 +58,38 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Título</th>
-                        <th>Link</th>
+                        <th>Equipo</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($servicios as $servicio)
+                    @forelse($equipos as $equipo)
                         <tr>
-                            <td class="hidden">{{ $servicio->orden }}</td>
-                            <td>{{ $servicio->id }}</td>
-                            <td>{{ $servicio->titulo_es }}</td>
-                            <td>
-                                @if($servicio->link)
-                                    <a href="{{ $servicio->link }}" target="_blank">{{ $servicio->link }}</a>
-                                @elseif($servicio->ficha)
-                                    <a href="{{ $servicio->href() }}" target="_blank">Ver servicio
-                                @endif
-                                <a href="#" class="copiable copiable-link" data-clipboard-text="{{ $servicio->href() }}"><i class="fa fa-clipboard"></i> Copiar link</a>
-                            </td>
+                            <td class="hidden">{{ $equipo->orden }}</td>
+                            <td>{{ $equipo->id }}</td>
+                            <td>{{ $equipo->equipo }}</td>
+                            <td>{{ $equipo->nombre }}</td>
+                            <td>{{ $equipo->descripcion }}</td>
                             <td class="text-right">
-                                {!! accion_visibilidad($servicio->visible, route('visibilidad_servicio',compact('servicio'))) !!}
-                                <a href="{{ route('editar_servicio', compact('servicio')) }}" role="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a href="{{ route('eliminar_servicio', compact('servicio')) }}" role="button" class="btn btn-danger btn-circle axys-confirmar-eliminar"><i class="glyphicon glyphicon-remove"></i></a>
+                                {!! accion_visibilidad($equipo->visible, route('visibilidad_equipo',compact('equipo'))) !!}
+                                <a href="{{ route('editar_equipo', compact('equipo')) }}" role="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a href="{{ route('eliminar_equipo', compact('equipo')) }}" role="button" class="btn btn-danger btn-circle axys-confirmar-eliminar"><i class="glyphicon glyphicon-remove"></i></a>
                             </td>
-                            <td class="hidden">{{ $servicio->id }}</td>
+                            <td class="hidden">{{ $equipo->id }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="99">No se encontraron servicios.</td>
+                            <td colspan="99">No se encontraron equipos.</td>
                         </tr>
                     @endforelse
-                    <?php $servicio = null; ?>
+                    <?php $equipo = null; ?>
                 </tbody>
             </table>
+        </div>
+        <div class="box-footer clearfix text-center">
+            {{ $equipos->links() }}
         </div>
     </div>
 @endsection
@@ -108,7 +106,7 @@
                         array.push($(this).children().last().html());
                     });
                     $.ajax({
-                        url:'{{ route("ordenar_servicios") }}',
+                        url:'{{ route("ordenar_equipo") }}',
                         method:'post',
                         data:{'ids':array},
                         success:function(ret){

@@ -141,18 +141,22 @@
                             @endif
                         </span>
                     </a></li>
-                    <li><a href="{{ url('admin/newsletter/inscriptos') }}"><i class="fa fa-fw fa-envelope"></i> <span>Newsletter</span></a></li>
-                    <li class="header">CONTENIDOS</li>
-                    <li><a href="{{ url('admin/paginas') }}"><i class="fa fa-file-text-o"></i> <span>Páginas</span></a></li>
-                    <li><a href="{{ url('admin/textos') }}"><i class="fa fa-font"></i> <span>Textos</span></a></li>
-                    <li><a href="{{ url('admin/slides') }}"><i class="fa fa-image"></i> <span>Slides</span></a></li>
-                    <li><a href="{{ url('admin/servicios') }}"><i class="fa fa-handshake-o"></i> <span>Servicios</span></a></li>
-                    <li><a href="{{ url('admin/novedades') }}"><i class="fa fa-newspaper-o"></i> <span>Novedades</span></a></li>
-                    <li><a href="{{ url('admin/centros') }}"><i class="fa fa-map-marker"></i> <span>Centros</span></a></li>
-                    <li><a href="{{ route('contenidos') }}"><i class="fa fa-image"></i> <span>Nuestro Lugar</span></a></li>
-                    <li><a href="{{ url('admin/iconos') }}"><i class="fa fa-link"></i> <span>Íconos</span></a></li>
-                    <li><a href="{{ url('admin/popups') }}"><i class="fa fa-fw fa-window-maximize"></i><span>Popups home</span></a></li>
+                    <li><a href="{{ url('admin/newsletter/inscriptos') }}"><i class="fa fa-fw fa-envelope"></i><span>Newsletter</span></a></li>
                     <li><a href="{{ url('admin/encuestas') }}"><i class="fa fa-fw fa-question"></i><span>Encuestas satisfacción</span></a></li>
+                    <li class="header">ARTÍCULOS</li>
+                    <li><a href="{{ url('admin/paginas') }}"><i class="fa fa-file-text-o"></i><span>Páginas</span></a></li>
+                    <li><a href="{{ url('admin/servicios') }}"><i class="fa fa-handshake-o"></i><span>Servicios</span></a></li>
+                    <li><a href="{{ url('admin/novedades') }}"><i class="fa fa-newspaper-o"></i><span>Novedades</span></a></li>
+                    <li><a href="{{ url('admin/equipos') }}"><i class="fa fa-user"></i><span>Equipos</span></a></li>
+                    <li class="header">PERSONALIZACIÓN</li>
+                    <li><a href="{{ url('admin/textos') }}"><i class="fa fa-font"></i><span>Textos Generales</span></a></li>
+                    <li><a href="{{ url('admin/iconos') }}"><i class="fa fa-address-book"></i><span>Socios</span></a></li>
+                    <li><a href="{{ url('admin/centros') }}"><i class="fa fa-map-marker"></i><span>Sucursales</span></a></li>
+                    <li class="header">MULTIMEDIA</li>
+                    <li><a href="{{ url('admin/slides') }}"><i class="fa fa-image"></i><span>Slides</span></a></li>
+                    <li><a href="{{ route('contenidos') }}"><i class="fa fa-image"></i><span>Nuestro Lugar</span></a></li>
+                    <li><a href="{{ url('admin/popups') }}"><i class="fa fa-fw fa-window-maximize"></i><span>Popups home</span></a></li>
+                    
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>

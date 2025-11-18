@@ -1,0 +1,11 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 22" width="16" height="22">
+	<style>
+		.s0 { fill: #ffffff } 
+	</style>
+	<g id="&lt;Group&gt;">
+		<path id="&lt;Path&gt;" class="s0" d="m1.12 3.13l3.23-2.02c0.33-0.21 0.83 0 1.12 0.45l0.95 1.49-4.47 2.82-0.87-1.41c-0.33-0.5-0.29-1.08 0.04-1.33z"/>
+		<path id="&lt;Path&gt;" class="s0" d="m14.5 18.25l-0.33-2.98-4.48 2.86 2.57 1.57z"/>
+		<path id="&lt;Path&gt;" class="s0" d="m13.87 20.7c0.17 0.08 0.42 0.08 0.58 0q0.32-0.2 0.26-0.58l-0.17-1.49-1.99 1.24z"/>
+		<path id="&lt;Path&gt;" class="s0" d="m2.32 6.41l4.39-2.78 7.13 11.23-4.36 2.77z"/>
+	</g>
+</svg>

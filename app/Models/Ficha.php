@@ -13,11 +13,16 @@ class Ficha extends Model
 	protected $table = 'fichas';
 
     protected $idiomatizados = ['ficha_titulo', 'ficha_bajada', 'ficha_texto'];
-	protected $fillable = ['ficha_titulo', 'ficha_bajada', 'ficha_texto'];
+	protected $fillable = ['ficha_titulo', 'ficha_bajada', 'ficha_texto', 'equipo'];
 
     public function contenidos()
 	{
 		return $this->hasMany(Contenido::class, 'id_ficha')->orderBy('orden');
+	}
+
+    public function miembrosEquipo()
+	{
+		return $this->hasMany(Equipo::class, 'equipo', 'equipo')->orderBy('orden');
 	}
 
     public function articulo() {

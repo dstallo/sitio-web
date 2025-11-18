@@ -74,9 +74,8 @@
                                     <a href="{{ $pagina->link }}" target="_blank">{{ $pagina->link }}</a>
                                 @elseif($pagina->ficha)
                                     <a href="{{ $pagina->href() }}" target="_blank">Ver página
-                                @else
-                                    -
                                 @endif
+                                <a href="#" class="copiable copiable-link" data-clipboard-text="{{ $pagina->href() }}"><i class="fa fa-clipboard"></i> Copiar link</a>
                             </td>
                             <td class="text-right">
                                 {!! accion_visibilidad($pagina->visible, route('visibilidad_pagina',compact('pagina'))) !!}

@@ -16,8 +16,8 @@ img { max-width:100%; }
 // Select2
 @import "node_modules/select2/dist/css/select2";
 @import "node_modules/select2-bootstrap-theme/dist/select2-bootstrap";
-.select2-selection { padding-top:10px !important; }
-.select2-con-imagen img { display:inline-block; margin-right:8px; max-width:60px !important; }
+
+@import "select2-custom";
 
 // Dropzone
 .dropzone {
@@ -33,3 +33,4 @@ img { max-width:100%; }
 		left:0; right:0; text-align:center; padding:0 10px;
 	}
 }
+.copiable-link {color:#333333; margin-left:20px;}

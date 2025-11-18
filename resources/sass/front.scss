@@ -16,11 +16,18 @@
 @mixin fondo-contain() { background-size:contain; background-position:center; background-repeat:no-repeat; }
 @mixin reiniciar-input() { -webkit-appearance:none; -moz-appearance:none; -ms-appearance:none; -o-appearance:none; appearance:none; box-sizing:border-box; border-radius:0; outline:none; }
 
+html {
+    --header-height: 95; // Se recalcula por javascript.
+}
+
 $font-size-basico: 15px;
 //$color-primary: #186a8e;
 $color-primary: #1b285a;
 $color-secondary: #595b61;
 $color-header:#f1f1f1;
+$color-header-barra: #353535;
+$color-header-barra-info: #dcddde;
+$color-header-barra-apps: #f9c131;
 $color-footer: #136fa3;
 
 @import "layout";

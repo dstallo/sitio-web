@@ -39,7 +39,13 @@ class TextosSeeder extends Seeder
         ]);
 
         DB::table('textos')->insert([
-            'id' => 'coberturas.texto',
+            'id' => 'sucursales.texto',
+            'texto_es' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
+            'texto_en' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'
+        ]);
+
+        DB::table('textos')->insert([
+            'id' => 'socios.texto',
             'texto_es' => '<p>¡Gracias por acompañarnos!</p>',
             'texto_en' => '<p>¡Gracias por acompañarnos!</p>'
         ]);
@@ -54,6 +60,24 @@ class TextosSeeder extends Seeder
             'id' => 'pie.contacto',
             'texto_es' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
             'texto_en' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'
+        ]);
+
+        DB::table('textos')->insert([
+            'id' => 'datos.direccion',
+            'texto_es' => 'Lorem ipsum dolor sit amet',
+            'texto_en' => 'Lorem ipsum dolor sit amet'
+        ]);
+
+        DB::table('textos')->insert([
+            'id' => 'datos.telefono',
+            'texto_es' => '11 2233 4455',
+            'texto_en' => '11 2233 4455'
+        ]);
+
+        DB::table('textos')->insert([
+            'id' => 'datos.email',
+            'texto_es' => 'test@test.com.ar',
+            'texto_en' => 'test@test.com.ar'
         ]);
     }
 }

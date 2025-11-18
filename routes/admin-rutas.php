@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\Contenidos;
 use App\Http\Controllers\Admin\ContenidosPaginas;
 use App\Http\Controllers\Admin\Popups;
 use App\Http\Controllers\Admin\Encuestas;
+use App\Http\Controllers\Admin\Equipos;
 use App\Http\Controllers\Admin\Preguntas;
 use App\Http\Controllers\Admin\Opciones;
 use App\Http\Controllers\Admin\Paginas;
@@ -76,7 +77,6 @@ Route::get('novedades/{novedad}/eliminar', [Novedades::class, 'eliminar'])->name
 Route::get('novedades/{novedad}/eliminar-archivo/{campo}', [Novedades::class, 'eliminarArchivo'])->name('eliminar_archivo_novedad');
 Route::get('novedades/{novedad}/visibilidad', [Novedades::class, 'visibilidad'])->name('visibilidad_novedad');
 
-
 // paginas
 Route::get('paginas', [Paginas::class, 'index'])->name('paginas');
 Route::get('paginas/crear', [Paginas::class, 'crear'])->name('crear_pagina');
@@ -115,6 +115,16 @@ Route::get('iconos/{icono}/eliminar', [Iconos::class, 'eliminar'])->name('elimin
 Route::post('iconos/ordenar', [Iconos::class, 'ordenar'])->name('ordenar_iconos');
 Route::get('iconos/{icono}/visibilidad', [Iconos::class, 'visibilidad'])->name('visibilidad_icono');
 Route::get('iconos/{icono}/eliminar-archivo/{campo}', [Iconos::class, 'eliminarArchivo'])->name('eliminar_archivo_icono');
+
+// equipos
+Route::get('equipos', [Equipos::class, 'index'])->name('equipos');
+Route::get('equipos/crear', [Equipos::class, 'crear'])->name('crear_equipo');
+Route::get('equipos/{equipo}/editar', [Equipos::class, 'editar'])->name('editar_equipo');
+Route::post('equipos/guardar/{equipo?}', [Equipos::class, 'guardar'])->name('guardar_equipo');
+Route::get('equipos/{equipo}/eliminar', [Equipos::class, 'eliminar'])->name('eliminar_equipo');
+Route::post('equipos/ordenar', [Equipos::class, 'ordenar'])->name('ordenar_equipo');
+Route::get('equipos/{equipo}/visibilidad', [Equipos::class, 'visibilidad'])->name('visibilidad_equipo');
+Route::get('equipos/{equipo}/eliminar-archivo/{campo}', [Equipos::class, 'eliminarArchivo'])->name('eliminar_archivo_equipo');
 
 // popups
 Route::get('popups', [Popups::class, 'index'])->name('popups');

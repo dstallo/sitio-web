@@ -5,15 +5,20 @@ use App\Models\Texto;
 $texto = Texto::cargar();
 
 return [
+    'datos' => [
+        'email' => $texto->obtener('datos.email', 'en'),
+        'telefono' => $texto->obtener('datos.telefono', 'en'),
+        'direccion' => $texto->obtener('datos.direccion', 'en'),
+    ],
 	'menu' => [
-		'servicios' => 'Services',
-        'sucursales' => 'Centros',
+		'servicios' => 'Servicios',
 		'novedades' => 'News',
 		'lugar' => 'Our Place',
 		'ubicacion' => 'Location',
 		'inscripcion' => 'Subscribe',
 		'contacto' => 'Contact us',
-        'coberturas' => 'Coverage'
+        'socios' => 'Partners',
+        'sucursales' => 'Sucursales'
 	],
 	'servicios' => [
 		'texto' => $texto->obtener('servicios.texto', 'en'),
@@ -31,8 +36,13 @@ return [
 		'texto' => $texto->obtener('ubicacion.texto', 'en'),
 	],
     'sucursales' => [
-        'titulo' => 'Centros de Atención',
+        'titulo' => 'Sucursales',
+        'texto' => $texto->obtener('sucursales.texto', 'en'),
     ],
+    'socios' => [
+        'titulo' => 'Partners',
+		'texto' => $texto->obtener('socios.texto', 'en'),
+	],
 	'consulta' => [
 		'campos' => [
 			'nombre' => 'Name',
@@ -49,13 +59,9 @@ return [
 			'texto' => '<p>Thank you for contacting us.</p><p>We will contact you soon.</p>',
 		],
 	],
-	'iconos' => [
-        'titulo' => "Coverage y Associates",
-		'texto' => $texto->obtener('coberturas.texto', 'en'),
-	],
 	'pie' => [
 		'texto' => $texto->obtener('pie.texto', 'en'),
-        'contacto' => $texto->obtener('pie.contacto', 'es'),
+        'contacto' => $texto->obtener('pie.contacto', 'en'),
 		'newsletter' => [
 			'titulo' => 'Newsletter',
 			'texto' => '<p>Subscribe and get our latest news and promotions!</p>',

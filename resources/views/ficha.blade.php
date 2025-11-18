@@ -54,6 +54,21 @@
 		<div class="texto">
 			{!! $ficha->ficha_texto !!}
 		</div>
+    @if ($ficha->equipo && $ficha->miembrosEquipo?->count()>0)
+        <div class="equipo">
+			<ul>
+            @foreach($ficha->miembrosEquipo as $equipo)
+                <li>
+                    <div class="imagen"><div style="background-image:url({{ $equipo->url('imagen') }})"></div></div>
+                    <div class="info">
+                        <div class="nombre">{{ $equipo->nombre }}</div>
+                        <div class="puesto">{{ $equipo->descripcion }}</div>
+                    </div>
+                </li>
+            @endforeach						
+			</ul>
+		</div>
+    @endif
 	</div>
 </div>
 @endsection

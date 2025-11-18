@@ -113,5 +113,7 @@ $(function() {
         }]
     });
 
+    document.body.style.setProperty('--header-height', $('body > header').height() + 'px');
+
 });
 

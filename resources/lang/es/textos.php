@@ -5,6 +5,11 @@ use App\Models\Texto;
 $texto = Texto::cargar();
 
 return [
+    'datos' => [
+        'email' => $texto->obtener('datos.email', 'es'),
+        'telefono' => $texto->obtener('datos.telefono', 'es'),
+        'direccion' => $texto->obtener('datos.direccion', 'es'),
+    ],
 	'menu' => [
 		'servicios' => 'Servicios',
 		'novedades' => 'Novedades',
@@ -12,8 +17,8 @@ return [
 		'ubicacion' => 'Dónde estamos',
 		'inscripcion' => 'Inscripción',
 		'contacto' => 'Contacto',
-        'coberturas' => 'Coberturas',
-        'sucursales' => 'Centros'
+        'socios' => 'Socios',
+        'sucursales' => 'Sucursales'
 	],
 	'servicios' => [
 		'texto' => $texto->obtener('servicios.texto', 'es'),
@@ -23,7 +28,7 @@ return [
         'texto' => $texto->obtener('novedades.texto', 'es'),
 	],
     'sucursales' => [
-        'titulo' => 'Centros de Atención',
+        'titulo' => 'Sucursales',
     ],
 	'lugar' => [
 		'titulo' => 'Nuestro lugar',
@@ -32,6 +37,14 @@ return [
 	'ubicacion' => [
 		'titulo' => 'Dónde estamos',
 		'texto' => $texto->obtener('ubicacion.texto', 'es'),
+	],
+    'sucursales' => [
+        'titulo' => 'Sucursales',
+        'texto' => $texto->obtener('sucursales.texto', 'en'),
+    ],
+    'socios' => [
+        'titulo' => 'Socios',
+		'texto' => $texto->obtener('socios.texto', 'en'),
 	],
 	'consulta' => [
 		'campos' => [
@@ -48,10 +61,6 @@ return [
 			'titulo' => 'Información enviada',
 			'texto' => '<p>Gracias por ponerte en contacto con nosotros.</p><p>Muy pronto nos podremos en contacto con vos.</p>',
 		],
-	],
-	'iconos' => [
-        'titulo' => "Coberturas y Convenios",
-		'texto' => $texto->obtener('coberturas.texto', 'es'),
 	],
 	'pie' => [
 		'texto' => $texto->obtener('pie.texto', 'es'),
