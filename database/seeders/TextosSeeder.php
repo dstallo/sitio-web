@@ -77,19 +77,22 @@ class TextosSeeder extends Seeder
         DB::table('textos')->insert([
             'id' => 'datos.direccion',
             'texto_es' => 'Lorem ipsum dolor sit amet',
-            'texto_en' => 'Lorem ipsum dolor sit amet'
+            'texto_en' => 'Lorem ipsum dolor sit amet',
+            'raw'   => true
         ]);
 
         DB::table('textos')->insert([
             'id' => 'datos.telefono',
             'texto_es' => '11 2233 4455',
-            'texto_en' => '11 2233 4455'
+            'texto_en' => '11 2233 4455',
+            'raw'   => true
         ]);
 
         DB::table('textos')->insert([
             'id' => 'datos.email',
             'texto_es' => 'test@test.com.ar',
-            'texto_en' => 'test@test.com.ar'
+            'texto_en' => 'test@test.com.ar',
+            'raw'   => true
         ]);
     }
 }

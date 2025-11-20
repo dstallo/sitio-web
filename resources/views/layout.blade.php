@@ -292,6 +292,6 @@ $menues = App\Models\Pagina::menues();
             </div>
         </div>
     </footer>
-    <a href="https://api.whatsapp.com/send?phone=1153157340" target="_blank" class="whatsapp"></a>
+    <a href="https://api.whatsapp.com/send?phone={{ preg_replace('/[^0-9]/', '', __('textos.datos.telefono')) }}" target="_blank" class="whatsapp"></a>
 </body>
 </html>
