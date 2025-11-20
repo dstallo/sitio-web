@@ -1,18 +1,19 @@
 .publicaciones {
-    ul {
+    ul.listado {
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: row wrap;
         justify-content: center;
         align-items: stretch;
+        row-gap: 2px;
 
-        li {
-            &:first-child {background-color:#f8ad31;}
-
-            flex-basis: 0;
-            flex-grow: 1;
+        li.publicacion {
+            background-color:$color-footer;
+            flex: 1 1 calc(25% - 2px);
             max-width: calc(25% - 2px);
             position: relative;
             margin: 0 1px;
+
+            article {height:100%;}
 
             .imagen {
                 background-size: cover;
@@ -31,30 +32,29 @@
                 }
             }
 
+            .over {
+				position:absolute; z-index:20; top:0; left:0; right:0; bottom:0;
+				opacity:.1; transition:opacity .2s ease;
+                background-color:#FFF;
+			}
+
+            article:hover, article:focus {
+                .over { opacity:0; }
+                h3 { transform:scale(1.05); }
+                &::after {content:" "; display:block; position:absolute; bottom:10px; right:10px; width:20px; height:20px; background-color:#FFF; mask-image:url(../img/goto.svg); mask-repeat:no-repeat; mask-size:contain; mask-position:center; }   
+            }
+
             .info {
-                padding: 35px 25px 15px;
+                padding: 20px 25px;
                 position: relative;
                 color: #fff;
-
-                a {
-                    display: block;
-                    width: 25px;
-                    height: 22px;
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    background-size: contain;
-                    background-position: 50%;
-                    background-repeat: no-repeat;
-                    background-image: url(../img/descargar.svg);
-                    transition: transform .2s ease;
-                }
                 
                 h3 {
                     font-weight: 700;
                     font-size: 20px;
                     line-height: 1.4em;
                     margin-bottom: 20px;
+                    transition:transform .2s ease;
                 }
 
                 p {
@@ -62,6 +62,24 @@
                     font-size: 13px;
                     line-height: 1.4em;
                 }
+            }
+        }
+    }
+
+    @media(max-width:1000px) {
+        ul.listado {
+            li.publicacion {
+                flex: 1 1 calc(50% - 2px);
+                max-width: calc(50% - 2px);
+            }
+            
+        }
+    }
+    @media(max-width:840px) {
+        ul.listado {
+            li.publicacion {
+                flex: 1 1 calc(100% - 2px);
+                max-width: calc(100% - 2px);
             }
         }
     }

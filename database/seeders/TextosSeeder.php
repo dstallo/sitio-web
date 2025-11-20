@@ -27,6 +27,12 @@ class TextosSeeder extends Seeder
         ]);
 
         DB::table('textos')->insert([
+            'id' => 'publicaciones.texto',
+            'texto_es' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
+            'texto_en' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'
+        ]);
+
+        DB::table('textos')->insert([
             'id' => 'lugar.texto',
             'texto_es' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
             'texto_en' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'
@@ -40,6 +46,12 @@ class TextosSeeder extends Seeder
 
         DB::table('textos')->insert([
             'id' => 'sucursales.texto',
+            'texto_es' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
+            'texto_en' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'
+        ]);
+
+        DB::table('textos')->insert([
+            'id' => 'agenda.texto',
             'texto_es' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
             'texto_en' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'
         ]);

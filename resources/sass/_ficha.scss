@@ -106,11 +106,57 @@
                         font-size: 16px;
                         .nombre {
                             font-weight: 600;
-                            margin-bottom: 15px;
+                            margin-bottom: 5px;
                             color: $color-primary;
                         }
 
 
+                    }
+                }
+            }
+        }
+
+        .documentos {
+
+            margin-top:30px;
+
+            ul {
+
+                li {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    padding: 15px;
+                    gap: 15px;
+                    .download {
+                        display:block;
+                        position: relative;
+                        width: 80px;
+                        img {
+                            width:100%;
+                        }
+                        &::after {position:absolute; content: " "; width:30px; height:30px; mask-image:url(../img/download.svg); mask-repeat:no-repeat; mask-position:center; mask-size:contain; background-color:$color-primary; bottom:0; right:0; margin-right:-7px; }    
+                    }
+                    .download:hover, .download:focus {
+                        &::after {transform:scale(1.15);}
+                    }
+                    .info {
+                        flex-basis: 0;
+                        flex-grow: 1;
+                        padding-top: 5px;
+                        font-size: 16px;
+                        .nombre {
+                            font-weight: 600;
+                            margin-bottom: 10px;
+                            color: $color-primary;
+
+                            a:hover, a:focus {text-decoration:underline;}
+                        }
+
+
+                    }
+
+                    &:nth-child(odd) {
+                        background-color:#f3f3f3;
                     }
                 }
             }

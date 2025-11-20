@@ -2,6 +2,9 @@
 $tiene_servicios = App\Models\Servicio::front()->count();
 $tiene_novedades = App\Models\Novedad::front()->count();
 $tiene_contenidos = App\Models\Contenido::front()->count();
+$tiene_publicaciones = App\Models\Publicacion::front()->count();
+$tiene_agenda = App\Models\Evento::front()->count();
+$menues = App\Models\Pagina::menues();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -80,7 +83,17 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
             <nav>
                 <a class="desplegar-menu-principal"><span></span></a>
                 <ul>
-                @foreach($paginas as $pagina)
+                @foreach($menues as $menu) 
+                    <li>
+                        <a href="#" class="dropdown-action">{{ $menu }}</a>
+                        <div class="dropdown">
+                        @foreach($paginas->where('menu', $menu) as $pagina)
+                            <a href="{{ $pagina->href() }}" class="dropdown-item">{{ $pagina->titulo }}</a>
+                        @endforeach
+                        </div>
+                    </li>
+                @endforeach
+                @foreach($paginas->whereNull('menu') as $pagina)
                     <li><a href="{{ $pagina->href() }}">{{ $pagina->titulo }}</a></li>
                 @endforeach
                 @if ($tiene_servicios)
@@ -90,12 +103,18 @@ $tiene_contenidos = App\Models\Contenido::front()->count();
                     <li><a href="{{ route('sucursales') }}">@lang('textos.menu.sucursales')</a></li>
                 @endif
                 @if ($tiene_novedades)
-                    <li><a href="/#novedades">@lang('textos.menu.novedades')</a></li>
+                    <li><a href="{{ route('novedades') }}">@lang('textos.menu.novedades')</a></li>
                 @endif
                 @if ($tiene_contenidos)
                     <li><a href="/#nuestro-lugar">@lang('textos.menu.lugar')</a></li>
                 @endif
                     <li><a href="/#ubicacion">@lang('textos.menu.ubicacion')</a></li>
+                @if ($tiene_publicaciones)
+                    <li><a href="{{ route('publicaciones') }}">@lang('textos.menu.publicaciones')</a></li>
+                @endif
+                @if ($tiene_agenda)
+                    <li><a href="/#agenda">@lang('textos.menu.agenda')</a></li>
+                @endif
                 @if (App\Models\Icono::front()->count()>0)
                     <li><a href="/#socios">@lang('textos.menu.socios')</a></li>
                 @endif

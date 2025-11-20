@@ -28,6 +28,6 @@ class Equipo extends Model
     }
 
     static public function list() {
-        return Equipo::select('equipo')->groupBy('equipo')->orderBy('equipo', 'asc')->get()->pluck('equipo')->all();
+        return Equipo::select('equipo')->whereNotNull('equipo')->groupBy('equipo')->orderBy('equipo', 'asc')->get()->pluck('equipo')->all();
     }
 }

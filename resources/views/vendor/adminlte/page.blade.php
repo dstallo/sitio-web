@@ -133,7 +133,7 @@
                         </a>
                     </li>
                     <li><a href="{{ url('admin/consultas') }}">
-                        <i class="fa fa-fw fa-file-archive-o"></i>
+                        <i class="fa fa-comments"></i>
                         <span>
                             Consultas
                             @if($sin_ver = App\Models\Consulta::where('vista', false)->count())
@@ -142,19 +142,21 @@
                         </span>
                     </a></li>
                     <li><a href="{{ url('admin/newsletter/inscriptos') }}"><i class="fa fa-fw fa-envelope"></i><span>Newsletter</span></a></li>
-                    <li><a href="{{ url('admin/encuestas') }}"><i class="fa fa-fw fa-question"></i><span>Encuestas satisfacción</span></a></li>
-                    <li class="header">ARTÍCULOS</li>
+                    <li><a href="{{ url('admin/encuestas') }}"><i class="fa fa-fw fa-check-square-o"></i><span>Encuestas satisfacción</span></a></li>
+                    <li class="header">CONTENIDO</li>
                     <li><a href="{{ url('admin/paginas') }}"><i class="fa fa-file-text-o"></i><span>Páginas</span></a></li>
                     <li><a href="{{ url('admin/servicios') }}"><i class="fa fa-handshake-o"></i><span>Servicios</span></a></li>
                     <li><a href="{{ url('admin/novedades') }}"><i class="fa fa-newspaper-o"></i><span>Novedades</span></a></li>
-                    <li><a href="{{ url('admin/equipos') }}"><i class="fa fa-user"></i><span>Equipos</span></a></li>
+                    <li><a href="{{ url('admin/publicaciones') }}"><i class="fa fa-bullhorn"></i><span>Publicaciones</span></a></li>
                     <li class="header">PERSONALIZACIÓN</li>
                     <li><a href="{{ url('admin/textos') }}"><i class="fa fa-font"></i><span>Textos Generales</span></a></li>
+                    <li><a href="{{ url('admin/equipos') }}"><i class="fa fa-users"></i><span>Equipos</span></a></li>
                     <li><a href="{{ url('admin/iconos') }}"><i class="fa fa-address-book"></i><span>Socios</span></a></li>
                     <li><a href="{{ url('admin/centros') }}"><i class="fa fa-map-marker"></i><span>Sucursales</span></a></li>
+                    <li><a href="{{ url('admin/agenda') }}"><i class="fa fa-calendar"></i><span>Agenda</span></a></li>
                     <li class="header">MULTIMEDIA</li>
                     <li><a href="{{ url('admin/slides') }}"><i class="fa fa-image"></i><span>Slides</span></a></li>
-                    <li><a href="{{ route('contenidos') }}"><i class="fa fa-image"></i><span>Nuestro Lugar</span></a></li>
+                    <li><a href="{{ route('contenidos') }}"><i class="fa fa-camera"></i><span>Nuestro Lugar</span></a></li>
                     <li><a href="{{ url('admin/popups') }}"><i class="fa fa-fw fa-window-maximize"></i><span>Popups home</span></a></li>
                     
                 </ul>

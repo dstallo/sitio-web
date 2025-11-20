@@ -1,0 +1,27 @@
+.agenda {
+
+    margin-top:30px;
+
+    ul.listado {
+
+        max-width:840px;
+        margin:0 auto;
+
+        li {
+            
+            padding:10px 15px;
+
+            time {font-weight:bold;}
+
+            &:nth-child(odd) {
+                background-color:#f3f3f3;
+            }
+
+            a {transition:transform .2s ease; display:block;}
+
+            a:hover, a:focus {
+                transform:scale(1.05);
+            }
+        }
+    }
+}

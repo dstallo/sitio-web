@@ -61,6 +61,7 @@
                         <th><a href="{{ $listado->linkOrden('id') }}">#</a></th>
                         <th><a href="{{ $listado->linkOrden('titulo_es') }}">Título</a></th>
                         <th>Link</th>
+                        <th width="100"></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -77,6 +78,7 @@
                                 @endif
                                 <a href="#" class="copiable copiable-link" data-clipboard-text="{{ $novedad->href() }}"><i class="fa fa-clipboard"></i> Copiar link</a>
                             </td>
+                            <td>@if ($novedad->destacado)<i class="fa fa-star" aria-hidden="true"></i> Destacada @endif</td>
                             <td class="text-right">
                                 {!! accion_visibilidad($novedad->visible, route('visibilidad_novedad',compact('novedad'))) !!}
                                 <a href="{{ route('editar_novedad', compact('novedad')) }}" role="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-edit"></i></a>

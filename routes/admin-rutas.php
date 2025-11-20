@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Admin\Administradores;
+use App\Http\Controllers\Admin\Agenda;
 use App\Http\Controllers\Admin\Slides;
 use App\Http\Controllers\Admin\Servicios;
 use App\Http\Controllers\Admin\ContenidosServicios;
@@ -14,12 +15,14 @@ use App\Http\Controllers\Admin\InscriptosNewsletter;
 use App\Http\Controllers\Admin\Consultas;
 use App\Http\Controllers\Admin\Contenidos;
 use App\Http\Controllers\Admin\ContenidosPaginas;
+use App\Http\Controllers\Admin\Documentos;
 use App\Http\Controllers\Admin\Popups;
 use App\Http\Controllers\Admin\Encuestas;
 use App\Http\Controllers\Admin\Equipos;
 use App\Http\Controllers\Admin\Preguntas;
 use App\Http\Controllers\Admin\Opciones;
 use App\Http\Controllers\Admin\Paginas;
+use App\Http\Controllers\Admin\Publicaciones;
 use App\Http\Controllers\Admin\Sucursales;
 use App\Http\Controllers\Admin\Textos;
 
@@ -69,7 +72,7 @@ Route::get('servicios/{servicio}/visibilidad', [Servicios::class, 'visibilidad']
 Route::get('servicios/{servicio}/eliminar-archivo/{campo}', [Servicios::class, 'eliminarArchivo'])->name('eliminar_archivo_servicio');
 
 // novedades
-Route::get('novedades', [Novedades::class, 'index'])->name('novedades');
+Route::get('novedades', [Novedades::class, 'index'])->name('admin.novedades');
 Route::get('novedades/crear', [Novedades::class, 'crear'])->name('crear_novedad');
 Route::get('novedades/{novedad}/editar', [Novedades::class, 'editar'])->name('editar_novedad');
 Route::post('novedades/guardar/{novedad?}', [Novedades::class, 'guardar'])->name('guardar_novedad');
@@ -85,6 +88,26 @@ Route::post('paginas/guardar/{pagina?}', [Paginas::class, 'guardar'])->name('gua
 Route::get('paginas/{pagina}/eliminar', [Paginas::class, 'eliminar'])->name('eliminar_pagina');
 Route::get('paginas/{pagina}/eliminar-archivo/{campo}', [Paginas::class, 'eliminarArchivo'])->name('eliminar_archivo_pagina');
 Route::get('paginas/{pagina}/visibilidad', [Paginas::class, 'visibilidad'])->name('visibilidad_pagina');
+
+// publicaciones
+Route::get('publicaciones', [Publicaciones::class, 'index'])->name('admin.publicaciones');
+Route::get('publicaciones/crear', [Publicaciones::class, 'crear'])->name('crear_publicacion');
+Route::get('publicaciones/{publicacion}/editar', [Publicaciones::class, 'editar'])->name('editar_publicacion');
+Route::post('publicaciones/guardar/{publicacion?}', [Publicaciones::class, 'guardar'])->name('guardar_publicacion');
+Route::get('publicaciones/{publicacion}/eliminar', [Publicaciones::class, 'eliminar'])->name('eliminar_publicacion');
+Route::get('publicaciones/{publicacion}/eliminar-archivo/{campo}', [Publicaciones::class, 'eliminarArchivo'])->name('eliminar_archivo_publicacion');
+Route::get('publicaciones/{publicacion}/visibilidad', [Publicaciones::class, 'visibilidad'])->name('visibilidad_publicacion');
+Route::post('publicaciones/ordenar', [Publicaciones::class, 'ordenar'])->name('ordenar_publicaciones');
+
+
+// documentos para fichas
+Route::get('ficha/{ficha}/documentos', [Documentos::class, 'index'])->name('documentos_ficha');
+Route::post('ficha/{ficha}/documentos/subir', [Documentos::class, 'subirArchivo'])->name('subir_archivo_ficha');
+Route::get('ficha/{ficha}/documentos/{documento}/editar', [Documentos::class, 'editar'])->name('editar_documento_ficha');
+Route::post('ficha/{ficha}/documentos/{documento}/guardar', [Documentos::class, 'guardar'])->name('guardar_documento_ficha');
+Route::get('ficha/{ficha}/documentos/{documento}/eliminar', [Documentos::class, 'eliminar'])->name('eliminar_documento_ficha');
+Route::get('ficha/{ficha}/documentos/{documento}/eliminar-archivo', [Documentos::class, 'eliminarArchivo'])->name('eliminar_archivo_documento_ficha');
+Route::post('ficha/{ficha}/documentos/ordenar', [Documentos::class, 'ordenar'])->name('ordenar_documentos_ficha');
 
 // contenidos multimedia para fichas
 Route::get('ficha/{ficha}/contenidos', [Contenidos::class, 'index'])->name('contenidos_ficha');
@@ -170,10 +193,18 @@ Route::get('textos/{texto}/editar', [Textos::class, 'editar'])->name('editar_tex
 Route::post('textos/guardar/{texto?}', [Textos::class, 'guardar'])->name('guardar_texto');
 
 // Sucursales - Centros
-Route::get('centros', [Sucursales::class, 'index'])->name('admin.sucursales');
-Route::get('centros/crear', [Sucursales::class, 'crear'])->name('crear_sucursal');
-Route::get('centros/{sucursal}/editar', [Sucursales::class, 'editar'])->name('editar_sucursal');
-Route::post('centros/guardar/{sucursal?}', [Sucursales::class, 'guardar'])->name('guardar_sucursal');
-Route::get('centros/{sucursal}/eliminar', [Sucursales::class, 'eliminar'])->name('eliminar_sucursal');
-Route::get('centros/{sucursal}/eliminar-archivo/{campo}', [Sucursales::class, 'eliminarArchivo'])->name('eliminar_archivo_sucursal');
-Route::get('centros/{sucursal}/visibilidad', [Sucursales::class, 'visibilidad'])->name('visibilidad_sucursal');
+Route::get('sucursales', [Sucursales::class, 'index'])->name('admin.sucursales');
+Route::get('sucursales/crear', [Sucursales::class, 'crear'])->name('crear_sucursal');
+Route::get('sucursales/{sucursal}/editar', [Sucursales::class, 'editar'])->name('editar_sucursal');
+Route::post('sucursales/guardar/{sucursal?}', [Sucursales::class, 'guardar'])->name('guardar_sucursal');
+Route::get('sucursales/{sucursal}/eliminar', [Sucursales::class, 'eliminar'])->name('eliminar_sucursal');
+Route::get('sucursales/{sucursal}/eliminar-archivo/{campo}', [Sucursales::class, 'eliminarArchivo'])->name('eliminar_archivo_sucursal');
+Route::get('sucursales/{sucursal}/visibilidad', [Sucursales::class, 'visibilidad'])->name('visibilidad_sucursal');
+
+// Agenda
+Route::get('agenda', [Agenda::class, 'index'])->name('admin.agenda');
+Route::get('agenda/crear', [Agenda::class, 'crear'])->name('crear_evento');
+Route::get('agenda/{evento}/editar', [Agenda::class, 'editar'])->name('editar_evento');
+Route::post('agenda/guardar/{evento?}', [Agenda::class, 'guardar'])->name('guardar_evento');
+Route::get('agenda/{evento}/eliminar', [Agenda::class, 'eliminar'])->name('eliminar_evento');
+Route::get('agenda/{evento}/visibilidad', [Agenda::class, 'visibilidad'])->name('visibilidad_evento');

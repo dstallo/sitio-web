@@ -15,8 +15,8 @@ class Pagina extends Model
 
 	protected $table = 'paginas';
 
-	protected $idiomatizados = ['titulo', 'ficha_titulo', 'ficha_bajada', 'ficha_texto'];
-	protected $fillable = ['titulo', 'link'];
+	protected $idiomatizados = ['titulo'];
+	protected $fillable = ['titulo', 'link', 'menu'];
 
 	protected $dir = [
 		'thumbnail' => 'paginas',
@@ -75,5 +75,9 @@ class Pagina extends Model
         $ficha->fill($request->all());
         $ficha->articulo()->associate($this);
         $ficha->save();
+    }
+
+    static public function menues() {
+        return Pagina::select('menu')->whereNotNull('menu')->groupBy('menu')->orderBy('menu', 'asc')->get()->pluck('menu')->all();
     }
 }

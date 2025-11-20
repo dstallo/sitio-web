@@ -34,12 +34,14 @@ Route::post('ajax/newsletter', [General::class, 'newsletter']);
 Route::post('consultar', [General::class, 'consultar'])->name('consultar');
 Route::get('consulta-enviada', [General::class, 'consultaEnviada']);
 
+Route::get('novedades', [General::class, 'novedades'])->name('novedades');
+Route::get('sucursales', [General::class, 'sucursales'])->name('sucursales');
+Route::get('publicaciones', [General::class, 'publicaciones'])->name('publicaciones');
 
 Route::get('novedades/{novedad}/{titulo}', [General::class, 'novedad'])->name('novedad');
 Route::get('servicios/{servicio}/{titulo}', [General::class, 'servicio'])->name('servicio');
 Route::get('paginas/{pagina:slug}', [General::class, 'pagina'])->name('pagina');
-Route::get('centros', [General::class, 'sucursales'])->name('sucursales');
-
+Route::get('publicaciones/{publicacion}/{titulo}', [General::class, 'publicacion'])->name('publicacion');
 
 Route::get('encuesta-satisfaccion', [General::class, 'verEncuesta'])->name('ver_encuesta');
 Route::post('encuesta-satisfaccion', [General::class, 'votarEncuesta']);

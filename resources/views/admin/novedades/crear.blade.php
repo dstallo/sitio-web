@@ -16,7 +16,7 @@
             </div>
             <div class="box-footer text-right">
                 <button type="submit" class="btn btn-primary">Crear</button>
-                <a href="{{ route('novedades') }}" class="btn btn-info">Volver</a>
+                <a href="{{ route('admin.novedades') }}" class="btn btn-info">Volver</a>
             </div>
         </form>
     </div>

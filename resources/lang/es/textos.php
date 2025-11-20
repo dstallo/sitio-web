@@ -27,6 +27,10 @@ return [
 		'titulo' => 'Novedades',
         'texto' => $texto->obtener('novedades.texto', 'es'),
 	],
+    'publicaciones' => [
+		'titulo' => 'Publicaciones',
+        'texto'  => $texto->obtener('publicaciones.texto', 'es'),
+	],
     'sucursales' => [
         'titulo' => 'Sucursales',
     ],
@@ -45,6 +49,10 @@ return [
     'socios' => [
         'titulo' => 'Socios',
 		'texto' => $texto->obtener('socios.texto', 'en'),
+	],
+    'agenda' => [
+        'titulo' => 'Agenda',
+		'texto' => $texto->obtener('agenda.texto', 'es'),
 	],
 	'consulta' => [
 		'campos' => [

@@ -69,6 +69,22 @@
 			</ul>
 		</div>
     @endif
+
+    @if ($ficha->documentos->count()>0) 
+        <div class="documentos">
+            <ul>
+            @foreach($ficha->documentos as $documento)
+                <li>
+                    <a href="{{ $documento->url('archivo') }}" class="download" target="_blank" title="Descargar documento"><img src="{{ $documento->href('logo') }}" alt="Descargar" /></a>
+                    <div class="info">
+                        <div class="nombre"><a href="{{ $documento->url('archivo') }}" target="_blank" title="Descargar documento">{{ $documento->nombre }}</a></div>
+                        <div class="descripcion">{{ $documento->descripcion }}</div>
+                    </div>
+                </li>
+            @endforeach
+            </ul>
+        </div>
+    @endif
 	</div>
 </div>
 @endsection

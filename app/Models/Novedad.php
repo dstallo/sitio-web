@@ -16,7 +16,7 @@ class Novedad extends Model
 	protected $table = 'novedades';
 
 	protected $idiomatizados = ['titulo'];
-	protected $fillable = ['titulo', 'link'];
+	protected $fillable = ['titulo', 'link', 'destacado'];
 
 	protected $dir = [
 		'thumbnail' => 'novedades',
@@ -60,7 +60,7 @@ class Novedad extends Model
             return route('editar_novedad', [$this]);
         }
         elseif ($type == 'list') {
-            return route('novedades');
+            return route('admin.novedades');
         }
         elseif ($type == 'delete') {
             return route('eliminar_novedad', [$this]);

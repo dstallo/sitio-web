@@ -59,6 +59,7 @@
                 <thead>
                     <tr>
                         <th><a href="{{ $listado->linkOrden('id') }}">#</a></th>
+                        <th><a href="{{ $listado->linkOrden('menu') }}">Menú</a></th>
                         <th><a href="{{ $listado->linkOrden('titulo_es') }}">Título</a></th>
                         <th>Link</th>
                         <th></th>
@@ -68,6 +69,7 @@
                     @forelse($paginas as $pagina)
                         <tr>
                             <td>{{ $pagina->id }}</td>
+                            <td>{{ $pagina->menu ?? '-' }}</td>
                             <td>{{ $pagina->titulo_es }}</td>
                             <td>
                                 @if($pagina->link)

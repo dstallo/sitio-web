@@ -46,6 +46,7 @@ class Servicios extends Controller
 	public function eliminar(Servicio $servicio)
 	{
 		try {
+            $servicio->ficha?->delete();
 			$servicio->delete();
 			$flasher = Flasher::set('El servicio fue eliminado.', 'Servicio Eliminado', 'success');
 		} catch (\Exception $e) {

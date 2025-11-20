@@ -52,7 +52,7 @@
 
 	@if($novedades->count())
 		<div class="ancla" id="novedades"></div>
-		<section class="novedades contenedor">
+		<section class="novedades contenedor con-slick">
 			<h2>@lang('textos.novedades.titulo')</h2>
 			<div class="listado">
             @foreach($novedades as $novedad)
@@ -114,6 +114,39 @@
 			</ul>
 		@endif
 	</section>
+    @if($publicaciones->count())
+		<div class="ancla" id="publicaciones"></div>
+		<section class="publicaciones contenedor con-slick">
+			<h2>@lang('textos.publicaciones.titulo')</h2>
+			<x-publicaciones :publicaciones="$publicaciones" />
+		</section>
+	@endif
+
+    @if($agenda->count())
+		<div class="ancla" id="agenda"></div>
+		<section class="agenda contenedor">
+			<h2>@lang('textos.agenda.titulo')</h2>
+            <div class="intro">
+                @lang('textos.agenda.texto')
+            </div>
+			<ul class="listado">
+            @foreach($agenda as $evento)
+                <li>
+                @if ($evento->link)
+                    <a href="{{ $evento->link }}" title="Acceder" target="_blank">
+                @endif
+                @if ($evento->fecha)
+                    <time>{{ $evento->fecha->format('d/m/Y - H:i').' hs.' }}</time>
+                @endif
+                <span>{{ $evento->titulo }}</span>
+                @if ($evento->link)
+                    </a>
+                @endif
+                </li>
+            @endforeach
+            </ul>
+		</section>
+	@endif
 
 	@if(($popup ?? null) && $popup->tiene('imagen'))
 		<a href="#popup_general" data-lity data-auto-abrir-popup="{{ $popup->tiene('imagen_vertical') ? '600' : '' }}"></a>

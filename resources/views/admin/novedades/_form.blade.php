@@ -35,4 +35,11 @@
         <input type="file" class="form-control" name="thumbnail" value="{{ old('thumbnail') }}">
     @endif
 </div>
+<div class="col-md-4">
+    <div class="checkbox icheck">
+        <label>
+            <input type="checkbox" name="destacado" {{ old('descatado', $novedad->destacado) ? 'checked':'' }} /> Novedad destacada (Mostrar en Home)
+        </label>
+    </div>
+</div>
 @include('admin.parciales.form-ficha', ['ficha' => $novedad->ficha])

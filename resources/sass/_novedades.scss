@@ -52,6 +52,33 @@
 		}
 	}
 
+    &:not(.con-slick) {
+        .listado {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            row-gap: 10px;
+
+            .novedad {
+                margin:0;
+                height:auto;
+                article {height:250px;}
+                p {margin:20px 20px 30px;}
+            }
+        }
+        @media(max-width:1000px) {
+            .listado {
+                display:grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media(max-width:840px) {
+            .listado {
+                display:grid;
+                grid-template-columns: 1fr;    
+            }
+        }
+    }
+
 	@media(max-width:840px) {
 		margin:30px auto;
         padding: 0;

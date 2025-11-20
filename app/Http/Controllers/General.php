@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Admin\Novedades;
 use App\Models\Popup;
 use App\Models\Slide;
 use App\Models\Novedad;
@@ -10,6 +11,7 @@ use App\Models\Contacto;
 use App\Models\Encuesta;
 use App\Models\Servicio;
 use App\Models\Contenido;
+use App\Models\Evento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
@@ -17,6 +19,7 @@ use App\Notifications\NuevaConsulta;
 use Illuminate\Support\Facades\Validator;
 use App\Models\InscriptoNewsletter as Inscripto;
 use App\Models\Pagina;
+use App\Models\Publicacion;
 use App\Models\Sucursal;
 
 class General extends Controller
@@ -25,12 +28,31 @@ class General extends Controller
 	{
 		$slides = Slide::front()->get();
 		$servicios = Servicio::front()->get();
-		$novedades = Novedad::front()->get();
+		$novedades = Novedad::front()->where('destacado', true)->get();
         $paginas = Pagina::front()->get();
 		$contenidos = Contenido::front()->get();
 		$popup = Popup::where('visible', true)->orderBy('id', 'desc')->first();
+        $agenda = Evento::front()->get();
 
-		return view('home', compact('paginas', 'slides', 'servicios', 'novedades', 'contenidos', 'popup'));
+        $publicaciones = Publicacion::front()->where('destacado', true)->get();
+
+		return view('home', compact('agenda', 'paginas', 'slides', 'servicios', 'novedades', 'contenidos', 'popup', 'publicaciones'));
+	}
+
+    public function novedades()
+	{
+        $novedades = Novedad::front()->get();
+        $paginas = Pagina::front()->get();
+
+		return view('novedades', compact('novedades', 'paginas'));
+	}
+
+    public function publicaciones()
+	{
+        $publicaciones = Publicacion::front()->get();
+        $paginas = Pagina::front()->get();
+
+		return view('publicaciones', compact('publicaciones', 'paginas'));
 	}
 
 	public function novedad(Novedad $novedad, $titulo)
@@ -64,6 +86,18 @@ class General extends Controller
 		}
 
 		$ficha = $pagina->ficha;
+        $paginas = Pagina::front()->get();
+
+		return view('ficha', compact('ficha', 'paginas'));
+	}
+
+    public function publicacion(Publicacion $publicacion)
+	{
+		if (!$publicacion->visible) {
+			abort(404);
+		}
+
+		$ficha = $publicacion->ficha;
         $paginas = Pagina::front()->get();
 
 		return view('ficha', compact('ficha', 'paginas'));

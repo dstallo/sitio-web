@@ -18,7 +18,9 @@ return [
 		'inscripcion' => 'Subscribe',
 		'contacto' => 'Contact us',
         'socios' => 'Partners',
-        'sucursales' => 'Sucursales'
+        'sucursales' => 'Sucursales',
+        'publicaciones' => 'Publicaciones',
+        'agenda'    => 'Agenda'
 	],
 	'servicios' => [
 		'texto' => $texto->obtener('servicios.texto', 'en'),
@@ -26,6 +28,10 @@ return [
 	'novedades' => [
 		'titulo' => 'News',
         'texto'  => $texto->obtener('novedades.texto', 'en'),
+	],
+    'publicaciones' => [
+		'titulo' => 'Publicaciones',
+        'texto'  => $texto->obtener('publicaciones.texto', 'en'),
 	],
 	'lugar' => [
 		'titulo' => 'Our place',
@@ -42,6 +48,10 @@ return [
     'socios' => [
         'titulo' => 'Partners',
 		'texto' => $texto->obtener('socios.texto', 'en'),
+	],
+    'agenda' => [
+        'titulo' => 'Agenda',
+		'texto' => $texto->obtener('agenda.texto', 'en'),
 	],
 	'consulta' => [
 		'campos' => [

@@ -51,9 +51,7 @@ class Novedades extends Controller
 	public function eliminar(Novedad $novedad)
 	{
 		try {
-			foreach ($novedad->contenidos as $contenido) {
-				$contenido->delete();
-			} //borrar todo el contenido multimedia
+			$novedad->ficha?->delete();
 			$novedad->delete();
 			$flasher = Flasher::set('La novedad fue eliminada.', 'Novedad Eliminada', 'success');
 		} catch (\Exception $e) {
@@ -90,6 +88,8 @@ class Novedades extends Controller
 		}
 
 		$novedad->fill($request->all());
+
+        $novedad->destacado = !! $request->input('destacado');
 
         $novedad->subir($request->file('thumbnail'), 'thumbnail')->save();
 

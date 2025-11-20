@@ -17,7 +17,7 @@ class Servicio extends Model
 
 	protected $table = 'servicios';
 
-	protected $idiomatizados = ['titulo', 'texto', 'ficha_titulo', 'ficha_bajada', 'ficha_texto'];
+	protected $idiomatizados = ['titulo', 'texto'];
 	protected $fillable = ['titulo', 'texto', 'link'];
 
 	protected $dir = [

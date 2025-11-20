@@ -34,7 +34,7 @@ class Paginas extends Controller
 			'paginas',
 			$query,
 			$request,
-			['id', 'titulo_es'],
+			['id', 'titulo_es', 'menu'],
 			[
 				'buscando' => [
 					['campo' => 'titulo_es', 'comparacion' => 'like'],
@@ -53,9 +53,7 @@ class Paginas extends Controller
 	public function eliminar(Pagina $pagina)
 	{
 		try {
-			foreach ($pagina->contenidos as $contenido) {
-				$contenido->delete();
-			} //borrar todo el contenido multimedia
+			$pagina->ficha?->delete();
 			$pagina->delete();
 			$flasher = Flasher::set('La página fue eliminada.', 'Página Eliminada', 'success');
 		} catch (\Exception $e) {
@@ -68,13 +66,14 @@ class Paginas extends Controller
 	public function crear(Request $request)
 	{
 		$pagina = new Pagina();
-
-		return view('admin.paginas.crear', compact('pagina'));
+        $menues = Pagina::menues();
+		return view('admin.paginas.crear', compact('pagina', 'menues'));
 	}
 
 	public function editar(Pagina $pagina, Request $request)
 	{
-		return view('admin.paginas.editar', compact('pagina'));
+        $menues = Pagina::menues();
+		return view('admin.paginas.editar', compact('pagina', 'menues'));
 	}
 
 	public function guardar(Request $request, $id = null)

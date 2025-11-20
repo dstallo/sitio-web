@@ -30,8 +30,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
     <link rel="stylesheet" type="text/css" href="{{ url('js/lib/dropzone/dropzone.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/plugins/iCheck/square/blue.css') }}">
+    
     @yield('adminlte_css')
-
+    
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -45,7 +47,7 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-
+        
     <script src="{{ mix('js/app.js') }}"></script>
     @include('admin.parciales.dropzone-js')
     @yield('script.header')
@@ -64,6 +66,6 @@
 
 @yield('script.abajo')
 @yield('adminlte_js')
-
+<script src="{{ asset('vendor/adminlte/plugins/iCheck/icheck.min.js') }}"></script>
 </body>
 </html>
