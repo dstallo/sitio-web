@@ -72,48 +72,49 @@
             </div>
 		</section>
 	@endif
-
-	<div class="ancla" id="nuestro-lugar"></div>
-	<section class="galeria contenedor">
-		<h2>@lang('textos.lugar.titulo')</h2>
-		<div class="intro">
-			@lang('textos.lugar.texto')
-		</div>
-		@if($contenidos->count())
-			<div class="contenidos">
-				@foreach($contenidos as $contenido)
-					<article>
-						@if($contenido->tipo == 'imagen')
-							<a class="imagen" href="{{ $contenido->url('imagen') }}" data-lity><img src="{{ $contenido->url('imagen') }}" title="{{ $contenido->nombre }}"></a>
-						@endif
-						@if($contenido->tipo == 'video')
-							@if($videoResuelto = $contenido->getVideo())
-	                            <a class="imagen video glightbox-video" href="{{ $videoResuelto->embedUrl() }}">
-	                                <img src="{{ $contenido->tiene('tn') ? $contenido->url('tn') : $videoResuelto->thumb([550,236]) }}">
-	                            </a>
-	                        @endif
-						@endif
-					</article>
-				@endforeach
-			</div>
-			<ul class="nav">
-				@foreach($contenidos as $contenido)
-					<li>
-						@if($contenido->tipo == 'imagen')
-							<a class="imagen"><img src="{{ $contenido->url('tn') }}" title="{{ $contenido->nombre }}"></a>
-						@endif
-						@if($contenido->tipo == 'video')
-							@if($videoResuelto = $contenido->getVideo())
-	                            <a class="imagen video">
-	                                <img src="{{ $contenido->tiene('tn') ? $contenido->url('tn') : $videoResuelto->thumb([550,236]) }}">
-	                            </a>
-	                        @endif
-						@endif
-					</li>
-				@endforeach
-			</ul>
-		@endif
-	</section>
+    @if ($contenidos->count())
+        <div class="ancla" id="nuestro-lugar"></div>
+        <section class="galeria contenedor">
+            <h2>@lang('textos.lugar.titulo')</h2>
+            <div class="intro">
+                @lang('textos.lugar.texto')
+            </div>
+            @if($contenidos->count())
+                <div class="contenidos">
+                    @foreach($contenidos as $contenido)
+                        <article>
+                            @if($contenido->tipo == 'imagen')
+                                <a class="imagen" href="{{ $contenido->url('imagen') }}" data-lity><img src="{{ $contenido->url('imagen') }}" title="{{ $contenido->nombre }}"></a>
+                            @endif
+                            @if($contenido->tipo == 'video')
+                                @if($videoResuelto = $contenido->getVideo())
+                                    <a class="imagen video glightbox-video" href="{{ $videoResuelto->embedUrl() }}">
+                                        <img src="{{ $contenido->tiene('tn') ? $contenido->url('tn') : $videoResuelto->thumb([550,236]) }}">
+                                    </a>
+                                @endif
+                            @endif
+                        </article>
+                    @endforeach
+                </div>
+                <ul class="nav">
+                    @foreach($contenidos as $contenido)
+                        <li>
+                            @if($contenido->tipo == 'imagen')
+                                <a class="imagen"><img src="{{ $contenido->url('tn') }}" title="{{ $contenido->nombre }}"></a>
+                            @endif
+                            @if($contenido->tipo == 'video')
+                                @if($videoResuelto = $contenido->getVideo())
+                                    <a class="imagen video">
+                                        <img src="{{ $contenido->tiene('tn') ? $contenido->url('tn') : $videoResuelto->thumb([550,236]) }}">
+                                    </a>
+                                @endif
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
+        </section>
+    @endif
     @if($publicaciones->count())
 		<div class="ancla" id="publicaciones"></div>
 		<section class="publicaciones contenedor con-slick">
