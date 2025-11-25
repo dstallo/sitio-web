@@ -66,9 +66,8 @@ $tiene_agenda = App\Models\Evento::front()->count();
                 <li><span class="icono email"></span><a href="mailto:@lang('textos.datos.email')">@lang('textos.datos.email')</a></li>
             </ul>
             <ul class="apps">
-                <li><a href="#"><span>Xendra</span></a></li>
-                <li><a href="#"><span class="icono email"></span><span>WebMail</span></a></li>
-                <li><a href="#"><span class="icono lapiz"></span><span>Pre-Inscripción</span></a></li>
+                <li><a href="https://xhendra.ar/" target="_blank"><span>Xendra</span></a></li>
+                <li><a href="https://webmail.froebel.edu.ar/" target="_blank"><span class="icono email"></span><span>WebMail</span></a></li>
             </ul>
         </div>
         <div class="contenedor">
