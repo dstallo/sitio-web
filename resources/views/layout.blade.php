@@ -4,7 +4,6 @@ $tiene_novedades = App\Models\Novedad::front()->count();
 $tiene_contenidos = App\Models\Contenido::front()->count();
 $tiene_publicaciones = App\Models\Publicacion::front()->count();
 $tiene_agenda = App\Models\Evento::front()->count();
-$menues = App\Models\Pagina::menues();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -83,42 +82,55 @@ $menues = App\Models\Pagina::menues();
             <nav>
                 <a class="desplegar-menu-principal"><span></span></a>
                 <ul>
-                @foreach($menues as $menu) 
-                    <li>
-                        <a href="#" class="dropdown-action">{{ $menu }}</a>
-                        <div class="dropdown">
-                        @foreach($paginas->where('menu', $menu) as $pagina)
-                            <a href="{{ $pagina->href() }}" class="dropdown-item">{{ $pagina->titulo }}</a>
-                        @endforeach
-                        </div>
-                    </li>
+                @php $menues = []; @endphp
+                @foreach($paginas as $pagina)
+                    @if ($pagina->menu)
+                        @if (in_array($pagina->menu, $menues))
+                            @continue;
+                        @endif
+                        @php
+                            $menues[] = $pagina->menu;
+                        @endphp
+                        <li>
+                            <a href="#" class="dropdown-action">{{ $pagina->menu }}</a>
+                            <div class="dropdown">
+                            @foreach($paginas->where('menu', $pagina->menu)->sortBy('orden') as $submenu)
+                                <a href="{{ $submenu->href() }}" class="dropdown-item">{{ $submenu->titulo }}</a>
+                            @endforeach
+                            </div>
+                        </li>
+                    @else
+                        <li><a href="{{ $pagina->href() }}">{{ $pagina->titulo }}</a></li>
+                    @endif
                 @endforeach
-                @foreach($paginas->whereNull('menu') as $pagina)
-                    <li><a href="{{ $pagina->href() }}">{{ $pagina->titulo }}</a></li>
-                @endforeach
-                @if ($tiene_servicios)
-                    <li><a href="/#servicios">@lang('textos.menu.servicios')</a></li>
+            
+                @if ($tiene_servicios && lang('textos.servicios.menu'))
+                    <li><a href="/#servicios">@lang('textos.servicios.menu')</a></li>
                 @endif
-                @if (App\Models\Sucursal::front()->count()>0)
-                    <li><a href="{{ route('sucursales') }}">@lang('textos.menu.sucursales')</a></li>
+                @if (App\Models\Sucursal::front()->count()>0 && lang('textos.sucursales.menu'))
+                    <li><a href="{{ route('sucursales') }}">@lang('textos.sucursales.menu')</a></li>
                 @endif
-                @if ($tiene_novedades)
-                    <li><a href="{{ route('novedades') }}">@lang('textos.menu.novedades')</a></li>
+                @if ($tiene_novedades && lang('textos.novedades.menu'))
+                    <li><a href="{{ route('novedades') }}">@lang('textos.novedades.menu')</a></li>
                 @endif
-                @if ($tiene_contenidos)
-                    <li><a href="/#nuestro-lugar">@lang('textos.menu.lugar')</a></li>
+                @if ($tiene_contenidos && lang('textos.lugar.menu'))
+                    <li><a href="/#nuestro-lugar">@lang('textos.lugar.menu')</a></li>
                 @endif
-                    <li><a href="/#ubicacion">@lang('textos.menu.ubicacion')</a></li>
-                @if ($tiene_publicaciones)
-                    <li><a href="{{ route('publicaciones') }}">@lang('textos.menu.publicaciones')</a></li>
+                @if (lang('textos.ubicacion.menu'))
+                    <li><a href="/#ubicacion">@lang('textos.ubicacion.menu')</a></li>
                 @endif
-                @if ($tiene_agenda)
-                    <li><a href="/#agenda">@lang('textos.menu.agenda')</a></li>
+                @if ($tiene_publicaciones && lang('textos.publicaciones.menu'))
+                    <li><a href="{{ route('publicaciones') }}">@lang('textos.publicaciones.menu')</a></li>
                 @endif
-                @if (App\Models\Icono::front()->count()>0)
-                    <li><a href="/#socios">@lang('textos.menu.socios')</a></li>
+                @if ($tiene_agenda && lang('textos.agenda.menu'))
+                    <li><a href="/#agenda">@lang('textos.agenda.menu')</a></li>
                 @endif
-                    <li><a href="/#consulta">@lang('textos.menu.contacto')</a></li>
+                @if (App\Models\Icono::front()->count()>0 && lang('textos.socios.menu'))
+                    <li><a href="/#socios">@lang('textos.socios.menu')</a></li>
+                @endif
+                @if (lang('textos.contacto.menu'))
+                    <li><a href="/#consulta">@lang('textos.contacto.menu')</a></li>
+                @endif
                 </ul>
             </nav>
             
@@ -136,10 +148,14 @@ $menues = App\Models\Pagina::menues();
 
         <div class="ancla" id="ubicacion"></div>
         <section class="ubicacion contenedor">
+        @if (lang('textos.ubicacion.titulo'))
             <h2>@lang('textos.ubicacion.titulo')</h2>
+        @endif
+        @if (lang('textos.ubicacion.texto'))
             <div class="intro">
                 @lang('textos.ubicacion.texto')
             </div>
+        @endif
         </section>
         <div class="ubicacion contenedor-mapa">
             <div class="mapa" id="mapa"></div>
@@ -187,6 +203,14 @@ $menues = App\Models\Pagina::menues();
         </div>
         <div class="ancla" id="consulta"></div>
         <section class="consulta contenedor">
+        @if (lang('textos.contacto.titulo'))
+            <h2>@lang('textos.contacto.titulo')</h2>
+        @endif
+        @if (lang('textos.contacto.texto'))
+            <div class="intro">
+                @lang('textos.contacto.texto')
+            </div>
+        @endif
             <div class="formulario">
                 @if(count($errors)>0)
                     <div class="errores">
@@ -231,20 +255,24 @@ $menues = App\Models\Pagina::menues();
             </div>
         </section>
 
-        <?php $iconos = App\Models\Icono::front()->get(); ?>
-        @if($iconos->count())
+        <?php $socios = App\Models\Icono::front()->get(); ?>
+        @if($socios->count())
             <div class="ancla" id="socios"></div>
             <section class="iconos contenedor">
+            @if (lang('textos.socios.titulo'))
                 <h2>@lang('textos.socios.titulo')</h2>
+            @endif
+            @if (lang('textos.socios.texto'))
                 <div class="intro">
                     @lang('textos.socios.texto')
                 </div>
+            @endif
                 <ul>
-                    @foreach($iconos as $icono)
+                    @foreach($socios as $socio)
                         <li>
-                            <img src="{{ $icono->url('imagen') }}" title="{{ $icono->nombre }}">
-                            @if(!empty($icono->link))
-                                <a href="{{ $icono->link }}" target="_blank"></a>
+                            <img src="{{ $socio->url('imagen') }}" title="{{ $socio->nombre }}">
+                            @if(!empty($socio->link))
+                                <a href="{{ $socio->link }}" target="_blank"></a>
                             @endif
                         </li>
                     @endforeach
@@ -292,6 +320,6 @@ $menues = App\Models\Pagina::menues();
             </div>
         </div>
     </footer>
-    <a href="https://api.whatsapp.com/send?phone={{ preg_replace('/[^0-9]/', '', __('textos.datos.telefono')) }}" target="_blank" class="whatsapp"></a>
+    <a href="https://api.whatsapp.com/send?phone={{ preg_replace('/[^0-9]/', '', __('textos.datos.whatsapp')) }}" target="_blank" class="whatsapp"></a>
 </body>
 </html>

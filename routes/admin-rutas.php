@@ -88,6 +88,7 @@ Route::post('paginas/guardar/{pagina?}', [Paginas::class, 'guardar'])->name('gua
 Route::get('paginas/{pagina}/eliminar', [Paginas::class, 'eliminar'])->name('eliminar_pagina');
 Route::get('paginas/{pagina}/eliminar-archivo/{campo}', [Paginas::class, 'eliminarArchivo'])->name('eliminar_archivo_pagina');
 Route::get('paginas/{pagina}/visibilidad', [Paginas::class, 'visibilidad'])->name('visibilidad_pagina');
+Route::post('paginas/ordenar', [Paginas::class, 'ordenar'])->name('ordenar_paginas');
 
 // publicaciones
 Route::get('publicaciones', [Publicaciones::class, 'index'])->name('admin.publicaciones');

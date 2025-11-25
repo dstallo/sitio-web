@@ -78,8 +78,8 @@ class Slides extends Controller
 	{
 		$this->validate($request, [
 			'titulo_es' => 'required',
-			'imagen' => 'file|mimes:jpg,png|max:1024',
-			'imagen_vertical' => 'file|mimes:jpg,png|max:1024'
+			'imagen' => ['file', 'mimes:'.config('app.image_mimes'),'max:'.config('app.image_size')],
+			'imagen_vertical' => ['file', 'mimes:'.config('app.image_mimes'),'max:'.config('app.image_size')]
 		]);
 
 		if ($id) {

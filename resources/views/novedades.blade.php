@@ -7,11 +7,15 @@
 @section('contenido')
 
 	@if($novedades->count())
-		<section class="novedades contenedor">		
+		<section class="novedades contenedor">
+        @if (lang('textos.novedades.titulo'))
             <h2>@lang('textos.novedades.titulo')</h2>
+        @endif
+        @if (lang('textos.novedades.texto'))
 			<div class="intro">
 				@lang('textos.novedades.texto')
 			</div>
+        @endif
 			<div class="listado">
             @foreach($novedades as $novedad)
                 <div class="novedad">

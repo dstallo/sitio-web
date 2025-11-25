@@ -9,49 +9,51 @@ return [
         'email' => $texto->obtener('datos.email', 'es'),
         'telefono' => $texto->obtener('datos.telefono', 'es'),
         'direccion' => $texto->obtener('datos.direccion', 'es'),
+        'whatsapp' => $texto->obtener('datos.whatsapp', 'es'),
     ],
-	'menu' => [
-		'servicios' => 'Servicios',
-		'novedades' => 'Novedades',
-		'lugar' => 'Nuestro Lugar',
-		'ubicacion' => 'Dónde estamos',
-		'inscripcion' => 'Inscripción',
-		'contacto' => 'Contacto',
-        'socios' => 'Socios',
-        'sucursales' => 'Sucursales'
-	],
 	'servicios' => [
+        'menu'  => $texto->obtener('servicios.menu', 'es'),
+        'titulo' => $texto->obtener('servicios.titulo', 'es'),
 		'texto' => $texto->obtener('servicios.texto', 'es'),
 	],
 	'novedades' => [
-		'titulo' => 'Novedades',
+        'menu'  => $texto->obtener('novedades.menu', 'es'),
+		'titulo' => $texto->obtener('novedades.titulo', 'es'),
         'texto' => $texto->obtener('novedades.texto', 'es'),
 	],
     'publicaciones' => [
-		'titulo' => 'Publicaciones',
+        'menu'  => $texto->obtener('publicaciones.menu', 'es'),
+		'titulo'  => $texto->obtener('publicaciones.titulo', 'es'),
         'texto'  => $texto->obtener('publicaciones.texto', 'es'),
 	],
-    'sucursales' => [
-        'titulo' => 'Sucursales',
-    ],
 	'lugar' => [
-		'titulo' => 'Nuestro lugar',
+        'menu' => $texto->obtener('lugar.menu', 'es'),
+		'titulo' => $texto->obtener('lugar.titulo', 'es'),
 		'texto' => $texto->obtener('lugar.texto', 'es'),
 	],
 	'ubicacion' => [
-		'titulo' => 'Dónde estamos',
+		'menu' => $texto->obtener('ubicacion.menu', 'es'),
+		'titulo' => $texto->obtener('ubicacion.titulo', 'es'),
 		'texto' => $texto->obtener('ubicacion.texto', 'es'),
 	],
     'sucursales' => [
-        'titulo' => 'Sucursales',
-        'texto' => $texto->obtener('sucursales.texto', 'en'),
+        'menu'  => $texto->obtener('sucursales.menu', 'es'),
+		'titulo'  => $texto->obtener('sucursales.titulo', 'es'),
+        'texto'  => $texto->obtener('sucursales.texto', 'es'),
+    ],
+    'contacto' => [
+        'menu'  => $texto->obtener('contacto.menu', 'es'),
+		'titulo'  => $texto->obtener('contacto.titulo', 'es'),
+        'texto'  => $texto->obtener('contacto.texto', 'es'),
     ],
     'socios' => [
-        'titulo' => 'Socios',
-		'texto' => $texto->obtener('socios.texto', 'en'),
+        'menu'  => $texto->obtener('socios.menu', 'es'),
+		'titulo'  => $texto->obtener('socios.titulo', 'es'),
+		'texto' => $texto->obtener('socios.texto', 'es'),
 	],
     'agenda' => [
-        'titulo' => 'Agenda',
+        'menu'  => $texto->obtener('agenda.menu', 'es'),
+		'titulo'  => $texto->obtener('agenda.titulo', 'es'),
 		'texto' => $texto->obtener('agenda.texto', 'es'),
 	],
 	'consulta' => [

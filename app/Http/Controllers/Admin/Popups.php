@@ -77,8 +77,8 @@ class Popups extends Controller
     {
         $this->validate($request, [
             'nombre' => 'required',
-            'imagen' => 'file|mimes:jpeg,png,jpg|max:1024',
-            'imagen_vertical' => 'file|mimes:jpeg,png,jpg|max:1024',
+            'imagen' => ['file', 'mimes:'.config('app.image_mimes'),'max:'.config('app.image_size')],
+            'imagen_vertical' => ['file', 'mimes:'.config('app.image_mimes'),'max:'.config('app.image_size')],
         ]);
 
         if($id) {

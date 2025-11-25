@@ -94,7 +94,7 @@ class Administradores extends Controller
 
         $reglas=[
             'nombre' => 'required',
-            'foto' => 'nullable|image|max:2048',
+            'foto' => ['nullable', 'file', 'mimes:'.config('app.image_mimes'),'max:'.config('app.image_size')],
             //'rol' => 'required|in:' . implode(',',Administrador::roles()),
         ];
 

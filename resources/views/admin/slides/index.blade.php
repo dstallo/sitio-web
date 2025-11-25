@@ -57,6 +57,7 @@
             <table id="tabla-ordenable" class="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>#</th>
                         <th>Título</th>
                         <th></th>
@@ -66,6 +67,7 @@
                     @forelse($slides as $slide)
                         <tr>
                             <td class="hidden">{{ $slide->orden }}</td>
+                            <td><i class="fa fa-ellipsis-v drag" aria-hidden="true"></i></td>
                             <td>{{ $slide->id }}</td>
                             <td>{{ $slide->titulo_es }}</td>
                             <td class="text-right">

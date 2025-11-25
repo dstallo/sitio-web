@@ -80,7 +80,7 @@ class Servicios extends Controller
 		$this->validate($request, [
 			'titulo_es' => 'required',
 			'link' => 'nullable|url',
-			'imagen' => 'file|mimes:png,svg|max:1024',
+			'imagen' => ['file', 'mimes:'.config('app.image_mimes'),'max:'.config('app.image_size')],
 		]);
 
 		if ($id) {

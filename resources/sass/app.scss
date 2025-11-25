@@ -37,3 +37,5 @@ img { max-width:100%; }
 .icheckbox_square-blue {margin-right:10px;}
 
 .main-sidebar {height:calc(100vh - 50px); overflow-y:auto;}
+.drag {cursor:grab;}
+.drag:active {cursor:grabbing;}

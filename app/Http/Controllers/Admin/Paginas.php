@@ -26,15 +26,15 @@ class Paginas extends Controller
 		$query = Pagina::query();
 
 		if (!session()->has('axys.listado.paginas.orden')) {
-			session(['axys.listado.paginas.orden' => 'id']);
-			session(['axys.listado.paginas.sentido' => 'desc']);
+			session(['axys.listado.paginas.orden' => 'orden']);
+			session(['axys.listado.paginas.sentido' => 'asc']);
 		}
 
 		$listado = new Listado(
 			'paginas',
 			$query,
 			$request,
-			['id', 'titulo_es', 'menu'],
+			['orden', 'id', 'titulo_es', 'menu'],
 			[
 				'buscando' => [
 					['campo' => 'titulo_es', 'comparacion' => 'like'],
@@ -42,12 +42,16 @@ class Paginas extends Controller
 				'buscando_id' => [
 					['campo' => 'id', 'comparacion' => 'igual']
 				],
+                'buscando_menu' => [
+					['campo' => 'menu', 'comparacion' => 'igual']
+				],
 			]
 		);
 
 		$paginas = $listado->paginar(50);
+        $menues = Pagina::menues();
 
-		return view('admin.paginas.index', compact('paginas', 'listado'));
+		return view('admin.paginas.index', compact('paginas', 'listado', 'menues'));
 	}
 
 	public function eliminar(Pagina $pagina)
@@ -90,7 +94,7 @@ class Paginas extends Controller
                 }
             }],
 			'link' => 'nullable|url',
-			'thumbnail' => 'nullable|file|mimes:jpg,png|max:512',
+			'thumbnail' => ['nullable', 'file', 'mimes:'.config('app.image_mimes'),'max:'.config('app.image_size')],
 		]);
 
 		if ($id) {
@@ -127,5 +131,16 @@ class Paginas extends Controller
 		$pagina->eliminarArchivo($campo)->save();
 		Flasher::set("Se eliminó el archivo $campo", 'Archivo Eliminado', 'success')->flashear();
 		return back();
+	}
+
+    public function ordenar(Request $request)
+	{
+		$ids = $request->all()['ids'];
+		$orden = 1;
+		foreach ($ids as $id) {
+			Pagina::where('id', $id)->update(['orden' => $orden]);
+			$orden += 1;
+		}
+		return ['ok' => true];
 	}
 }

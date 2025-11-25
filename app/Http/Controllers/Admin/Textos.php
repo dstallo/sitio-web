@@ -48,9 +48,7 @@ class Textos extends Controller
 
     public function guardar(Request $request, $id=null)
     {
-        $this->validate($request, [
-            'texto_es' => 'required',
-        ]);
+        $this->validate($request, []);
 
         $texto=Texto::findOrFail($id);
         

@@ -24,15 +24,15 @@ class Publicaciones extends Controller
 		$query = Publicacion::query();
 
 		if (!session()->has('axys.listado.publicaciones.orden')) {
-			session(['axys.listado.publicaciones.orden' => 'id']);
-			session(['axys.listado.publicaciones.sentido' => 'desc']);
+			session(['axys.listado.publicaciones.orden' => 'orden']);
+			session(['axys.listado.publicaciones.sentido' => 'asc']);
 		}
 
 		$listado = new Listado(
 			'publicaciones',
 			$query,
 			$request,
-			['id', 'titulo_es'],
+			['orden', 'id', 'titulo_es'],
 			[
 				'buscando' => [
 					['campo' => 'titulo_es', 'comparacion' => 'like'],
@@ -78,7 +78,7 @@ class Publicaciones extends Controller
 		$this->validate($request, [
 			'titulo_es' => 'required',
 			'link' => 'nullable|url',
-			'thumbnail' => 'nullable|file|mimes:jpg,png|max:5196',
+			'thumbnail' => ['nullable', 'file', 'mimes:'.config('app.image_mimes'),'max:'.config('app.image_size')],
 		]);
 
 		if ($id) {

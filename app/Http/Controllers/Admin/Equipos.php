@@ -82,7 +82,7 @@ class Equipos extends Controller
             'nombre' => 'required',
             'equipo' => 'required',
             'descripcion' => 'nullable',
-            'imagen' => 'file|mimes:png,jpeg,jpg,svg,gif|max:5196',
+            'imagen' => ['file', 'mimes:'.config('app.image_mimes'),'max:'.config('app.image_size')],
         ], [
             'nombre' => 'Debes completar el nombre del miembro del equipo',
             'equipo' => 'Debes completar el equipo al que pertenece el miembro',

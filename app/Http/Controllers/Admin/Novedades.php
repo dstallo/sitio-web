@@ -78,7 +78,7 @@ class Novedades extends Controller
 		$this->validate($request, [
 			'titulo_es' => 'required',
 			'link' => 'nullable|url',
-			'thumbnail' => 'nullable|file|mimes:jpg,png|max:512',
+			'thumbnail' => ['nullable', 'file', 'mimes:'.config('app.image_mimes'),'max:'.config('app.image_size')],
 		]);
 
 		if ($id) {

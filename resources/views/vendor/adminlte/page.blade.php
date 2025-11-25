@@ -152,7 +152,7 @@
                     <li><a href="{{ url('admin/textos') }}"><i class="fa fa-font"></i><span>Textos Generales</span></a></li>
                     <li><a href="{{ url('admin/equipos') }}"><i class="fa fa-users"></i><span>Equipos</span></a></li>
                     <li><a href="{{ url('admin/iconos') }}"><i class="fa fa-address-book"></i><span>Socios</span></a></li>
-                    <li><a href="{{ url('admin/centros') }}"><i class="fa fa-map-marker"></i><span>Sucursales</span></a></li>
+                    <li><a href="{{ url('admin/sucursales') }}"><i class="fa fa-map-marker"></i><span>Sucursales</span></a></li>
                     <li><a href="{{ url('admin/agenda') }}"><i class="fa fa-calendar"></i><span>Agenda</span></a></li>
                     <li class="header">MULTIMEDIA</li>
                     <li><a href="{{ url('admin/slides') }}"><i class="fa fa-image"></i><span>Slides</span></a></li>

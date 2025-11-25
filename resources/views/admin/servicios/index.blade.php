@@ -57,6 +57,7 @@
             <table id="tabla-ordenable" class="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>#</th>
                         <th>Título</th>
                         <th>Link</th>
@@ -67,6 +68,7 @@
                     @forelse($servicios as $servicio)
                         <tr>
                             <td class="hidden">{{ $servicio->orden }}</td>
+                            <td><i class="fa fa-ellipsis-v drag" aria-hidden="true"></i></td>
                             <td>{{ $servicio->id }}</td>
                             <td>{{ $servicio->titulo_es }}</td>
                             <td>

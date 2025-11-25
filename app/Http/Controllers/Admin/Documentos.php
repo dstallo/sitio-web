@@ -51,7 +51,7 @@ class Documentos extends Controller
             abort(404);
         // Si se tiene que modificar el mime, debe cambiarse también la lista en la función guardar y en la vista del listado de documentos para dropzone.
         $validator = Validator::make($request->all(), [
-            'archivo' => 'required|file|max:10240|mimes:pdf,doc,docx,xls,xlsx,csv,zip',
+            'archivo' => 'required|file|max:5120|mimes:pdf,doc,docx,xls,xlsx,csv,zip',
         ]);
         if ($validator->fails()) {
             return response($validator->messages()->all()[0] ?? "Ocurrió un error al subir el archivo", 422);
@@ -81,7 +81,7 @@ class Documentos extends Controller
     {
         $this->validate($request, [
             'nombre' => 'required',
-            'archivo' => 'nullable|file|max:10240|mimes:pdf,doc,docx,xls,xlsx,csv,zip',
+            'archivo' => ['nullable', 'file', 'mimes:'.config('app.file_mimes'),'max:'.config('app.file_size')]
         ]);
 
         $documento->fill($request->all());

@@ -26,9 +26,14 @@
 	@if($servicios->count())
 		<div class="ancla" id="servicios"></div>
 		<section class="servicios contenedor">		
+        @if (lang('textos.servicios.titulo'))
+            <h2>@lang('textos.servicios.titulo')</h2>
+        @endif
+        @if (lang('textos.servicios.texto'))
 			<div class="intro">
 				@lang('textos.servicios.texto')
 			</div>
+        @endif
 			<ul>
 				@foreach($servicios as $servicio)
 					<li>
@@ -53,7 +58,14 @@
 	@if($novedades->count())
 		<div class="ancla" id="novedades"></div>
 		<section class="novedades contenedor con-slick">
+        @if (lang('textos.novedades.titulo'))
 			<h2>@lang('textos.novedades.titulo')</h2>
+        @endif
+        @if (lang('textos.novedades.texto'))
+            <div class="intro">
+                @lang('textos.novedades.texto')
+            </div>
+        @endif
 			<div class="listado">
             @foreach($novedades as $novedad)
                 <div class="novedad">
@@ -75,50 +87,61 @@
     @if ($contenidos->count())
         <div class="ancla" id="nuestro-lugar"></div>
         <section class="galeria contenedor">
+        @if (lang('textos.lugar.titulo'))
             <h2>@lang('textos.lugar.titulo')</h2>
+        @endif
+        @if (lang('textos.lugar.texto'))
             <div class="intro">
                 @lang('textos.lugar.texto')
             </div>
-            @if($contenidos->count())
-                <div class="contenidos">
-                    @foreach($contenidos as $contenido)
-                        <article>
-                            @if($contenido->tipo == 'imagen')
-                                <a class="imagen" href="{{ $contenido->url('imagen') }}" data-lity><img src="{{ $contenido->url('imagen') }}" title="{{ $contenido->nombre }}"></a>
+        @endif
+        @if($contenidos->count())
+            <div class="contenidos">
+                @foreach($contenidos as $contenido)
+                    <article>
+                        @if($contenido->tipo == 'imagen')
+                            <a class="imagen" href="{{ $contenido->url('imagen') }}" data-lity><img src="{{ $contenido->url('imagen') }}" title="{{ $contenido->nombre }}"></a>
+                        @endif
+                        @if($contenido->tipo == 'video')
+                            @if($videoResuelto = $contenido->getVideo())
+                                <a class="imagen video glightbox-video" href="{{ $videoResuelto->embedUrl() }}">
+                                    <img src="{{ $contenido->tiene('tn') ? $contenido->url('tn') : $videoResuelto->thumb([550,236]) }}">
+                                </a>
                             @endif
-                            @if($contenido->tipo == 'video')
-                                @if($videoResuelto = $contenido->getVideo())
-                                    <a class="imagen video glightbox-video" href="{{ $videoResuelto->embedUrl() }}">
-                                        <img src="{{ $contenido->tiene('tn') ? $contenido->url('tn') : $videoResuelto->thumb([550,236]) }}">
-                                    </a>
-                                @endif
+                        @endif
+                    </article>
+                @endforeach
+            </div>
+            <ul class="nav">
+                @foreach($contenidos as $contenido)
+                    <li>
+                        @if($contenido->tipo == 'imagen')
+                            <a class="imagen"><img src="{{ $contenido->url('tn') }}" title="{{ $contenido->nombre }}"></a>
+                        @endif
+                        @if($contenido->tipo == 'video')
+                            @if($videoResuelto = $contenido->getVideo())
+                                <a class="imagen video">
+                                    <img src="{{ $contenido->tiene('tn') ? $contenido->url('tn') : $videoResuelto->thumb([550,236]) }}">
+                                </a>
                             @endif
-                        </article>
-                    @endforeach
-                </div>
-                <ul class="nav">
-                    @foreach($contenidos as $contenido)
-                        <li>
-                            @if($contenido->tipo == 'imagen')
-                                <a class="imagen"><img src="{{ $contenido->url('tn') }}" title="{{ $contenido->nombre }}"></a>
-                            @endif
-                            @if($contenido->tipo == 'video')
-                                @if($videoResuelto = $contenido->getVideo())
-                                    <a class="imagen video">
-                                        <img src="{{ $contenido->tiene('tn') ? $contenido->url('tn') : $videoResuelto->thumb([550,236]) }}">
-                                    </a>
-                                @endif
-                            @endif
-                        </li>
-                    @endforeach
-                </ul>
-            @endif
+                        @endif
+                    </li>
+                @endforeach
+            </ul>
+        @endif
         </section>
     @endif
     @if($publicaciones->count())
 		<div class="ancla" id="publicaciones"></div>
 		<section class="publicaciones contenedor con-slick">
+        @if (lang('textos.publicaciones.titulo'))
 			<h2>@lang('textos.publicaciones.titulo')</h2>
+        @endif
+        @if (lang('textos.publicaciones.texto'))
+			<div class="intro">
+				@lang('textos.publicaciones.texto')
+			</div>
+        @endif
 			<x-publicaciones :publicaciones="$publicaciones" />
 		</section>
 	@endif
@@ -126,10 +149,14 @@
     @if($agenda->count())
 		<div class="ancla" id="agenda"></div>
 		<section class="agenda contenedor">
+        @if (lang('textos.agenda.titulo'))
 			<h2>@lang('textos.agenda.titulo')</h2>
+        @endif
+        @if (lang('textos.agenda.texto'))
             <div class="intro">
                 @lang('textos.agenda.texto')
             </div>
+        @endif
 			<ul class="listado">
             @foreach($agenda as $evento)
                 <li>

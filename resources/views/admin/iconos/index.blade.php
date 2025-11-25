@@ -57,6 +57,7 @@
             <table id="tabla-ordenable" class="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>#</th>
                         <th>Nombre</th>
                         <th>Link</th>
@@ -67,6 +68,7 @@
                     @forelse($iconos as $icono)
                         <tr>
                             <td class="hidden">{{ $icono->orden }}</td>
+                            <td><i class="fa fa-ellipsis-v drag" aria-hidden="true"></i></td>
                             <td>{{ $icono->id }}</td>
                             <td>{{ $icono->nombre }}</td>
                             <td><a href="{{ $icono->link }}" target="_blank">{{ $icono->link }}</a></td>

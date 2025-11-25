@@ -52,12 +52,14 @@
 
         <div class="box-header with-border">
             <h3 class="box-title">Listado</h3>
+            <p>* Para modificar el orden de las publicaciones, arrastralas con el mouse.</p>
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
             <table id="tabla-ordenable" class="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th><a href="{{ $listado->linkOrden('id') }}">#</a></th>
                         <th><a href="{{ $listado->linkOrden('titulo_es') }}">Título</a></th>
                         <th>Link</th>
@@ -69,6 +71,7 @@
                     @forelse($publicaciones as $publicacion)
                         <tr>
                             <td class="hidden">{{ $publicacion->orden }}</td>
+                            <td><i class="fa fa-ellipsis-v drag" aria-hidden="true"></i></td>
                             <td>{{ $publicacion->id }}</td>
                             <td>{{ $publicacion->titulo_es }}</td>
                             <td>
@@ -81,6 +84,7 @@
                                 <a href="{{ route('editar_publicacion', compact('publicacion')) }}" role="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
                                 <a href="{{ route('eliminar_publicacion', compact('publicacion')) }}" role="button" class="btn btn-danger btn-circle axys-confirmar-eliminar"><i class="glyphicon glyphicon-remove"></i></a>
                             </td>
+                            <td class="hidden">{{ $publicacion->id }}</td>
                         </tr>
                     @empty
                         <tr>

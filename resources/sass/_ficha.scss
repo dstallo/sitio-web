@@ -126,7 +126,7 @@
                     display: flex;
                     flex-flow: row nowrap;
                     padding: 15px;
-                    gap: 15px;
+                    gap: 30px;
                     .download {
                         display:block;
                         position: relative;
@@ -142,11 +142,13 @@
                     .info {
                         flex-basis: 0;
                         flex-grow: 1;
-                        padding-top: 5px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        gap:10px;
                         font-size: 16px;
                         .nombre {
                             font-weight: 600;
-                            margin-bottom: 10px;
                             color: $color-primary;
 
                             a:hover, a:focus {text-decoration:underline;}

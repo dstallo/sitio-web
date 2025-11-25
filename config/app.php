@@ -4,6 +4,12 @@ return [
 
 	'email_notificacion_consulta' => env('EMAIL_NOTIFICACION_CONSULTA'),
 
+    'file_mimes'    => env('APP_FILE_MIMES', 'pdf,doc,docx,xls,xlsx,csv,zip'),
+    'file_size'     => env('APP_FILE_SIZE', 5120),
+    'image_mimes'   => env('APP_IMG_MIMES', 'jpg,jpeg,gif,png,svg'),
+    'image_size'    => env('APP_IMG_SIZE', 5120),
+    
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application Name
@@ -99,7 +105,7 @@ return [
 	|
 	*/
 
-	'fallback_locale' => 'en',
+	'fallback_locale' => 'es',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -112,7 +118,7 @@ return [
 	|
 	*/
 
-	'faker_locale' => 'en_US',
+	'faker_locale' => 'es_AR',
 
 	/*
 	|--------------------------------------------------------------------------

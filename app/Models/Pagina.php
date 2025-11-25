@@ -6,11 +6,14 @@ use Illuminate\Support\Str;
 use App\Axys\Traits\TieneArchivos;
 use Illuminate\Database\Eloquent\Model;
 use App\Axys\Traits\EsMultiIdioma;
+use App\Axys\Traits\EsOrdenable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Pagina extends Model
 {
 	use TieneArchivos;
+    use EsOrdenable;
 	use EsMultiIdioma;
 
 	protected $table = 'paginas';
@@ -32,7 +35,7 @@ class Pagina extends Model
 	{
 		return $query
 			->where('visible', true)
-			->orderBy('created_at', 'desc');
+			->orderBy('orden', 'asc');
 	}
 
 	public function contenidos()
@@ -78,6 +81,6 @@ class Pagina extends Model
     }
 
     static public function menues() {
-        return Pagina::select('menu')->whereNotNull('menu')->groupBy('menu')->orderBy('menu', 'asc')->get()->pluck('menu')->all();
+        return Pagina::select('menu', DB::raw('MIN(orden) as orden'))->whereNotNull('menu')->groupBy('menu')->orderBy('orden', 'asc')->get()->pluck('menu')->all();
     }
 }

@@ -49,7 +49,7 @@ class Contenidos extends Controller
 
         $this->validate($request, [
             'nombre' => 'required',
-            'imagen' => 'nullable|file|mimes:jpeg,png,jpg|max:2048',
+            'imagen' => ['nullable', 'file', 'mimes:'.config('app.image_mimes'),'max:'.config('app.image_size')],
             'video' => 'nullable|video',
         ]);
 
@@ -73,7 +73,7 @@ class Contenidos extends Controller
     public function subirImagen(Request $request, ?Ficha $ficha = null)
     {
         $validator = Validator::make($request->all(), [
-            'imagen' => 'file|max:10240|mimes:jpeg,png,jpg',
+            'imagen' => ['file', 'mimes:'.config('app.image_mimes'),'max:'.config('app.image_size')],
         ]);
         if ($validator->fails()) {
             return response($validator->messages()->all()[0] ?? "Ocurrió un error al subir el archivo", 422);
@@ -107,7 +107,7 @@ class Contenidos extends Controller
 
         $this->validate($request, [
             'nombre' => 'required',
-            'imagen' => 'nullable|file|mimes:jpeg,png,jpg|max:2048',
+            'imagen' => 'nullable|file|mimes:jpeg,png,jpg|max:5120',
             'video' => 'nullable|video',
         ]);
 

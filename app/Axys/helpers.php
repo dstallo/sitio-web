@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Lang;
+
 /**
  * Agrega la clase active (o lo q se le pase en el 2do param) si en la URI
  * aparece lo que se le pase en el 1er param (puede ser un array de strings).
@@ -130,4 +132,13 @@ function validar_recaptcha($request)
 	}
 	
 	return false;
+}
+
+
+function has_lang($texto) {
+    return Lang::has($texto);
+}
+
+function lang($texto) {
+    return Lang::has($texto);
 }

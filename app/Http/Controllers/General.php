@@ -57,10 +57,6 @@ class General extends Controller
 
 	public function novedad(Novedad $novedad, $titulo)
 	{
-		if (!$novedad->visible) {
-			abort(404);
-		}
-
 		$ficha = $novedad->ficha;
         $paginas = Pagina::front()->get();
 
@@ -69,10 +65,6 @@ class General extends Controller
 
 	public function servicio(Servicio $servicio, $titulo)
 	{
-		if (!$servicio->visible) {
-			abort(404);
-		}
-
 		$ficha = $servicio->ficha;
         $paginas = Pagina::front()->get();
 
@@ -81,10 +73,6 @@ class General extends Controller
 
     public function pagina(Pagina $pagina)
 	{
-		if (!$pagina->visible) {
-			abort(404);
-		}
-
 		$ficha = $pagina->ficha;
         $paginas = Pagina::front()->get();
 
@@ -93,10 +81,6 @@ class General extends Controller
 
     public function publicacion(Publicacion $publicacion)
 	{
-		if (!$publicacion->visible) {
-			abort(404);
-		}
-
 		$ficha = $publicacion->ficha;
         $paginas = Pagina::front()->get();
 
