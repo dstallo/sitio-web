@@ -134,10 +134,10 @@ $tiene_agenda = App\Models\Evento::front()->count();
                 </ul>
             </nav>
             
-            
-                <ul class="redes">
-                    <li><a class="idioma email" href="mailto:@lang('textos.datos.email')"></a></li>
-                </ul>
+            <ul class="redes">
+                <li><a class="idioma instagram" target="_blank" href="#"></a></li>
+                <li><a class="idioma email" href="mailto:@lang('textos.datos.email')"></a></li>
+            </ul>
             
             
         </div>
@@ -299,6 +299,7 @@ $tiene_agenda = App\Models\Evento::front()->count();
                     <div>
                     
                         <div class="redes">
+                            <a href="#" target="_blank" class="facebook"></a>
                             <a href="mailto:@lang('textos.datos.email')" target="_blank" class="email"></a>
                         </div>
                     
