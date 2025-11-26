@@ -207,6 +207,19 @@ class TextosSeeder extends Seeder
         ]);
 
         DB::table('textos')->insert([
+            'id' => 'pie.newsletter.titulo',
+            'texto_es' => 'Newsletter',
+            'texto_en' => 'Newsletter',
+            'raw' => true
+        ]);
+
+        DB::table('textos')->insert([
+            'id' => 'pie.newsletter.texto',
+            'texto_es' => '<p>¡Suscribite y recibí todas nuestras novedades!</p>',
+            'texto_en' => '<p>¡Suscribite y recibí todas nuestras novedades!</p>'
+        ]);
+
+        DB::table('textos')->insert([
             'id' => 'datos.direccion',
             'texto_es' => 'Lorem ipsum dolor sit amet',
             'texto_en' => 'Lorem ipsum dolor sit amet',
@@ -240,5 +253,39 @@ class TextosSeeder extends Seeder
             'texto_en' => '{"lat": -34.6156548, "lng": -58.5156993}',
             'raw'   => true
         ]);
+
+        DB::table('textos')->insert([
+            'id' => 'encuesta.titulo',
+            'texto_es' => 'Encuesta de satisfacción',
+            'texto_en' => 'Customer experience survey',
+            'raw'   => true
+        ]);
+
+        DB::table('textos')->insert([
+            'id' => 'encuesta.texto',
+            'texto_es' => '<p>Te invitamos a completar esta encuesta de satisfacción.<br>Tu participación nos ayudan a seguir mejorando nuestro servicio.</p>',
+            'texto_en' => '<p>We invite you to complete our survey.<br>Your answers will help us get better.</p>',
+        ]);
+
+        DB::table('textos')->insert([
+            'id' => 'encuesta.boton',
+            'texto_es' => 'ENVIAR',
+            'texto_en' => 'SEND',
+            'raw'   => true
+        ]);
+
+        DB::table('textos')->insert([
+            'id' => 'encuesta.exito.titulo',
+            'texto_es' => 'Encuesta completa',
+            'texto_en' => 'Your answers have been sent',
+            'raw'   => true
+        ]);
+
+        DB::table('textos')->insert([
+            'id' => 'encuesta.exito.texto',
+            'texto_es' => '<p>Gracias por darnos tu opinión.</p>',
+            'texto_en' => '<p>Thank you.</p>',
+        ]);
+
     }
 }

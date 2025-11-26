@@ -79,6 +79,7 @@ Route::post('novedades/guardar/{novedad?}', [Novedades::class, 'guardar'])->name
 Route::get('novedades/{novedad}/eliminar', [Novedades::class, 'eliminar'])->name('eliminar_novedad');
 Route::get('novedades/{novedad}/eliminar-archivo/{campo}', [Novedades::class, 'eliminarArchivo'])->name('eliminar_archivo_novedad');
 Route::get('novedades/{novedad}/visibilidad', [Novedades::class, 'visibilidad'])->name('visibilidad_novedad');
+Route::post('novedades/ordenar', [Novedades::class, 'ordenar'])->name('ordenar_novedades');
 
 // paginas
 Route::get('paginas', [Paginas::class, 'index'])->name('paginas');

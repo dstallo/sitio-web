@@ -30,4 +30,12 @@
     <input type="text" class="form-control" name="link" value="{{ old('link',$pagina->link) }}">
     <span class="help-block">Dejar vacío si se carga una ficha.</span>
 </div>
+<div class="col-md-4 form-group">
+    <label>Visibilidad</label>
+    <div class="checkbox icheck">
+        <label>
+            <input type="checkbox" value="1" name="visible" {{ old('visible', $pagina->visible) ? 'checked':'' }} /> Página visible en el menú
+        </label>
+    </div>
+</div>
 @include('admin.parciales.form-ficha', ['ficha' => $pagina->ficha])

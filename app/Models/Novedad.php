@@ -6,11 +6,13 @@ use Illuminate\Support\Str;
 use App\Axys\Traits\TieneArchivos;
 use Illuminate\Database\Eloquent\Model;
 use App\Axys\Traits\EsMultiIdioma;
+use App\Axys\Traits\EsOrdenable;
 use Illuminate\Http\Request;
 
 class Novedad extends Model
 {
 	use TieneArchivos;
+    use EsOrdenable;
 	use EsMultiIdioma;
 
 	protected $table = 'novedades';
@@ -32,7 +34,7 @@ class Novedad extends Model
 	{
 		return $query
 			->where('visible', true)
-			->orderBy('created_at', 'desc');
+			->orderBy('orden', 'asc');
 	}
 
 	public function contenidos()

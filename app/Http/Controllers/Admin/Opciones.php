@@ -66,7 +66,7 @@ class Opciones extends Controller
 		return view('admin.opciones.editar', compact('opcion', 'pregunta', 'encuesta'));
 	}
 
-	public function guardar(Encuesta $encuesta, Pregunta $pregunta, $id = null, Request $request)
+	public function guardar(Request $request, Encuesta $encuesta, Pregunta $pregunta, $id = null)
 	{
 		$this->validate($request, [
 			'valor_es' => 'required',

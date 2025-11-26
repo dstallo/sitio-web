@@ -24,15 +24,15 @@ class Novedades extends Controller
 		$query = Novedad::query();
 
 		if (!session()->has('axys.listado.novedades.orden')) {
-			session(['axys.listado.novedades.orden' => 'id']);
-			session(['axys.listado.novedades.sentido' => 'desc']);
+			session(['axys.listado.novedades.orden' => 'orden']);
+			session(['axys.listado.novedades.sentido' => 'asc']);
 		}
 
 		$listado = new Listado(
 			'novedades',
 			$query,
 			$request,
-			['id', 'titulo_es'],
+			['orden', 'id', 'titulo_es'],
 			[
 				'buscando' => [
 					['campo' => 'titulo_es', 'comparacion' => 'like'],
@@ -114,5 +114,16 @@ class Novedades extends Controller
 		$novedad->eliminarArchivo($campo)->save();
 		Flasher::set("Se eliminó el archivo $campo", 'Archivo Eliminado', 'success')->flashear();
 		return back();
+	}
+
+    public function ordenar(Request $request)
+	{
+		$ids = $request->all()['ids'];
+		$orden = 1;
+		foreach ($ids as $id) {
+			Novedad::where('id', $id)->update(['orden' => $orden]);
+			$orden += 1;
+		}
+		return ['ok' => true];
 	}
 }

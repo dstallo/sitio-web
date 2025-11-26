@@ -65,7 +65,7 @@ class Preguntas extends Controller
 		return view('admin.preguntas.editar', compact('pregunta', 'encuesta'));
 	}
 
-	public function guardar(Encuesta $encuesta, $id = null, Request $request)
+	public function guardar(Request $request, Encuesta $encuesta, $id = null)
 	{
 		$this->validate($request, [
 			'pregunta_es' => 'required',

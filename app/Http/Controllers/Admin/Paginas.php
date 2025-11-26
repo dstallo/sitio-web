@@ -95,6 +95,7 @@ class Paginas extends Controller
             }],
 			'link' => 'nullable|url',
 			'thumbnail' => ['nullable', 'file', 'mimes:'.config('app.image_mimes'),'max:'.config('app.image_size')],
+            'visible' => 'nullable|boolean'
 		]);
 
 		if ($id) {
@@ -104,6 +105,8 @@ class Paginas extends Controller
 		}
 
 		$pagina->fill($request->all());
+
+        $pagina->visible = !! $request->input('visible');
 
         $pagina->slug = Str::slug($pagina->titulo_es);
 

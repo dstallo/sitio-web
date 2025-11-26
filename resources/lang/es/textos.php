@@ -77,8 +77,8 @@ return [
 		'texto' => $texto->obtener('pie.texto', 'es'),
         'contacto' => $texto->obtener('pie.contacto', 'es'),
 		'newsletter' => [
-			'titulo' => 'Newsletter',
-			'texto' => '<p>¡Suscribite y recibí novedades y promociones!</p>',
+			'titulo' => $texto->obtener('pie.newsletter.titulo', 'es'),
+			'texto' => $texto->obtener('pie.newsletter.texto', 'es'),
 			'campo' => 'tu email acá',
 			'exito' => [
 				'titulo' => 'Inscripción realizada',
@@ -90,13 +90,13 @@ return [
 			],
 		],
 	],
-	'encuesta' => [
-		'titulo' => 'Encuesta de satisfacción',
-		'intro' => '<p>Te invitamos a completar esta encuesta  de satisfacción.<br>Tu participación nos ayudan a seguir mejorando nuestro servicio.</p>',
-		'boton' => 'ENVIAR',
+    'encuesta' => [
+		'titulo' => $texto->obtener('encuesta.titulo', 'es'),
+		'texto' => $texto->obtener('encuesta.texto', 'es'),
+		'boton' => $texto->obtener('encuesta.boton', 'es'),
 		'exito' => [
-			'titulo' => 'Encuesta completa',
-			'texto' => '<p>Gracias por darnos tu opinión.</p>',
+			'titulo' => $texto->obtener('encuesta.exito.titulo', 'es'),
+			'texto' => $texto->obtener('encuesta.exito.texto', 'es'),
 		]
 	],
 ];

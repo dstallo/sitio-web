@@ -58,6 +58,7 @@
             <table id="tabla-ordenable" class="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>#</th>
                         <th>Pregunta</th>
                         <th></th>
@@ -67,6 +68,7 @@
                     @forelse($preguntas as $pregunta)
                         <tr>
                             <td class="hidden">{{ $pregunta->orden }}</td>
+                            <td><i class="fa fa-ellipsis-v drag" aria-hidden="true"></i></td>
                             <td>{{ $pregunta->id }}</td>
                             <td>{{ $pregunta->pregunta_es }}</td>
                             <td class="text-right">

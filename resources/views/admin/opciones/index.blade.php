@@ -61,6 +61,7 @@
             <table id="tabla-ordenable" class="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>#</th>
                         <th>Valor</th>
                         <th></th>
@@ -70,6 +71,7 @@
                     @forelse($opciones as $opcion)
                         <tr>
                             <td class="hidden">{{ $opcion->orden }}</td>
+                            <td><i class="fa fa-ellipsis-v drag" aria-hidden="true"></i></td>
                             <td>{{ $opcion->id }}</td>
                             <td>{{ $opcion->valor_es }}</td>
                             <td class="text-right">

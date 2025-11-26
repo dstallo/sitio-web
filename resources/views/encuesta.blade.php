@@ -9,14 +9,16 @@
 @section('contenido')
 
 	<div class="encuesta contenedor">
-		
+	@if (lang('textos.encuesta.texto'))
 		<div class="intro">
-			@lang('textos.encuesta.intro')
+			@lang('textos.encuesta.texto')
 		</div>
-
+    @endif
+    @if (lang('textos.encuesta.titulo'))
 		<div class="titulo">
 			<span>@lang('textos.encuesta.titulo')</span>
 		</div>
+    @endif
 
 		<form method="post">
 			{{ csrf_field() }}

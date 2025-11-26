@@ -59,16 +59,18 @@ $tiene_agenda = App\Models\Evento::front()->count();
     @include('flasher.flasher')
     
     <header>
-        <div class="contenedor barra">
-            <ul class="info">
-                <li><span class="icono marcador"></span>@lang('textos.datos.direccion')</li>
-                <li><span class="icono telefono"></span>@lang('textos.datos.telefono')</li>
-                <li><span class="icono email"></span><a href="mailto:@lang('textos.datos.email')">@lang('textos.datos.email')</a></li>
-            </ul>
-            <ul class="apps">
-                <li><a href="https://xhendra.ar/" target="_blank"><span>Xendra</span></a></li>
-                <li><a href="https://webmail.froebel.edu.ar/" target="_blank"><span class="icono email"></span><span>WebMail</span></a></li>
-            </ul>
+        <div class="barra">
+            <div class="contenedor">
+                <ul class="info">
+                    <li><span class="icono marcador"></span>@lang('textos.datos.direccion')</li>
+                    <li><span class="icono telefono"></span>@lang('textos.datos.telefono')</li>
+                    <li><span class="icono email"></span><a href="mailto:@lang('textos.datos.email')">@lang('textos.datos.email')</a></li>
+                </ul>
+                <ul class="apps">
+                    <li><a href="https://xhendra.ar/" target="_blank"><span>Xendra</span></a></li>
+                    <li><a href="https://webmail.froebel.edu.ar/" target="_blank"><span class="icono email"></span><span>WebMail</span></a></li>
+                </ul>
+            </div>
         </div>
         <div class="contenedor">
             <a href="{{ url('/') }}" class="logo">
@@ -333,9 +335,10 @@ $tiene_agenda = App\Models\Evento::front()->count();
                             <a href="mailto:@lang('textos.datos.email')" target="_blank" class="email"></a>
                         </div>
                     
+                    @if (lang('textos.pie.newsletter.titulo'))
                         <div class="newsletter">
                             <h3>@lang('textos.pie.newsletter.titulo')</h3>
-                            @lang('textos.pie.newsletter.texto')
+                            {!! lang('textos.pie.newsletter.texto') !!}
                             <form data-formulario="{{ url('ajax/newsletter') }}">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="exito_titulo" value="@lang('textos.pie.newsletter.exito.titulo')">
@@ -346,6 +349,7 @@ $tiene_agenda = App\Models\Evento::front()->count();
                                 <button type="submit"></button>
                             </form>
                         </div>
+                    @endif
                     </div>
                 </div>
             </div>

@@ -55,9 +55,10 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
-            <table class="table table-striped table-hover">
+            <table id="tabla-ordenable" class="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <th><a href="{{ $listado->linkOrden('orden', 'asc') }}"><i class="fa fa-refresh" aria-hidden="true"></i></a></th>
                         <th><a href="{{ $listado->linkOrden('id') }}">#</a></th>
                         <th><a href="{{ $listado->linkOrden('titulo_es') }}">Título</a></th>
                         <th>Link</th>
@@ -68,6 +69,8 @@
                 <tbody>
                     @forelse($novedades as $novedad)
                         <tr>
+                            <td class="hidden">{{ $novedad->orden }}</td>
+                            <td><i class="fa fa-ellipsis-v drag" aria-hidden="true"></i></td>
                             <td>{{ $novedad->id }}</td>
                             <td>{{ $novedad->titulo_es }}</td>
                             <td>
@@ -84,6 +87,7 @@
                                 <a href="{{ route('editar_novedad', compact('novedad')) }}" role="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
                                 <a href="{{ route('eliminar_novedad', compact('novedad')) }}" role="button" class="btn btn-danger btn-circle axys-confirmar-eliminar"><i class="glyphicon glyphicon-remove"></i></a>
                             </td>
+                            <td class="hidden">{{ $novedad->id }}</td>
                         </tr>
                     @empty
                         <tr>
@@ -98,4 +102,8 @@
             {{ $novedades->links() }}
         </div>
     </div>
+@endsection
+
+@section('script.abajo')
+    <x-admin.ordenable :url="route('ordenar_novedades')" />
 @endsection

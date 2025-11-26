@@ -209,17 +209,20 @@ class AxysListado
     /**
      * Devuelve el href para ordenar por tal o cual campo.
      */
-    public function linkOrden($campo)
+    public function linkOrden($campo, $sentido = null)
     {
         if (!in_array($campo, $this->ordenables)) {
             return '';
         }
         $link="?orden=$campo&sentido=";
-        if ($this->orden==$campo) {
+        if ($sentido)
+            $link .= $sentido;
+        else if ($this->orden==$campo) {
             $link .= $this->sentido=='asc' ? 'desc' : 'asc';
         } else {
             $link .= 'asc';
         }
+        
         return $link;
     }
 
