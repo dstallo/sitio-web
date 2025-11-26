@@ -140,5 +140,7 @@ function has_lang($texto) {
 }
 
 function lang($texto) {
-    return __($texto);
+    if (Lang::has($texto))
+        return __($texto);
+    return null;
 }
