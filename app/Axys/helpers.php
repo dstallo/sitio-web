@@ -140,5 +140,5 @@ function has_lang($texto) {
 }
 
 function lang($texto) {
-    return Lang::has($texto);
+    return __($texto);
 }

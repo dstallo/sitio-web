@@ -351,6 +351,8 @@ $tiene_agenda = App\Models\Evento::front()->count();
             </div>
         </div>
     </footer>
-    <a href="https://api.whatsapp.com/send?phone={{ preg_replace('/[^0-9]/', '', __('textos.datos.whatsapp')) }}" target="_blank" class="whatsapp"></a>
+@if (lang('textos.datos.whatsapp'))
+    <a href="https://api.whatsapp.com/send?phone={{ preg_replace('/[^0-9]/', '', lang('textos.datos.whatsapp')) }}" target="_blank" class="whatsapp"></a>
+@endif
 </body>
 </html>
