@@ -156,23 +156,48 @@ $tiene_agenda = App\Models\Evento::front()->count();
             </div>
         @endif
         </section>
+        
+    @if (lang('textos.datos.ubicacion'))
         <div class="ubicacion contenedor-mapa">
             <div class="mapa" id="mapa"></div>
             
             <script type="text/javascript">
                 var mapa, marcador, info, bounds;
+                try {
+                    var ubicacion = @lang('textos.datos.ubicacion') ?? null;
+                }
+                catch (e) {
+                    var ubicacion = null;
+                }
+                
 
+                if (ubicacion) {
 
-                var marcadores = [
-                    {"lat": -34.4516942586787, "lng": -58.53769388127857, "popup": '<p style="font-size:16px; margin-bottom:5px;"><b>Dirección:</b> Alfredo Palacios 1063, B1644BRK Victoria, Provincia de Buenos Aires</p><p style="font-size:16px; margin-bottom:5px;"><b>Whatsapp:</b> 11 5315 7340</p><p style="font-size:16px;"><b>E-Mail:</b> <a href="mailto:@lang('textos.datos.email')">@lang('textos.datos.email')</a></p>'},
-                ];
+                    ubicacion.popup = '';
+                    
+                @if (lang('textos.datos.direccion'))
+                    ubicacion.popup += '<p style="font-size:16px; margin-bottom:5px;"><b>Dirección:</b> @lang('textos.datos.direccion')</p>';
+                @endif
+                @if (lang('textos.datos.whatsapp'))
+                    ubicacion.popup += '<p style="font-size:16px; margin-bottom:5px;"><b>Whatsapp:</b> @lang('textos.datos.whatsapp')</p>';
+                @endif
+                @if (lang('textos.datos.email'))
+                    ubicacion.popup += '<p style="font-size:16px;"><b>E-Mail:</b> <a href="mailto:@lang('textos.datos.email')">@lang('textos.datos.email')</a></p>'
+                @endif
+
+                    var marcadores = [
+                        ubicacion  
+                    ];
+                }
 
                 function iniciarMapa() {
 
-                    mapa = new google.maps.Map(document.getElementById('mapa'), {zoom: 15, center: {lat: -34.4516942586787, lng: -58.53769388127857 }});
+                    if (! ubicacion)
+                        return;
+                    
+                    mapa = new google.maps.Map(document.getElementById('mapa'), {zoom: 15, center: @lang('textos.datos.ubicacion')});
 
                     bounds = new google.maps.LatLngBounds();
-                    
 
                     marcadores.forEach(function(item){
 
@@ -182,24 +207,30 @@ $tiene_agenda = App\Models\Evento::front()->count();
                             position: position, 
                             map: mapa
                         });
+                    
+                        if (item.popup) {
 
-                        item.infoWindow = new google.maps.InfoWindow({
-                            content: item.popup
-                        });
+                            item.infoWindow = new google.maps.InfoWindow({
+                                content: item.popup
+                            });
 
-                        item.marker.addListener('click', function() {
-                            item.infoWindow.open(mapa, item.marker);
-                        });
+                            item.marker.addListener('click', function() {
+                                item.infoWindow.open(mapa, item.marker);
+                            });
+
+                        }
 
                         bounds.extend(position);
-                    })
+                    });
 
-                    //mapa.fitBounds(bounds);
+                    if (marcadores.length > 1)
+                        mapa.fitBounds(bounds);
                     
                 }
             </script>
             <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('google.maps.api_key') }}&libraries=maps,marker&callback=iniciarMapa"></script>
         </div>
+    @endif
         <div class="ancla" id="consulta"></div>
         <section class="consulta contenedor">
         @if (lang('textos.contacto.titulo'))

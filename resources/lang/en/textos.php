@@ -10,6 +10,7 @@ return [
         'telefono' => $texto->obtener('datos.telefono', 'en'),
         'direccion' => $texto->obtener('datos.direccion', 'en'),
         'whatsapp' => $texto->obtener('datos.whatsapp', 'en'),
+        'ubicacion' => $texto->obtener('datos.ubicacion', 'en'),
     ],
 	'servicios' => [
         'menu' => $texto->obtener('servicios.menu', 'en'),

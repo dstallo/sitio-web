@@ -233,5 +233,12 @@ class TextosSeeder extends Seeder
             'texto_en' => '1122334455',
             'raw'   => true
         ]);
+
+        DB::table('textos')->insert([
+            'id' => 'datos.ubicacion',
+            'texto_es' => '{"lat": -34.6156548, "lng": -58.5156993}',
+            'texto_en' => '{"lat": -34.6156548, "lng": -58.5156993}',
+            'raw'   => true
+        ]);
     }
 }

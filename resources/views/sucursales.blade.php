@@ -7,11 +7,15 @@
 @section('contenido')
 
 	@if($sucursales->count())
-		<section class="sucursales contenedor">		
+		<section class="sucursales contenedor">
+        @if (lang('textos.sucursales.titulo'))
             <h2>@lang('textos.sucursales.titulo')</h2>
+        @endif
+        @if (lang('textos.sucursales.texto'))
 			<div class="intro">
 				@lang('textos.sucursales.texto')
 			</div>
+        @endif
 			<ul>
 				@foreach($sucursales as $sucursal)
 					<li>
