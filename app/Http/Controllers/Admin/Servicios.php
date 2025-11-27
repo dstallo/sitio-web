@@ -20,13 +20,13 @@ class Servicios extends Controller
 
 	public function index(Request $request)
 	{
-		$query = Servicio::orderBy('orden');
+		$query = Servicio::query();
 
 		$listado = new Listado(
 			'servicios',
 			$query,
 			$request,
-			[],
+			['orden', 'titulo_es', 'id'],
 			[
 				'buscando' => [
 					['campo' => 'titulo_es', 'comparacion' => 'like'],

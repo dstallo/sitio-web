@@ -10,7 +10,6 @@
     @endif
 </div>
 
-<div class="row">
     <div class="col-md-4 form-group{{ has_error($errors, "nombre") }}">
         <label>Nombre</label>
         <input type="text" class="form-control" name="nombre" value="{{ old("nombre", $sucursal->nombre) }}">
@@ -19,7 +18,7 @@
     <div class="col-md-4 form-group{{ has_error($errors,'link') }}">
         <label>Link</label>
         <input type="text" class="form-control" name="link" value="{{ old('link',$sucursal->link) }}">
-        <span class="help-block">Opcional link a sitio web del centro.</span>
+        <span class="help-block">Opcional link a sitio web de la sucursal.</span>
     </div>
     <div class="col-md-4 form-group{{ has_error($errors,'thumbnail') }}">
         <label>Thumbnail</label>
@@ -34,8 +33,8 @@
             <input type="file" class="form-control" name="thumbnail" value="{{ old('thumbnail') }}">
         @endif
     </div>
-</div>
-<div class="row">
+<div style="clear:both;"></div>
+
     <div class="col-md-3 form-group{{ has_error($errors, "direccion") }}">
         <label>Dirección</label>
         <input type="text" class="form-control" name="direccion" value="{{ old("direccion", $sucursal->direccion) }}">
@@ -52,7 +51,7 @@
         <label>E-Mail</label>
         <input type="text" class="form-control" name="email" value="{{ old("email", $sucursal->email) }}">
     </div>
-</div>
+
 @foreach(config('idiomas.idiomas') as $kidioma => $idioma)
 <?php $campo = 'bajada_'.$kidioma; ?>
 <div class="col-md-6 form-group{{ has_error($errors, $campo) }}">

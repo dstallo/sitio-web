@@ -1,7 +1,7 @@
 @extends('vendor.adminlte.page')
 
 @section('content_header')
-    <h1>Centros</h1>
+    <h1>Sucursales</h1>
 @stop
 
 @section('content')
@@ -15,7 +15,7 @@
                 </div>
                 <div class="box-body">
                     <div class="col-md-12">
-                        <a href="{{ route('crear_sucursal') }}" class="btn btn-primary">Crear centro</a>
+                        <a href="{{ route('crear_sucursal') }}" class="btn btn-primary">Crear sucursal</a>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="99">No se encontraron centros.</td>
+                            <td colspan="99">No se encontraron sucursales.</td>
                         </tr>
                     @endforelse
                     <?php $sucursal = null; ?>

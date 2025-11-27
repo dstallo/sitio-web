@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Axys\Traits\EsMultiIdioma;
 use App\Axys\Traits\EsOrdenable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Publicacion extends Model
 {
@@ -18,7 +19,7 @@ class Publicacion extends Model
 	protected $table = 'publicaciones';
 
 	protected $idiomatizados = ['titulo'];
-	protected $fillable = ['titulo', 'link', 'destacado'];
+	protected $fillable = ['titulo', 'link', 'destacado', 'categoria'];
 
 	protected $dir = [
 		'thumbnail' => 'publicaciones',
@@ -77,6 +78,10 @@ class Publicacion extends Model
         $ficha->fill($request->all());
         $ficha->articulo()->associate($this);
         $ficha->save();
+    }
+
+    static public function categorias() {
+        return Publicacion::select('categoria', DB::raw('MIN(orden) as orden'))->whereNotNull('categoria')->groupBy('categoria')->orderBy('orden', 'asc')->get()->pluck('categoria')->all();
     }
 
 }

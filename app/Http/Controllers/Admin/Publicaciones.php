@@ -32,7 +32,7 @@ class Publicaciones extends Controller
 			'publicaciones',
 			$query,
 			$request,
-			['orden', 'id', 'titulo_es'],
+			['orden', 'id', 'titulo_es', 'categoria'],
 			[
 				'buscando' => [
 					['campo' => 'titulo_es', 'comparacion' => 'like'],
@@ -40,12 +40,16 @@ class Publicaciones extends Controller
 				'buscando_id' => [
 					['campo' => 'id', 'comparacion' => 'igual']
 				],
+                'buscando_categoria' => [
+					['campo' => 'categoria', 'comparacion' => 'igual']
+				],
 			]
 		);
 
 		$publicaciones = $listado->paginar(50);
+        $categorias = Publicacion::categorias();
 
-		return view('admin.publicaciones.index', compact('publicaciones', 'listado'));
+		return view('admin.publicaciones.index', compact('publicaciones', 'listado', 'categorias'));
 	}
 
 	public function eliminar(Publicacion $publicacion)
@@ -64,13 +68,14 @@ class Publicaciones extends Controller
 	public function crear(Request $request)
 	{
 		$publicacion = new Publicacion();
-
-		return view('admin.publicaciones.crear', compact('publicacion'));
+        $categorias = Publicacion::categorias();
+		return view('admin.publicaciones.crear', compact('publicacion', 'categorias'));
 	}
 
 	public function editar(Publicacion $publicacion, Request $request)
 	{
-		return view('admin.publicaciones.editar', compact('publicacion'));
+        $categorias = Publicacion::categorias();
+		return view('admin.publicaciones.editar', compact('publicacion', 'categorias'));
 	}
 
 	public function guardar(Request $request, $id = null)

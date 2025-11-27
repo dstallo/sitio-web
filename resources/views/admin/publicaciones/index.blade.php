@@ -35,6 +35,17 @@
                                 <input type="text" class="form-control" name="buscando_id" placeholder="ID#" value="{{ $listado->old('buscando_id') }}">
                             </div>
                         </div>
+                        <div class="col-md-3 form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-menu-hamburger"></i></span>
+                                <select data-search-placeholder="Buscá la categoría" name="buscando_categoria" class="select2" data-tags="true" data-placeholder="Por categoría" data-allow-clear="true">
+                                    <option></option>
+                                @foreach($categorias as $m)
+                                    <option value="{{ $m }}" {{ $listado->old('buscando_categoria') == $m ? 'selected':'' }}>{{ $m }}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-md-6 form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
@@ -59,8 +70,9 @@
             <table id="tabla-ordenable" class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th><a href="{{ $listado->linkOrden('orden', 'asc') }}"><i class="fa fa-refresh" aria-hidden="true"></i></a></th>
                         <th><a href="{{ $listado->linkOrden('id') }}">#</a></th>
+                        <th><a href="{{ $listado->linkOrden('categoria') }}">Categoría</a></th>
                         <th><a href="{{ $listado->linkOrden('titulo_es') }}">Título</a></th>
                         <th>Link</th>
                         <th width="100"></th>
@@ -73,6 +85,7 @@
                             <td class="hidden">{{ $publicacion->orden }}</td>
                             <td><i class="fa fa-ellipsis-v drag" aria-hidden="true"></i></td>
                             <td>{{ $publicacion->id }}</td>
+                            <td>{{ $publicacion->categoria ?? '-' }}</td>
                             <td>{{ $publicacion->titulo_es }}</td>
                             <td>
                                 <a href="{{ $publicacion->href() }}" target="_blank">{{ $publicacion->link? $publicacion->link : 'Ver publicación' }}</a>

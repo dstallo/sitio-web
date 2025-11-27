@@ -57,9 +57,9 @@
             <table id="tabla-ordenable" class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>#</th>
-                        <th>Título</th>
+                        <th><a href="{{ $listado->linkOrden('orden', 'asc') }}"><i class="fa fa-refresh" aria-hidden="true"></i></a></th>
+                        <th><a href="{{ $listado->linkOrden('id') }}">#</a></th>
+                        <th><a href="{{ $listado->linkOrden('titulo_es') }}">Título</a></th>
                         <th>Link</th>
                         <th></th>
                     </tr>

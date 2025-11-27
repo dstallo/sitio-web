@@ -16,7 +16,7 @@ strong,b { font-weight:700; }
 .dropdown-action {padding-right:15px;}
 .dropdown-action::after { position:absolute; top:50%; margin-top:-2px; right:0; content: " "; border-color: $color-primary transparent transparent transparent; border-style: solid; border-width: 5px 4px 0 4px;  display:block; width:0; height:0; }
 .dropdown-action.open::after {transform:rotate(180deg);}
-.dropdown {display:none; position:absolute; width:250px; background-color:#FFFFFF; border:1px solid #CCC; border-radius:2px; padding: 5px 0; box-shadow: 1px 1px 5px 0 #CCC; }
+.dropdown {display:none; z-index:1000; position:absolute; width:250px; background-color:#FFFFFF; border:1px solid #CCC; border-radius:2px; padding: 5px 0; box-shadow: 1px 1px 5px 0 #CCC; }
 .dropdown-item {text-transform:none; padding:10px;}
 .dropdown-item:hover,.dropdown-item:focus {background-color:$color-primary; color: $color-header;}
 
@@ -315,9 +315,9 @@ footer {
 			.desplegar-menu-principal {
 				display:block; width:25px; height:18px;
 				position:absolute; right:15px; top:45px;
-				span { position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); border-top:1px solid #FFF; }
-				&:before { display:block; content:''; position:absolute; left:0; right:0; top:0; border-top:1px solid #FFF; }
-				&:after { display:block; content:''; position:absolute; left:0; right:0; bottom:0; border-top:1px solid #FFF; }
+				span { position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); border-top:1px solid $color-primary; }
+				&:before { display:block; content:''; position:absolute; left:0; right:0; top:0; border-top:1px solid $color-primary; }
+				&:after { display:block; content:''; position:absolute; left:0; right:0; bottom:0; border-top:1px solid $color-primary; }
 			}
 			ul {
 				display:none;
@@ -331,6 +331,12 @@ footer {
 			}
 
 		}
+
+        .dropdown-action.open {background-color:$color-primary; color: #FFFFFF;}
+        .dropdown-action.open::after {border-color: #FFF transparent transparent transparent;}
+        .dropdown-action::after {right:15px;}
+        
+        .dropdown {width:calc(100% - 20px);}
 	}
 
 	footer {

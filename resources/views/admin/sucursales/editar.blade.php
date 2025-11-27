@@ -1,13 +1,13 @@
 @extends('vendor.adminlte.page')
 
 @section('content_header')
-    <h1>Centros</h1>
+    <h1>Sucursales</h1>
 @stop
 
 @section('content')
     <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Editar centro</h3>
+          <h3 class="box-title">Editar sucursal</h3>
         </div>
         <form method="post" enctype="multipart/form-data" action="{{ route('guardar_sucursal', $sucursal) }}">
             {{ csrf_field() }}

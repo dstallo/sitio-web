@@ -54,9 +54,9 @@ class Sucursales extends Controller
 	{
 		try {
 			$sucursal->delete();
-			$flasher = Flasher::set('La página fue eliminada.', 'Página Eliminada', 'success');
+			$flasher = Flasher::set('La sucursal fue eliminada.', 'Sucursal Eliminada', 'success');
 		} catch (\Exception $e) {
-			$flasher = Flasher::set('No se pudo borrar la página, ya tiene contenido asociado.', 'Error', 'error');
+			$flasher = Flasher::set('No se pudo borrar la sucursal, ya tiene contenido asociado.', 'Error', 'error');
 		}
 		$flasher->flashear();
 		return redirect()->back();
@@ -94,10 +94,10 @@ class Sucursales extends Controller
 			->save();
 
 		if ($id) {
-			Flasher::set('El centro fue modificado exitosamente.', 'Centro Editado', 'success')->flashear();
+			Flasher::set('La sucursal fue modificada exitosamente.', 'Sucursal Editada', 'success')->flashear();
 			return back();
 		} else {
-			Flasher::set('El centro fue creado exitosamente.', 'Centro Creado', 'success')->flashear();
+			Flasher::set('La sucursal fue creada exitosamente.', 'Sucursal Creada', 'success')->flashear();
 			return redirect()->route('editar_sucursal', $sucursal);
 		}
 	}

@@ -9,7 +9,15 @@
         </div>
     @endif
 </div>
-
+<div class="col-md-3 form-group{{ has_error($errors, 'categoria') }}">
+    <label>Menú</label>
+    <select data-search-placeholder="Buscá o creá una categoría nueva" name="categoria" class="select2" data-tags="true" data-placeholder="Elegí la categoría">
+        <option></option>
+    @foreach($categorias as $m)
+        <option value="{{ $m }}" {{ old('categoria', $publicacion->categoria) == $m ? 'selected':'' }}>{{ $m }}</option>
+    @endforeach
+    </select>
+</div>
 @foreach(config('idiomas.idiomas') as $kidioma => $idioma)
 <?php $campo = 'titulo_'.$kidioma; ?>
 <div class="col-md-4 form-group{{ has_error($errors, $campo) }}">
