@@ -315,9 +315,9 @@ footer {
 			.desplegar-menu-principal {
 				display:block; width:25px; height:18px;
 				position:absolute; right:15px; top:45px;
-				span { position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); border-top:1px solid $color-primary; }
-				&:before { display:block; content:''; position:absolute; left:0; right:0; top:0; border-top:1px solid $color-primary; }
-				&:after { display:block; content:''; position:absolute; left:0; right:0; bottom:0; border-top:1px solid $color-primary; }
+				span { position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); border-top:1px solid $color-mobile-menu; }
+				&:before { display:block; content:''; position:absolute; left:0; right:0; top:0; border-top:1px solid $color-mobile-menu; }
+				&:after { display:block; content:''; position:absolute; left:0; right:0; bottom:0; border-top:1px solid $color-mobile-menu; }
 			}
 			ul {
 				display:none;
