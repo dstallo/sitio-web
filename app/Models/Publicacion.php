@@ -35,7 +35,8 @@ class Publicacion extends Model
 	{
 		return $query
 			->where('visible', true)
-			->orderBy('orden');
+			->orderBy('orden', 'asc')
+            ->latest();
 	}
 
 	public function contenidos()

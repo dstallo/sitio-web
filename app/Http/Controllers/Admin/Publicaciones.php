@@ -24,8 +24,8 @@ class Publicaciones extends Controller
 		$query = Publicacion::query();
 
 		if (!session()->has('axys.listado.publicaciones.orden')) {
-			session(['axys.listado.publicaciones.orden' => 'orden']);
-			session(['axys.listado.publicaciones.sentido' => 'asc']);
+            session(['axys.listado.publicaciones.orden' => ['orden', 'id']]);
+			session(['axys.listado.publicaciones.sentido' => ['asc', 'desc']]);
 		}
 
 		$listado = new Listado(
