@@ -29,7 +29,6 @@
     <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
-    <link rel="stylesheet" type="text/css" href="{{ url('js/lib/dropzone/dropzone.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/plugins/iCheck/square/blue.css') }}">
     
     @yield('adminlte_css')

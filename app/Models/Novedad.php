@@ -34,7 +34,8 @@ class Novedad extends Model
 	{
 		return $query
 			->where('visible', true)
-			->orderBy('orden', 'asc');
+			->orderBy('orden', 'asc')
+            ->latest();
 	}
 
 	public function contenidos()

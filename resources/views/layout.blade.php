@@ -62,9 +62,15 @@ $tiene_agenda = App\Models\Evento::front()->count();
         <div class="barra">
             <div class="contenedor">
                 <ul class="info">
+                @if (lang('textos.datos.direccion'))
                     <li><span class="icono marcador"></span>@lang('textos.datos.direccion')</li>
+                @endif
+                @if (lang('textos.datos.telefono'))
                     <li><span class="icono telefono"></span>@lang('textos.datos.telefono')</li>
+                @endif
+                @if (lang('textos.datos.email'))
                     <li><span class="icono email"></span><a href="mailto:@lang('textos.datos.email')">@lang('textos.datos.email')</a></li>
+                @endif
                 </ul>
                 <ul class="apps">
                     <li><a href="https://xhendra.ar/" target="_blank"><span>Xendra</span></a></li>
@@ -137,7 +143,9 @@ $tiene_agenda = App\Models\Evento::front()->count();
             
             <ul class="redes">
                 <li><a class="idioma instagram" target="_blank" href="#"></a></li>
+            @if (lang('textos.datos.email'))
                 <li><a class="idioma email" href="mailto:@lang('textos.datos.email')"></a></li>
+            @endif
             </ul>
             
             
@@ -325,14 +333,16 @@ $tiene_agenda = App\Models\Evento::front()->count();
                     <a class="logo" href="{{ url('/') }}">{{ config('app.name') }}</a>
                 </div>
                 <div class="col datos">
-                    @lang('textos.pie.contacto')
+                    {!! lang('textos.pie.contacto') !!}
                 </div>
                 <div class="col">
                     <div>
                     
                         <div class="redes">
                             <a href="#" target="_blank" class="facebook"></a>
+                        @if (lang('textos.datos.email'))
                             <a href="mailto:@lang('textos.datos.email')" target="_blank" class="email"></a>
+                        @endif
                         </div>
                     
                     @if (lang('textos.pie.newsletter.titulo'))

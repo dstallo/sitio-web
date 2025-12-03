@@ -24,8 +24,8 @@ class Novedades extends Controller
 		$query = Novedad::query();
 
 		if (!session()->has('axys.listado.novedades.orden')) {
-			session(['axys.listado.novedades.orden' => 'orden']);
-			session(['axys.listado.novedades.sentido' => 'asc']);
+			session(['axys.listado.novedades.orden' => ['orden', 'id']]);
+			session(['axys.listado.novedades.sentido' => ['asc', 'desc']]);
 		}
 
 		$listado = new Listado(

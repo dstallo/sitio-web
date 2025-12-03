@@ -96,21 +96,42 @@ class AxysListado
 
         if ($this->input->has('orden')) {
           $this->olvidarPagina();
-
-            $this->orden = in_array($this->input->get('orden'), $this->ordenables) ? $this->input->get('orden') : $this->orden;
+            if (is_array($this->input->get('orden'))) {
+                $this->orden = [];
+                foreach ($this->input->get('orden') as $orden) {
+                    if (in_array($orden, $this->ordenables))
+                        $this->orden[] = $orden;
+                }
+            }
+            else
+                $this->orden = in_array($this->input->get('orden'), $this->ordenables) ? $this->input->get('orden') : $this->orden;
             //cache(["$claveCache.orden"=>$this->orden], $this->minutosCache);
             session(["$claveCache.orden"=>$this->orden]);
         }
 
         if ($this->input->has('sentido')) {
           $this->olvidarPagina();
-
-            $this->sentido = in_array($this->input->get('sentido'), ['asc','desc']) ? $this->input->get('sentido') : $this->sentido;
+            if (is_array($this->input->get('sentido'))) {
+                $this->sentido = [];
+                foreach ($this->input->get('sentido') as $sentido) {
+                    if (in_array($sentido, ['asc','desc']))
+                        $this->sentido[] = $sentido;
+                }
+            }
+            else
+                $this->sentido = in_array($this->input->get('sentido'), ['asc','desc']) ? $this->input->get('sentido') : $this->sentido;
+            
             //cache(["$claveCache.sentido"=>$this->sentido], $this->minutosCache);
             session(["$claveCache.sentido"=>$this->sentido]);
         }
         
-        $this->query->orderBy($this->orden, $this->sentido);
+        if (is_array($this->orden)) {
+            foreach ($this->orden as $index => $orden) {
+                $this->query->orderBy($orden, is_array($this->sentido) ? (isset($this->sentido[$index]) ? $this->sentido[$index] : $this->sentido[0]) : $this->sentido);
+            }
+        }
+        else
+            $this->query->orderBy($this->orden, is_array($this->sentido) ? $this->sentido[0] : $this->sentido);
     }
 
     protected function procesarFiltros()
@@ -211,16 +232,36 @@ class AxysListado
      */
     public function linkOrden($campo, $sentido = null)
     {
-        if (!in_array($campo, $this->ordenables)) {
-            return '';
+
+        if (is_array($campo)) {
+            $link = '?orden[]='.implode('&orden[]=', $campo);
         }
-        $link="?orden=$campo&sentido=";
-        if ($sentido)
-            $link .= $sentido;
-        else if ($this->orden==$campo) {
-            $link .= $this->sentido=='asc' ? 'desc' : 'asc';
-        } else {
-            $link .= 'asc';
+        else {
+            $link = '?orden='.$campo;
+        }
+        
+
+        if ($this->orden != $campo) {
+            if (is_array($sentido)) {
+                $link .= '&sentido[]='.implode('&sentido[]=', $sentido);
+            }
+            elseif ($sentido) {
+                $link .= '&sentido='.$sentido;
+            }
+            else {
+                $link .= '&sentido=asc';
+            }
+        }
+        else {
+            if (is_array($this->sentido)) {
+                $link .= '&sentido[]='.implode('&sentido[]=', array_map(fn($item) => $item == 'asc' ? 'desc' : 'asc', $this->sentido));
+            }
+            elseif($this->sentido) {
+                $link .= '&sentido='. ($this->sentido == 'asc' ? 'desc' : 'asc');
+            }
+            else {
+                $link .= '&sentido=desc';
+            }
         }
         
         return $link;
